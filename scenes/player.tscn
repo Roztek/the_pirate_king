@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://dncasjtrj7q2m"]
+
+[ext_resource type="Script" path="res://scripts/Player.cs" id="1_akjv6"]
+[ext_resource type="Texture2D" uid="uid://dmp7x6mai611o" path="res://assets/16x16/animated_16x16/characters_16x16/hero_idle_16x16.png" id="2_d62v4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8m38"]
+atlas = ExtResource("2_d62v4")
+region = Rect2(96, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kvr2"]
+atlas = ExtResource("2_d62v4")
+region = Rect2(112, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yclf"]
+atlas = ExtResource("2_d62v4")
+region = Rect2(128, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30qk6"]
+atlas = ExtResource("2_d62v4")
+region = Rect2(144, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0mld"]
+atlas = ExtResource("2_d62v4")
+region = Rect2(160, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkr4s"]
+atlas = ExtResource("2_d62v4")
+region = Rect2(176, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fakb3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8m38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kvr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4yclf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30qk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0mld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkr4s")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_41sd2"]
+radius = 8.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_akjv6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_fakb3")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.824001
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_41sd2")
