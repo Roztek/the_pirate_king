@@ -1,54 +1,31 @@
-[gd_scene load_steps=11 format=3 uid="uid://dncasjtrj7q2m"]
+[gd_scene load_steps=8 format=3 uid="uid://dncasjtrj7q2m"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_akjv6"]
+[ext_resource type="Texture2D" uid="uid://w1puceghtcn1" path="res://assets/player/player.png" id="2_qfc5q"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dixhd"]
-load_path = "res://.godot/imported/hero_idle_16x16.png-b18f5e8a21f51670b6b3bb34c1057f5e.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_83w1s"]
+atlas = ExtResource("2_qfc5q")
+region = Rect2(128, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q8m38"]
-atlas = SubResource("CompressedTexture2D_dixhd")
-region = Rect2(96, 0, 16, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocqna"]
+atlas = ExtResource("2_qfc5q")
+region = Rect2(144, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6kvr2"]
-atlas = SubResource("CompressedTexture2D_dixhd")
-region = Rect2(112, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4yclf"]
-atlas = SubResource("CompressedTexture2D_dixhd")
-region = Rect2(128, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_30qk6"]
-atlas = SubResource("CompressedTexture2D_dixhd")
-region = Rect2(144, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s0mld"]
-atlas = SubResource("CompressedTexture2D_dixhd")
-region = Rect2(160, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bkr4s"]
-atlas = SubResource("CompressedTexture2D_dixhd")
-region = Rect2(176, 0, 16, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3el2"]
+atlas = ExtResource("2_qfc5q")
+region = Rect2(160, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fakb3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q8m38")
+"texture": SubResource("AtlasTexture_83w1s")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6kvr2")
+"texture": SubResource("AtlasTexture_ocqna")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4yclf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_30qk6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s0mld")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bkr4s")
+"texture": SubResource("AtlasTexture_b3el2")
 }],
 "loop": true,
 "name": &"idle",
@@ -56,19 +33,19 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_41sd2"]
-radius = 8.0
+radius = 5.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 0
 script = ExtResource("1_akjv6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_fakb3")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.824001
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8)
+position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_41sd2")
