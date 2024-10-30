@@ -8,7 +8,7 @@
 
 ### Directory Information
 
-The '*biodepth*' directory is the working directory for the game. 
+The '*The Pirate King*' directory is the working directory for the game. 
 
 ### Game Overview
 
