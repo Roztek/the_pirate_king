@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dncasjtrj7q2m"]
+[gd_scene load_steps=9 format=3 uid="uid://dncasjtrj7q2m"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_akjv6"]
+[ext_resource type="PackedScene" uid="uid://bre00drvx0fbh" path="res://scenes/ability/sword_ability/sword_ability_controller.tscn" id="2_d7r11"]
 [ext_resource type="Texture2D" uid="uid://w1puceghtcn1" path="res://assets/player/player.png" id="2_qfc5q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_83w1s"]
@@ -38,6 +39,10 @@ radius = 5.0
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 0
 script = ExtResource("1_akjv6")
+
+[node name="AbilityManager" type="Node" parent="."]
+
+[node name="SwordAbilityController" parent="AbilityManager" instance=ExtResource("2_d7r11")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
