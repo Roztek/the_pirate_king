@@ -18,7 +18,6 @@ public partial class GameCamera : Camera2D
 		GlobalPosition = GlobalPosition.Lerp(target_position, 1.0f - Mathf.Exp(-(float)delta * 10));
 	}
 
-
 	public void AcquireTarget() 
 	{
 		var player_nodes = GetTree().GetNodesInGroup("player");

@@ -1,8 +1,11 @@
 using Godot;
+using Godot.Collections;
 using System;
 
 public partial class SwordAbilityController : Node
 {
+    const int MAX_RANGE = 150;
+
     [Export]
     public PackedScene SwordAbility { get; set; }
 
@@ -12,16 +15,41 @@ public partial class SwordAbilityController : Node
         ability_timer.Timeout += OnTimerTimeout;
 	}
 
-
     public void OnTimerTimeout()
     {
         var player = GetTree().GetFirstNodeInGroup("player") as Node2D;
         if (player == null)
-            return; 
+            return;
 
-        var sword_instance = SwordAbility.Instantiate() as Node2D;
-        
-        player.GetParent().AddChild(sword_instance);
-        sword_instance.GlobalPosition = player.GlobalPosition;
+        var enemies = GetTree().GetNodesInGroup("enemy");
+        if (enemies == null)
+            return;
+
+        // Find the closest enemy by comparing distances to the player
+        Node2D closestEnemy = null;
+        float closestDistance = float.MaxValue;
+
+        foreach (Node enemy_node in enemies)
+        {
+            Node2D enemy = (Node2D)enemy_node;
+
+            float distance = player.GlobalPosition.DistanceTo(enemy.GlobalPosition);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestEnemy = enemy;
+            }
+        }
+
+        // Check if we found a closest enemy, then spawn the sword at that position
+        if (closestEnemy != null)
+        {
+            var sword_instance = SwordAbility.Instantiate() as Node2D;
+            if (sword_instance != null)
+            {
+                sword_instance.GlobalPosition = closestEnemy.GlobalPosition;
+                GetTree().Root.AddChild(sword_instance);
+            }
+        }
     }
 }
