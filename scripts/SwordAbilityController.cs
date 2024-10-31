@@ -49,6 +49,12 @@ public partial class SwordAbilityController : Node
             {
                 sword_instance.GlobalPosition = closestEnemy.GlobalPosition;
                 GetTree().Root.AddChild(sword_instance);
+
+                float randomAngle = (float)(new Random().NextDouble() * Math.PI * 2);
+                sword_instance.GlobalPosition += Vector2.Right.Rotated(randomAngle);
+
+                var enemy_direction = closestEnemy.GlobalPosition - sword_instance.GlobalPosition;
+                sword_instance.Rotation = enemy_direction.Angle();
             }
         }
     }

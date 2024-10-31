@@ -8,6 +8,8 @@ public partial class BasicEnemy : CharacterBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		Area2D hitbox = GetNode<Area2D>("Area2D");
+		hitbox.AreaEntered += OnAreaEntered;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,5 +29,11 @@ public partial class BasicEnemy : CharacterBody2D
 			return (player_node.GlobalPosition - GlobalPosition).Normalized();
 
 		return Vector2.Zero;
+	}
+
+
+	public void OnAreaEntered(Area2D area)
+	{
+			QueueFree();
 	}
 }
