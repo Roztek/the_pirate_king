@@ -7,13 +7,15 @@ public partial class SwordAbilityController : Node
     const int MAX_RANGE = 150;
 
     [Export]
-    public PackedScene SwordAbility { get; set; }
+    public PackedScene SwordAbilityScene { get; set; }
+
 
     public override void _Ready()
 	{
         Timer ability_timer = GetNode<Timer>("Timer");
         ability_timer.Timeout += OnTimerTimeout;
 	}
+
 
     public void OnTimerTimeout()
     {
@@ -44,7 +46,7 @@ public partial class SwordAbilityController : Node
         // Check if we found a closest enemy, then spawn the sword at that position
         if (closestEnemy != null)
         {
-            var sword_instance = SwordAbility.Instantiate() as Node2D;
+            var sword_instance = SwordAbilityScene.Instantiate() as Node2D;
             if (sword_instance != null)
             {
                 sword_instance.GlobalPosition = closestEnemy.GlobalPosition;

@@ -5,18 +5,18 @@ public partial class GameCamera : Camera2D
 {
 	Vector2 target_position = Vector2.Zero;
 
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		MakeCurrent();
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
+
 	public override void _Process(double delta)
 	{
 		AcquireTarget();
 		GlobalPosition = GlobalPosition.Lerp(target_position, 1.0f - Mathf.Exp(-(float)delta * 10));
 	}
+
 
 	public void AcquireTarget() 
 	{
