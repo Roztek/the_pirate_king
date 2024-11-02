@@ -47,17 +47,17 @@ public partial class SwordAbilityController : Node
         if (closestEnemy != null)
         {
             var sword_instance = SwordAbilityScene.Instantiate() as Node2D;
-            if (sword_instance != null)
-            {
-                sword_instance.GlobalPosition = closestEnemy.GlobalPosition;
-                GetTree().Root.AddChild(sword_instance);
+            if (sword_instance == null)
+                return;
 
-                float randomAngle = (float)(new Random().NextDouble() * Math.PI * 2);
-                sword_instance.GlobalPosition += Vector2.Right.Rotated(randomAngle);
+            sword_instance.GlobalPosition = closestEnemy.GlobalPosition;
+            GetTree().Root.AddChild(sword_instance);
 
-                var enemy_direction = closestEnemy.GlobalPosition - sword_instance.GlobalPosition;
-                sword_instance.Rotation = enemy_direction.Angle();
-            }
+            float randomAngle = (float)(new Random().NextDouble() * Math.PI * 2);
+            sword_instance.GlobalPosition += Vector2.Right.Rotated(randomAngle);
+
+            var enemy_direction = closestEnemy.GlobalPosition - sword_instance.GlobalPosition;
+            sword_instance.Rotation = enemy_direction.Angle();
         }
     }
 }
