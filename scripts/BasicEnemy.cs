@@ -3,7 +3,7 @@ using System;
 
 public partial class BasicEnemy : CharacterBody2D
 {
-	const int MAX_SPEED = 25;
+	const int MAX_SPEED = 40;
 
 
 	public override void _Ready()
