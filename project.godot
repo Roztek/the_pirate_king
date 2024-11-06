@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="the-pirate-king"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/main/main.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameEvents="*res://scenes/autoload/game_events.tscn"
 
 [debug]
 
@@ -64,6 +68,7 @@ move_down={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="EnemyHitbox"
+2d_physics/layer_5="PlayerPickup"
 
 [rendering]
 

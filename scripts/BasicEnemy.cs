@@ -34,6 +34,6 @@ public partial class BasicEnemy : CharacterBody2D
 
 	public void OnAreaEntered(Area2D area)
 	{
-			QueueFree();
+		QueueFree();
 	}
 }
