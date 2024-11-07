@@ -8,7 +8,7 @@ public partial class ExperienceManager : Node
 
     public override void _Ready()
     {
-        GameEvents game_events = GetNode<GameEvents>("GameEvents");
+        GameEvents game_events = (GameEvents) GetNode("/root/GameEvents");
         game_events.ExperienceVialCollected += OnExperienceVialCollected;
     }
 
@@ -16,7 +16,7 @@ public partial class ExperienceManager : Node
     public void IncrementExperience(float number)
     {
         current_experience += number;
-        Console.WriteLine(current_experience);
+        GD.Print(current_experience);
     }
 
 

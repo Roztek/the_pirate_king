@@ -8,7 +8,6 @@ public partial class GameEvents : Node
 
     public void EmitExperienceVialCollected(float number)
     {
-        EmitSignal(nameof(ExperienceVialCollectedEventHandler), number);
+        EmitSignal(SignalName.ExperienceVialCollected, number);
     }
 }
-

@@ -12,8 +12,8 @@ public partial class ExperienceVial : Node2D
 
 	public void OnAreaEntered(Area2D area)
 	{
-		GameEvents gameEvents = new GameEvents();
-		gameEvents.EmitExperienceVialCollected(1);
+		GameEvents game_events = (GameEvents) GetNode("/root/GameEvents");
+		game_events.EmitExperienceVialCollected(1);
 		QueueFree();
 	}
 }
