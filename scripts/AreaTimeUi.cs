@@ -6,9 +6,7 @@ public partial class AreaTimeUi : CanvasLayer
 	[Export]
     public AreaTimeManager AreaTimeManager { get; set; } 
 
-
-	private Label _label;
-
+	private Label _label = null;
 
     public override void _Ready()
     {

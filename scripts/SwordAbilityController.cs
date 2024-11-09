@@ -9,7 +9,6 @@ public partial class SwordAbilityController : Node
     [Export]
     public PackedScene SwordAbilityScene { get; set; }
 
-
     public override void _Ready()
 	{
         Timer ability_timer = GetNode<Timer>("Timer");

@@ -6,11 +6,6 @@ public partial class Player : CharacterBody2D
 	const int MAX_SPEED = 125;
 	const int ACCELERATION_SMOOTHING = 25;
 
-	public override void _Ready()
-	{
-	}
-
-
 	public override void _Process(double delta)
 	{
 		Vector2 movement_vector = GetMovementVector();
