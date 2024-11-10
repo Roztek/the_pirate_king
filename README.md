@@ -8,7 +8,7 @@
 
 ### Directory Information
 
-The '*The Pirate King*' directory is the working directory for the game. 
+The '*the-pirate-king*' directory is the working directory for the game. 
 
 ### Game Overview
 
