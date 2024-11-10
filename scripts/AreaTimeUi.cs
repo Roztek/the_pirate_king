@@ -3,8 +3,7 @@ using System;
 
 public partial class AreaTimeUi : CanvasLayer
 {
-	[Export]
-    public AreaTimeManager AreaTimeManager { get; set; } 
+	[Export] public AreaTimeManager AreaTimeManager { get; set; } 
 
 	private Label _label = null;
 

@@ -5,9 +5,8 @@ public partial class EnemyManager : Node
 {
 	const int SPAWN_RADIUS = 376;
 
-	[Export]
-    public PackedScene BasicEnemyScene { get; set; }
-
+	[Export] public PackedScene basic_enemy_scene { get; set; }
+ 
 
 	public override void _Ready()
 	{
@@ -31,7 +30,7 @@ public partial class EnemyManager : Node
 
 		var spawn_position = player.GlobalPosition + offset;
 
-		var enemy = BasicEnemyScene.Instantiate() as Node2D;
+		var enemy = basic_enemy_scene.Instantiate() as Node2D;
 		GetParent().AddChild(enemy);
 		enemy.GlobalPosition = spawn_position;
 	}

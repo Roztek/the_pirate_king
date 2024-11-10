@@ -3,18 +3,16 @@ using System;
 
 public partial class VialDropComponent : Node
 {
-    [Export]
-    public PackedScene vial_scene = null;
+    [Export] PackedScene vial_scene = null;
 
-    [Export]
-    private HealthComponent _health_component = null;
+    [Export] HealthComponent _health_component = null;
 
     public override void _Ready()
 	{
-		vial_scene = GetNode<PackedScene>("%ExperienceVial");
-        _health_component = GetNode<HealthComponent>("%HealthComponent");
+		vial_scene = GetNode<PackedScene>("ExperienceVial");
 
-        _health_component.died += OnDied;
+        _health_component = GetNode<HealthComponent>("HealthComponent");
+        _health_component.Died += OnDied;
 	}
 
 

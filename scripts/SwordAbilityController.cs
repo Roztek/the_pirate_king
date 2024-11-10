@@ -6,8 +6,7 @@ public partial class SwordAbilityController : Node
 {
     const int MAX_RANGE = 150;
 
-    [Export]
-    public PackedScene SwordAbilityScene { get; set; }
+    [Export] public PackedScene SwordAbilityScene { get; set; }
 
     public override void _Ready()
 	{

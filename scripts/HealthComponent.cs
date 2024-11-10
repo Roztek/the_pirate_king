@@ -4,11 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 public partial class HealthComponent : Node
 {
-    [Signal]
-    public delegate void diedEventHandler();
+    [Signal] public delegate void DiedEventHandler();
 
-    [Export]
-    public float max_health { get; set; }
+    [Export] public float max_health { get; set; }
 
     private float _current_health = 0;
 
@@ -25,7 +23,7 @@ public partial class HealthComponent : Node
 
         if (_current_health == 0)
         {
-            EmitSignal(SignalName.died);
+            EmitSignal(SignalName.Died);
             Owner.QueueFree();
         }
     }

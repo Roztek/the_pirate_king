@@ -16,7 +16,6 @@ AreaTimeManager = NodePath("../AreaTimeManager")
 [node name="AreaTimeManager" parent="." instance=ExtResource("2_vdd8h")]
 
 [node name="EnemyManager" parent="." instance=ExtResource("1_jg5kl")]
-BasicEnemyScene = null
 
 [node name="ExperienceManager" parent="." instance=ExtResource("4_6utp3")]
 

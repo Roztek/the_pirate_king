@@ -3,7 +3,7 @@ using System;
 
 public partial class AreaTimeManager : Node
 {
-    private Timer _timer;
+    private Timer _timer = null;
 
     public override void _Ready()
     {
