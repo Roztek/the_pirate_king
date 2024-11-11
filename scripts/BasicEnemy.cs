@@ -5,14 +5,14 @@ public partial class BasicEnemy : CharacterBody2D
 {
 	const int MAX_SPEED = 40;
 
-	private HealthComponent _health_component = null;
+	private HealthComponent _health_component;
 
 	public override void _Ready()
 	{
 		Area2D hitbox = GetNode<Area2D>("Area2D");
 		hitbox.AreaEntered += OnAreaEntered;
 
-		_health_component = GetNode<HealthComponent>("%HealthComponent");
+		_health_component = GetNode<HealthComponent>("HealthComponent");
 	}
 
 

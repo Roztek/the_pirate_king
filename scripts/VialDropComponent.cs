@@ -5,29 +5,33 @@ public partial class VialDropComponent : Node
 {
     [Export] PackedScene vial_scene = null;
 
-    [Export] HealthComponent _health_component = null;
+    [Export] HealthComponent _health_component;
 
     public override void _Ready()
 	{
-		vial_scene = GetNode<PackedScene>("ExperienceVial");
-
-        _health_component = GetNode<HealthComponent>("HealthComponent");
+        _health_component = GetParent().GetNode<HealthComponent>("HealthComponent");
         _health_component.Died += OnDied;
 	}
 
 
     public void OnDied()
     {
-        if (vial_scene == null)
+        CallDeferred(nameof(SpawnVial));
+    }
+
+
+    private void SpawnVial()
+    {
+        if (vial_scene == null || Owner is not Node2D owner_node)
             return;
 
-        if (!(Owner is Node2D))
-            return;
+        var spawn_position = owner_node.GlobalPosition;
 
-        var spawn_position = (Owner as Node2D)?.GlobalPosition ?? Vector2.Zero;
-        var vial_instance = vial_scene.Instantiate() as Node2D;
+        // Instantiate the vial and check if it was successful.
+        if (vial_scene.Instantiate() is not Node2D vial_instance)
+            return;
 
         GetParent().AddChild(vial_instance);
-		vial_instance.GlobalPosition = spawn_position;
+        vial_instance.GlobalPosition = spawn_position;
     }
 }

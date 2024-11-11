@@ -30,8 +30,8 @@ public partial class EnemyManager : Node
 
 		var spawn_position = player.GlobalPosition + offset;
 
-		var enemy = basic_enemy_scene.Instantiate() as Node2D;
-		GetParent().AddChild(enemy);
-		enemy.GlobalPosition = spawn_position;
+		var enemy_instance = basic_enemy_scene.Instantiate() as Node2D;
+		GetParent().AddChild(enemy_instance);
+		enemy_instance.GlobalPosition = spawn_position;
 	}
 }
