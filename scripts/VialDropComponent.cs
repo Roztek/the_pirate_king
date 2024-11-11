@@ -3,9 +3,9 @@ using System;
 
 public partial class VialDropComponent : Node
 {
-    [Export] PackedScene vial_scene = null;
+    [Export] private PackedScene vial_scene;
 
-    [Export] HealthComponent _health_component;
+    [Export] private HealthComponent _health_component;
 
     public override void _Ready()
 	{
@@ -27,11 +27,11 @@ public partial class VialDropComponent : Node
 
         var spawn_position = owner_node.GlobalPosition;
 
-        // Instantiate the vial and check if it was successful.
+        // Instantiate the vial and check if it was successful
         if (vial_scene.Instantiate() is not Node2D vial_instance)
             return;
 
-        GetParent().AddChild(vial_instance);
+        GetParent().GetParent().AddChild(vial_instance);
         vial_instance.GlobalPosition = spawn_position;
     }
 }

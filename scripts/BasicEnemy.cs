@@ -9,10 +9,10 @@ public partial class BasicEnemy : CharacterBody2D
 
 	public override void _Ready()
 	{
+		_health_component = GetNode<HealthComponent>("HealthComponent");
+		
 		Area2D hitbox = GetNode<Area2D>("Area2D");
 		hitbox.AreaEntered += OnAreaEntered;
-
-		_health_component = GetNode<HealthComponent>("HealthComponent");
 	}
 
 
