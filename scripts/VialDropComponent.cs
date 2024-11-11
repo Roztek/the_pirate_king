@@ -7,6 +7,8 @@ public partial class VialDropComponent : Node
 
     [Export] private HealthComponent _health_component;
 
+    [Export(PropertyHint.Range, "0, 1")] private float _spawn_rate;
+
     public override void _Ready()
 	{
         _health_component = GetParent().GetNode<HealthComponent>("HealthComponent");
@@ -22,6 +24,10 @@ public partial class VialDropComponent : Node
 
     private void SpawnVial()
     {
+        float random_number = (float) new Random().NextDouble();
+        if (random_number > _spawn_rate)
+            return;
+
         if (vial_scene == null || Owner is not Node2D owner_node)
             return;
 
@@ -32,6 +38,6 @@ public partial class VialDropComponent : Node
             return;
 
         GetParent().GetParent().AddChild(vial_instance);
-        vial_instance.GlobalPosition = spawn_position;
+        vial_instance.GlobalPosition = spawn_position;      
     }
 }
