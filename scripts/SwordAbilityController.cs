@@ -6,7 +6,9 @@ public partial class SwordAbilityController : Node
 {
     const int MAX_RANGE = 150;
 
-    [Export] public PackedScene SwordAbilityScene { get; set; }
+    [Export] public PackedScene sword_ability_scene { get; set; }
+
+    private float damage = 5;
 
     public override void _Ready()
 	{
@@ -26,35 +28,37 @@ public partial class SwordAbilityController : Node
             return;
 
         // Find the closest enemy by comparing distances to the player
-        Node2D closestEnemy = null;
-        float closestDistance = float.MaxValue;
+        Node2D closest_enemy = null;
+        float closest_distance = float.MaxValue;
 
         foreach (Node enemy_node in enemies)
         {
             Node2D enemy = (Node2D)enemy_node;
 
             float distance = player.GlobalPosition.DistanceTo(enemy.GlobalPosition);
-            if (distance < closestDistance)
+            if (distance < closest_distance)
             {
-                closestDistance = distance;
-                closestEnemy = enemy;
+                closest_distance = distance;
+                closest_enemy = enemy;
             }
         }
 
         // Check if we found a closest enemy, then spawn the sword at that position
-        if (closestEnemy != null)
+        if (closest_enemy != null)
         {
-            var sword_instance = SwordAbilityScene.Instantiate() as Node2D;
+            var sword_instance = sword_ability_scene.Instantiate() as SwordAbility;
             if (sword_instance == null)
                 return;
 
-            sword_instance.GlobalPosition = closestEnemy.GlobalPosition;
+            sword_instance.hitbox_component.damage = damage;
+
+            sword_instance.GlobalPosition = closest_enemy.GlobalPosition;
             GetTree().Root.AddChild(sword_instance);
 
             float randomAngle = (float)(new Random().NextDouble() * Math.PI * 2);
             sword_instance.GlobalPosition += Vector2.Right.Rotated(randomAngle);
 
-            var enemy_direction = closestEnemy.GlobalPosition - sword_instance.GlobalPosition;
+            var enemy_direction = closest_enemy.GlobalPosition - sword_instance.GlobalPosition;
             sword_instance.Rotation = enemy_direction.Angle();
         }
     }
