@@ -8,7 +8,7 @@ public partial class SwordAbilityController : Node
 
     [Export] public PackedScene sword_ability_scene { get; set; }
 
-    private float damage = 5;
+    public float damage = 5;
 
     public override void _Ready()
 	{
@@ -50,7 +50,8 @@ public partial class SwordAbilityController : Node
             if (sword_instance == null)
                 return;
 
-            sword_instance.hitbox_component.damage = damage;
+            if (sword_instance.hitbox_component != null) 
+                sword_instance.hitbox_component.damage = damage;
 
             sword_instance.GlobalPosition = closest_enemy.GlobalPosition;
             GetTree().Root.AddChild(sword_instance);
