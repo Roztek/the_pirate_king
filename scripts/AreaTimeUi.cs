@@ -7,6 +7,7 @@ public partial class AreaTimeUi : CanvasLayer
 
 	private Label _label = null;
 
+
     public override void _Ready()
     {
 		_label = GetNode<Label>("%Label");

@@ -4,10 +4,9 @@ using System;
 public partial class VialDropComponent : Node
 {
     [Export] private PackedScene vial_scene;
-
     [Export] private HealthComponent _health_component;
-
     [Export(PropertyHint.Range, "0, 1")] private float _spawn_rate;
+
 
     public override void _Ready()
 	{

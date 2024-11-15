@@ -4,9 +4,9 @@ using System;
 
 public partial class SwordAbilityController : Node
 {
-    const int MAX_RANGE = 150;
-
     [Export] public PackedScene sword_ability_scene { get; set; }
+    
+    const int MAX_RANGE = 150;
 
     public float damage = 5;
 

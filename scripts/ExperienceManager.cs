@@ -3,7 +3,14 @@ using System;
 
 public partial class ExperienceManager : Node
 {
-    private float current_experience = 0;
+    [Signal] public delegate void ExperienceUpdatedEventHandler(float current_experience, float target_experience);
+
+    const int TARGET_EXPERIENCE_GROWTH = 5;
+   
+    public float current_experience = 0;
+    public float target_experience = 5;
+    public int current_level = 0;
+
 
     public override void _Ready()
     {
@@ -14,8 +21,15 @@ public partial class ExperienceManager : Node
 
     public void IncrementExperience(float number)
     {
-        current_experience += number;
-        //GD.Print(current_experience);
+        current_experience = Math.Min(current_experience + number, target_experience);
+        EmitSignal(SignalName.ExperienceUpdated, current_experience, target_experience);
+        if (current_experience >= target_experience) 
+        {
+            current_level += 1;
+            target_experience += TARGET_EXPERIENCE_GROWTH;
+            current_experience = 0;
+            EmitSignal(SignalName.ExperienceUpdated, current_experience, target_experience);
+        }
     }
 
 

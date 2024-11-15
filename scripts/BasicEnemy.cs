@@ -7,12 +7,10 @@ public partial class BasicEnemy : CharacterBody2D
 
 	public HealthComponent _health_component = null;
 
+
 	public override void _Ready()
 	{
 		_health_component = GetNode<HealthComponent>("HealthComponent");
-		
-		// Area2D hitbox = GetNode<Area2D>("Area2D");
-		// hitbox.AreaEntered += OnAreaEntered;
 	}
 
 
@@ -33,10 +31,4 @@ public partial class BasicEnemy : CharacterBody2D
 
 		return Vector2.Zero;
 	}
-
-
-	// public void OnAreaEntered(Area2D area)
-	// {
-	// 	_health_component.Damage(100);
-	// }
 }

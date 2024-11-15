@@ -10,6 +10,7 @@ public partial class HealthComponent : Node
 
     private float _current_health;
 
+
     public override void _Ready()
     {
         _current_health = max_health;

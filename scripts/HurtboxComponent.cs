@@ -5,6 +5,7 @@ public partial class HurtboxComponent : Area2D
 {
     [Export] public HealthComponent health_component { get; set; }
 
+
     public override void _Ready()
     {
 		this.AreaEntered += OnAreaEntered;

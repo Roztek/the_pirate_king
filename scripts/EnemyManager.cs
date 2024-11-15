@@ -3,9 +3,9 @@ using System;
 
 public partial class EnemyManager : Node
 {
-	const int SPAWN_RADIUS = 376;
-
 	[Export] public PackedScene basic_enemy_scene { get; set; }
+
+	const int SPAWN_RADIUS = 376;
  
 
 	public override void _Ready()
