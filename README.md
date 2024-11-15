@@ -12,4 +12,4 @@ The '*the-pirate-king*' directory is the working directory for the game.
 
 ### Game Overview
 
- This game will be used to learn Godot and C#.
+ This game will be used as a catalyst to learn Godot and C#.
