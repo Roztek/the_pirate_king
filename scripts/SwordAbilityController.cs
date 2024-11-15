@@ -50,11 +50,10 @@ public partial class SwordAbilityController : Node
             if (sword_instance == null)
                 return;
 
-            if (sword_instance.hitbox_component != null) 
-                sword_instance.hitbox_component.damage = damage;
-
             sword_instance.GlobalPosition = closest_enemy.GlobalPosition;
             GetTree().Root.AddChild(sword_instance);
+
+            sword_instance.hitbox_component.damage = damage;
 
             float randomAngle = (float)(new Random().NextDouble() * Math.PI * 2);
             sword_instance.GlobalPosition += Vector2.Right.Rotated(randomAngle);
