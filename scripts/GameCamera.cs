@@ -23,10 +23,10 @@ public partial class GameCamera : Camera2D
 		var player_nodes = GetTree().GetNodesInGroup("player");
 
 		if (player_nodes.Count > 0) {
-			Node2D player = player_nodes[0] as Node2D;    // Cast to Node2D
+			Node2D player = player_nodes[0] as Node2D;
 
-			if (player != null) {						  // Check if the cast was successful 
-				target_position = player.GlobalPosition;  // Use GlobalPosition property
+			if (player != null) {	
+				target_position = player.GlobalPosition;
 			}
 		}
 	}
