@@ -5,6 +5,7 @@ public partial class AreaTimeManager : Node
 {
     private Timer _timer = null;
 
+
     public override void _Ready()
     {
         _timer = GetNode<Timer>("Timer");

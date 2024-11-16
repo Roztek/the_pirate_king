@@ -5,6 +5,7 @@ public partial class GameCamera : Camera2D
 {
 	Vector2 target_position = Vector2.Zero;
 
+
 	public override void _Ready()
 	{
 		MakeCurrent();

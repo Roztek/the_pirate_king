@@ -1,12 +1,14 @@
 using Godot;
 using System;
+using Godot.Collections;
 
 public partial class UpgradeManager : Node
 {
-	[Export] public Godot.Collections.Array<AbilityUpgrade> upgrade_pool { get; set; } 
+	[Export] public Array<AbilityUpgrade> upgrade_pool { get; set; } 
 	[Export] public ExperienceManager experience_manager { get; set; }
+	[Export] public PackedScene upgrade_screen_scene { get; set; }
 
-	public Godot.Collections.Dictionary current_upgrades = new Godot.Collections.Dictionary();
+	public Dictionary current_upgrades = new Dictionary();
 
 
     public override void _Ready()
@@ -20,19 +22,29 @@ public partial class UpgradeManager : Node
 		AbilityUpgrade chosen_upgrade = upgrade_pool.PickRandom();
 		if (chosen_upgrade == null)
 			return;
-		
-		var has_upgrade = current_upgrades.ContainsKey(chosen_upgrade.id);
+
+		var upgrade_screen_instance = upgrade_screen_scene.Instantiate() as UpgradeScreen;
+		AddChild(upgrade_screen_instance);
+		upgrade_screen_instance.SetAbilityUpgrades(new Array<AbilityUpgrade> { chosen_upgrade });
+
+		ApplyUpgrade(chosen_upgrade);
+	}
+
+
+	public void ApplyUpgrade(AbilityUpgrade upgrade)
+	{
+		var has_upgrade = current_upgrades.ContainsKey(upgrade.id);
 		if (!has_upgrade)
 		{
-			current_upgrades[chosen_upgrade.id] = new Godot.Collections.Dictionary()
+			current_upgrades[upgrade.id] = new Dictionary()
 			{
-				{ "resource", chosen_upgrade },
+				{ "resource", upgrade },
 				{ "quantity", 1 },
 			};
 		}
 		else
 		{
-			Godot.Collections.Dictionary upgrade_data = (Godot.Collections.Dictionary) current_upgrades[chosen_upgrade.id];
+			Dictionary upgrade_data = (Dictionary) current_upgrades[upgrade.id];
 			int current_quantity = (int) upgrade_data["quantity"];
 			upgrade_data["quantity"] = current_quantity + 1;
 		}

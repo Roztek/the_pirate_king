@@ -9,6 +9,7 @@ public partial class SwordAbilityController : Node
 
     public float damage = 5;
 
+
     public override void _Ready()
 	{
         Timer ability_timer = GetNode<Timer>("Timer");
