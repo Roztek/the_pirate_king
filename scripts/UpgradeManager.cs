@@ -26,8 +26,7 @@ public partial class UpgradeManager : Node
 		var upgrade_screen_instance = upgrade_screen_scene.Instantiate() as UpgradeScreen;
 		AddChild(upgrade_screen_instance);
 		upgrade_screen_instance.SetAbilityUpgrades(new Array<AbilityUpgrade> { chosen_upgrade });
-
-		ApplyUpgrade(chosen_upgrade);
+		upgrade_screen_instance.UpgradeSelected += OnUpgradeSelected;
 	}
 
 
@@ -50,5 +49,11 @@ public partial class UpgradeManager : Node
 		}
 
 		GD.Print(current_upgrades);
+	}
+
+
+	public void OnUpgradeSelected(AbilityUpgrade upgrade)
+	{
+		ApplyUpgrade(upgrade);
 	}
 }

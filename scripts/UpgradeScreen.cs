@@ -4,6 +4,8 @@ using Godot.Collections;
 
 public partial class UpgradeScreen : CanvasLayer
 {
+    [Signal] public delegate void UpgradeSelectedEventHandler(AbilityUpgrade upgrade);
+
     [Export] public PackedScene upgrade_card_scene { get; set; }
 
     private HBoxContainer _card_container = null;
@@ -24,6 +26,15 @@ public partial class UpgradeScreen : CanvasLayer
             var card_instance = upgrade_card_scene.Instantiate() as AbilityUpgradeCard;
             _card_container.AddChild(card_instance);
             card_instance.SetAbilityUpgrade(upgrade);
+            card_instance.Selected += () => OnUpgradeSelectedUi(upgrade);
         }
+    }
+
+
+    public void OnUpgradeSelectedUi(AbilityUpgrade upgrade)
+    {
+        EmitSignal(SignalName.UpgradeSelected, upgrade);
+        GetTree().Paused = false;
+        QueueFree();
     }
 }
