@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 
 public partial class SwordAbilityController : Node
@@ -8,12 +9,18 @@ public partial class SwordAbilityController : Node
     const int MAX_RANGE = 150;
 
     public float damage = 5;
+    public double base_wait_time;
 
 
     public override void _Ready()
 	{
         Timer ability_timer = GetNode<Timer>("Timer");
         ability_timer.Timeout += OnTimerTimeout;
+
+        GameEvents game_events = (GameEvents) GetNode("/root/GameEvents");
+        game_events.AbilityUpgradeAdded += OnAbilityUpgradeAdded;
+
+        base_wait_time = ability_timer.WaitTime;
 	}
 
 
@@ -61,5 +68,22 @@ public partial class SwordAbilityController : Node
             var enemy_direction = closest_enemy.GlobalPosition - sword_instance.GlobalPosition;
             sword_instance.Rotation = enemy_direction.Angle();
         }
+    }
+
+
+    public void OnAbilityUpgradeAdded(AbilityUpgrade upgrade, Dictionary current_upgrades)
+    {
+        Timer ability_timer = GetNode<Timer>("Timer");
+
+        if (upgrade.id != "sword_rate")
+            return;
+        
+        Dictionary upgrade_data = (Dictionary) current_upgrades[upgrade.id];
+        int quantity = (int) upgrade_data["quantity"];
+
+        float percent_reduction = quantity * 0.1f;
+
+        ability_timer.WaitTime = base_wait_time * (1 - percent_reduction);
+        ability_timer.Start();
     }
 }

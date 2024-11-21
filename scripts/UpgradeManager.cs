@@ -48,6 +48,9 @@ public partial class UpgradeManager : Node
 			upgrade_data["quantity"] = current_quantity + 1;
 		}
 
+		GameEvents game_events = (GameEvents) GetNode("/root/GameEvents");
+		game_events.EmitAbilityUpgradeAdded(upgrade, current_upgrades);
+
 		GD.Print(current_upgrades);
 	}
 
