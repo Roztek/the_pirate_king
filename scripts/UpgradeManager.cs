@@ -51,7 +51,7 @@ public partial class UpgradeManager : Node
 		GameEvents game_events = (GameEvents) GetNode("/root/GameEvents");
 		game_events.EmitAbilityUpgradeAdded(upgrade, current_upgrades);
 
-		GD.Print(current_upgrades);
+		//GD.Print(current_upgrades);
 	}
 
 

@@ -28,10 +28,14 @@ public partial class EnemyManager : Node
 			Mathf.Sin(random_direction)
 		) * SPAWN_RADIUS;		
 
-		var spawn_position = player.GlobalPosition + offset;
+		Vector2 spawn_position = player.GlobalPosition + offset;
 
-		var enemy_instance = basic_enemy_scene.Instantiate() as Node2D;
-		GetParent().AddChild(enemy_instance);
+		// Instantiate the enemy and check if it was successful
+		if (basic_enemy_scene.Instantiate() is not Node2D enemy_instance)
+			return;
+
+		Node2D entities_layer = GetTree().GetFirstNodeInGroup("entities_layer") as Node2D;
+		entities_layer.AddChild(enemy_instance);
 		enemy_instance.GlobalPosition = spawn_position;
 	}
 }

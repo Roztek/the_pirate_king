@@ -53,15 +53,16 @@ public partial class SwordAbilityController : Node
         // Check if we found a closest enemy, then spawn the sword at that position
         if (closest_enemy != null)
         {
-            var sword_instance = sword_ability_scene.Instantiate() as SwordAbility;
-            if (sword_instance == null)
+            // Instantiate the sword and check if it was successful
+            if (sword_ability_scene.Instantiate() is not SwordAbility sword_instance)
                 return;
 
-            sword_instance.GlobalPosition = closest_enemy.GlobalPosition;
-            GetTree().Root.AddChild(sword_instance);
+            Node2D foreground_layer = GetTree().GetFirstNodeInGroup("foreground_layer") as Node2D;
+            foreground_layer.AddChild(sword_instance);
 
             sword_instance.hitbox_component.damage = damage;
 
+            sword_instance.GlobalPosition = closest_enemy.GlobalPosition;
             float randomAngle = (float)(new Random().NextDouble() * Math.PI * 2);
             sword_instance.GlobalPosition += Vector2.Right.Rotated(randomAngle);
 

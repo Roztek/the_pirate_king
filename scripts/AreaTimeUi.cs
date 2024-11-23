@@ -23,6 +23,7 @@ public partial class AreaTimeUi : CanvasLayer
 		_time_label.Text = FormatTimeToString(time_elapsed);
 	}
 
+
 	public string FormatTimeToString(double seconds)
 	{
 		int minutes = (int)(seconds / 60);
