@@ -7,7 +7,14 @@ public partial class Player : CharacterBody2D
 	const int ACCELERATION_SMOOTHING = 25;
 
 
-	public override void _Process(double delta)
+    public override void _Ready()
+    {
+        Area2D body_entered = GetNode<Area2D>("CollisionArea2D");
+		body_entered.BodyEntered += OnBodyEntered;
+    }
+
+
+    public override void _Process(double delta)
 	{
 		Vector2 movement_vector = GetMovementVector();
 		Vector2 direction = movement_vector.Normalized();
@@ -25,5 +32,11 @@ public partial class Player : CharacterBody2D
 		float y = Input.GetActionStrength("move_down") - Input.GetActionStrength("move_up");
 
 		return new Vector2(x, y);
+	}
+
+
+	public void OnBodyEntered(Node2D other_body)
+	{
+		return;
 	}
 }
