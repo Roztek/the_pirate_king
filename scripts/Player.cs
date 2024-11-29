@@ -6,11 +6,24 @@ public partial class Player : CharacterBody2D
 	const int MAX_SPEED = 125;
 	const int ACCELERATION_SMOOTHING = 25;
 
+	public int bodies_colliding = 0;
+
+	public HealthComponent health_component = null;
+	public Timer damage_interval_timer = null;
+
 
     public override void _Ready()
     {
+		health_component = GetNode<HealthComponent>("HealthComponent");
+
+		damage_interval_timer = GetNode<Timer>("DamageIntervalTimer");
+		damage_interval_timer.Timeout += OnDamageIntervalTimerTimeout;
+
         Area2D body_entered = GetNode<Area2D>("CollisionArea2D");
 		body_entered.BodyEntered += OnBodyEntered;
+
+		Area2D body_exited = GetNode<Area2D>("CollisionArea2D");
+		body_exited.BodyExited += OnBodyExited;
     }
 
 
@@ -35,8 +48,32 @@ public partial class Player : CharacterBody2D
 	}
 
 
+	public void DealDamage()
+	{
+		// don't deal damage when player is not colliding or timer is running
+		if (bodies_colliding == 0 || !damage_interval_timer.IsStopped())
+			return;
+
+		health_component.Damage(1);
+		damage_interval_timer.Start();
+		GD.Print(health_component);
+	}
+
+
+	public void OnDamageIntervalTimerTimeout()
+	{
+		DealDamage();
+	}
+
+
 	public void OnBodyEntered(Node2D other_body)
 	{
-		return;
+		bodies_colliding++;
+	}
+
+
+	public void OnBodyExited(Node2D other_body)
+	{
+		bodies_colliding--;
 	}
 }

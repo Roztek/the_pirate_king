@@ -5,12 +5,12 @@ public partial class BasicEnemy : CharacterBody2D
 {
 	const int MAX_SPEED = 40;
 
-	public HealthComponent _health_component = null;
+	public HealthComponent health_component = null;
 
 
 	public override void _Ready()
 	{
-		_health_component = GetNode<HealthComponent>("HealthComponent");
+		health_component = GetNode<HealthComponent>("HealthComponent");
 	}
 
 
