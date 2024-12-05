@@ -56,7 +56,7 @@ public partial class Player : CharacterBody2D
 
 		health_component.Damage(1);
 		damage_interval_timer.Start();
-		GD.Print(health_component);
+		GD.Print(health_component.current_health);
 	}
 
 
@@ -69,6 +69,7 @@ public partial class Player : CharacterBody2D
 	public void OnBodyEntered(Node2D other_body)
 	{
 		bodies_colliding++;
+		DealDamage();
 	}
 
 
