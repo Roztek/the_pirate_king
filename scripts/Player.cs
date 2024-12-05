@@ -10,11 +10,16 @@ public partial class Player : CharacterBody2D
 
 	public HealthComponent health_component = null;
 	public Timer damage_interval_timer = null;
+	public ProgressBar health_bar = null;
 
 
     public override void _Ready()
     {
 		health_component = GetNode<HealthComponent>("HealthComponent");
+		health_component.HealthChanged += OnHealthChanged;
+		
+		health_bar = GetNode<ProgressBar>("HealthBar");
+		UpdateHealthDisplay();
 
 		damage_interval_timer = GetNode<Timer>("DamageIntervalTimer");
 		damage_interval_timer.Timeout += OnDamageIntervalTimerTimeout;
@@ -48,6 +53,12 @@ public partial class Player : CharacterBody2D
 	}
 
 
+	public void UpdateHealthDisplay()
+	{
+		health_bar.Value = health_component.GetHealthPercent();
+	}
+
+
 	public void DealDamage()
 	{
 		// don't deal damage when player is not colliding or timer is running
@@ -56,7 +67,7 @@ public partial class Player : CharacterBody2D
 
 		health_component.Damage(1);
 		damage_interval_timer.Start();
-		GD.Print(health_component.current_health);
+		//GD.Print(health_component.current_health);
 	}
 
 
@@ -76,5 +87,11 @@ public partial class Player : CharacterBody2D
 	public void OnBodyExited(Node2D other_body)
 	{
 		bodies_colliding--;
+	}
+	
+
+	public void OnHealthChanged()
+	{
+		UpdateHealthDisplay();
 	}
 }

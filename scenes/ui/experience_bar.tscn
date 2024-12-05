@@ -1,4 +1,15 @@
-[gd_scene format=3 uid="uid://bbsbaskvwdx8"]
+[gd_scene load_steps=3 format=3 uid="uid://bbsbaskvwdx8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfha1"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_deiur"]
+bg_color = Color(0.141176, 0.72549, 0.862745, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.133333, 0.133333, 0.133333, 1)
 
 [node name="ExperienceBar" type="CanvasLayer"]
 
@@ -15,6 +26,8 @@ custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 size_flags_vertical = 8
 mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_yfha1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_deiur")
 max_value = 1.0
 value = 0.5
 show_percentage = false

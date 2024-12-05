@@ -4,6 +4,7 @@ using System;
 public partial class HealthComponent : Node
 {
     [Signal] public delegate void DiedEventHandler();
+    [Signal] public delegate void HealthChangedEventHandler();
 
     [Export] public float max_health { get; set; }
 
@@ -20,7 +21,17 @@ public partial class HealthComponent : Node
     {
         // this allows _current_health to never drop below zero
         current_health = Math.Max(current_health - damage_amount, 0);
+        EmitSignal(SignalName.HealthChanged);
         CallDeferred(nameof(CheckDeath));
+    }
+
+
+    public float GetHealthPercent()
+    {
+        if (current_health <= 0)
+            return 0;
+        
+        return Math.Min(current_health / max_health, 1);
     }
 
 

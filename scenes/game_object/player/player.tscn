@@ -1,9 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://dncasjtrj7q2m"]
+[gd_scene load_steps=14 format=3 uid="uid://dncasjtrj7q2m"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_akjv6"]
 [ext_resource type="PackedScene" uid="uid://bre00drvx0fbh" path="res://scenes/game_object/ability/sword_ability/sword_ability_controller.tscn" id="2_d7r11"]
 [ext_resource type="PackedScene" uid="uid://dyvb8sndjo40a" path="res://scenes/component/health_component.tscn" id="2_hbqi7"]
 [ext_resource type="Texture2D" uid="uid://w1puceghtcn1" path="res://assets/player/player.png" id="2_qfc5q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4jr4o"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_27gpw"]
+bg_color = Color(0.929412, 0.298039, 0.329412, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.133333, 0.133333, 0.133333, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u1yas"]
 radius = 26.0
@@ -59,7 +70,21 @@ max_health = 10.0
 wait_time = 0.5
 one_shot = true
 
+[node name="HealthBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(32, 6)
+offset_left = -16.0
+offset_top = -25.0
+offset_right = 16.0
+offset_bottom = -19.0
+pivot_offset = Vector2(16, 3)
+theme_override_styles/background = SubResource("StyleBoxFlat_4jr4o")
+theme_override_styles/fill = SubResource("StyleBoxFlat_27gpw")
+max_value = 1.0
+value = 0.5
+show_percentage = false
+
 [node name="PickupArea2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 16
 collision_mask = 0
 
@@ -68,6 +93,7 @@ position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_u1yas")
 
 [node name="CollisionArea2D" type="Area2D" parent="."]
+visible = false
 position = Vector2(0, -8)
 collision_layer = 0
 collision_mask = 8
@@ -83,5 +109,6 @@ autoplay = "idle"
 frame_progress = 0.824001
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_41sd2")
