@@ -14,7 +14,7 @@ public partial class AbilityUpgradeCard : PanelContainer
         _name_label = GetNode<Label>("%NameLabel");
         _description_label = GetNode<Label>("%DescriptionLabel");
 
-        GuiInput += onGuiInput;
+        GuiInput += OnGuiInput;
     }
 
 
@@ -25,7 +25,7 @@ public partial class AbilityUpgradeCard : PanelContainer
     }
 
 
-    public void onGuiInput(InputEvent input)
+    public void OnGuiInput(InputEvent input)
     {
         if (input.IsActionPressed("left_click"))
             EmitSignal(SignalName.Selected);

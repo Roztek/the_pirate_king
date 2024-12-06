@@ -3,7 +3,7 @@ using System;
 
 public partial class VialDropComponent : Node
 {
-    [Export] private PackedScene vial_scene;
+    [Export] private PackedScene _vial_scene;
     [Export] private HealthComponent _health_component;
     [Export(PropertyHint.Range, "0, 1")] private float _spawn_rate;
 
@@ -27,13 +27,13 @@ public partial class VialDropComponent : Node
         if (random_number > _spawn_rate)
             return;
 
-        if (vial_scene == null || Owner is not Node2D owner_node)
+        if (_vial_scene == null || Owner is not Node2D owner_node)
             return;
 
         var spawn_position = owner_node.GlobalPosition;
 
         // Instantiate the vial and check if it was successful
-        if (vial_scene.Instantiate() is not Node2D vial_instance)
+        if (_vial_scene.Instantiate() is not Node2D vial_instance)
             return;
 
         Node2D entities_layer = GetTree().GetFirstNodeInGroup("entities_layer") as Node2D;
