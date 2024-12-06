@@ -3,7 +3,7 @@ using System;
 
 public partial class AreaTimeManager : Node
 {
-    [Export] private PackedScene _victory_screen_scene;
+    [Export] PackedScene end_screen_scene;
 
     private Timer _timer = null;
 
@@ -23,9 +23,9 @@ public partial class AreaTimeManager : Node
 
     public void OnTimerTimeout()
     {
-        if(_victory_screen_scene.Instantiate() is not VictoryScreen victory_screen_instance)
+        if(end_screen_scene.Instantiate() is not EndScreen end_screen_instance)
             return;
 
-        AddChild(victory_screen_instance);
+        AddChild(end_screen_instance);
     }
 }

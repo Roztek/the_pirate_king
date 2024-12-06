@@ -1,10 +1,12 @@
 using Godot;
 using System;
 
-public partial class VictoryScreen : CanvasLayer
+public partial class EndScreen : CanvasLayer
 {
     public Button restart_button = null;
     public Button quit_button = null;
+    public Label title_label = null;
+    public Label description_label = null;
 
 
     public override void _Ready()
@@ -16,7 +18,25 @@ public partial class VictoryScreen : CanvasLayer
 
         quit_button = GetNode<Button>("%QuitButton");
         quit_button.Pressed += OnQuitButtonPressed;
+
+        title_label = GetNode<Label>("%TitleLabel");
+
+        description_label = GetNode<Label>("%DescriptionLabel");
     }
+
+    
+    public void SetDefeat()
+    {
+        title_label.Text = "Defeat";
+        description_label.Text = "You lost!";
+    }
+
+
+    // public void SetVictory()
+    // {
+    //     title_label.Text = "Victory";
+    //     description_label.Text = "You won!";
+    // }
 
 
     public void OnRestartButtonPressed()
