@@ -6,7 +6,7 @@ public partial class SwordAbilityController : Node
 {
     [Export] public PackedScene sword_ability_scene { get; set; }
     
-    const int MAX_RANGE = 150;
+    // const int MAX_RANGE = 150;
 
     public float damage = 5;
     public double base_wait_time;

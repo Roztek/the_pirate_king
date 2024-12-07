@@ -2,12 +2,12 @@
 
 [ext_resource type="TileSet" uid="uid://tfkuag4dp37g" path="res://resources/tileset.tres" id="1_7s2pt"]
 [ext_resource type="PackedScene" uid="uid://dncasjtrj7q2m" path="res://scenes/game_object/player/player.tscn" id="1_cwcct"]
-[ext_resource type="PackedScene" uid="uid://bstsupnwt3t7w" path="res://scenes/ui/area_time_ui.tscn" id="1_fulrm"]
+[ext_resource type="PackedScene" uid="uid://bstsupnwt3t7w" path="res://scenes/ui/arena_time_ui.tscn" id="1_fulrm"]
 [ext_resource type="PackedScene" uid="uid://c1ekva6gommd7" path="res://scenes/manager/enemy_manager.tscn" id="1_jg5kl"]
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_xx458"]
 [ext_resource type="PackedScene" uid="uid://bgpfcp6joq343" path="res://scenes/game_camera/game_camera.tscn" id="1_yvirs"]
 [ext_resource type="PackedScene" uid="uid://bbsbaskvwdx8" path="res://scenes/ui/experience_bar.tscn" id="2_id318"]
-[ext_resource type="PackedScene" uid="uid://c8hjyjjje31ls" path="res://scenes/manager/area_time_manager.tscn" id="2_vdd8h"]
+[ext_resource type="PackedScene" uid="uid://c8hjyjjje31ls" path="res://scenes/manager/arena_time_manager.tscn" id="2_vdd8h"]
 [ext_resource type="Script" path="res://scripts/ExperienceBar.cs" id="3_0xwq0"]
 [ext_resource type="PackedScene" uid="uid://o5qlugnr2ahk" path="res://scenes/manager/experience_manager.tscn" id="4_6utp3"]
 [ext_resource type="PackedScene" uid="uid://b2aqy8a5wcaww" path="res://scenes/ui/end_screen.tscn" id="5_l6fh2"]
@@ -17,8 +17,8 @@
 script = ExtResource("1_xx458")
 end_screen_scene = ExtResource("5_l6fh2")
 
-[node name="AreaTimeUI" parent="." node_paths=PackedStringArray("AreaTimeManager") instance=ExtResource("1_fulrm")]
-AreaTimeManager = NodePath("../AreaTimeManager")
+[node name="ArenaTimeUI" parent="." node_paths=PackedStringArray("ArenaTimeManager") instance=ExtResource("1_fulrm")]
+ArenaTimeManager = NodePath("../AreaTimeManager")
 
 [node name="ExperienceBar" parent="." node_paths=PackedStringArray("experience_manager") instance=ExtResource("2_id318")]
 script = ExtResource("3_0xwq0")
@@ -26,7 +26,8 @@ experience_manager = NodePath("../ExperienceManager")
 
 [node name="AreaTimeManager" parent="." instance=ExtResource("2_vdd8h")]
 
-[node name="EnemyManager" parent="." instance=ExtResource("1_jg5kl")]
+[node name="EnemyManager" parent="." node_paths=PackedStringArray("arena_time_manager") instance=ExtResource("1_jg5kl")]
+arena_time_manager = NodePath("../AreaTimeManager")
 
 [node name="ExperienceManager" parent="." instance=ExtResource("4_6utp3")]
 

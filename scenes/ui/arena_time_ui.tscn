@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://bstsupnwt3t7w"]
 
-[ext_resource type="Script" path="res://scripts/AreaTimeUi.cs" id="1_8c7xu"]
+[ext_resource type="Script" path="res://scripts/ArenaTimeUi.cs" id="1_8c7xu"]
 
-[node name="AreaTimeUI" type="CanvasLayer"]
+[node name="ArenaTimeUI" type="CanvasLayer"]
 script = ExtResource("1_8c7xu")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

@@ -1,9 +1,9 @@
 using Godot;
 using System;
 
-public partial class AreaTimeUi : CanvasLayer
+public partial class ArenaTimeUi : CanvasLayer
 {
-	[Export] public AreaTimeManager AreaTimeManager { get; set; } 
+	[Export] public ArenaTimeManager ArenaTimeManager { get; set; } 
 
 	private Label _time_label = null;
 
@@ -16,10 +16,10 @@ public partial class AreaTimeUi : CanvasLayer
 
 	public override void _Process(double delta)
 	{
-		if (AreaTimeManager == null)
+		if (ArenaTimeManager == null)
 			return;
 
-		double time_elapsed = AreaTimeManager.GetTimeElapsed();
+		double time_elapsed = ArenaTimeManager.GetTimeElapsed();
 		_time_label.Text = FormatTimeToString(time_elapsed);
 	}
 
