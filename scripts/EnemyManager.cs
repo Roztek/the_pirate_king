@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Godot.Collections;
 
 public partial class EnemyManager : Node
 {
@@ -24,6 +25,41 @@ public partial class EnemyManager : Node
 	}
 
 
+	public Vector2 GetSpawnPosition()
+	{
+		var player = GetTree().GetFirstNodeInGroup("player") as Node2D;
+		if (player == null)
+            return Vector2.Zero;
+
+		Vector2 spawn_position = Vector2.Zero;
+		float random_direction = (float)(new Random().NextDouble() * Math.PI * 2); 
+
+		for(int i = 0; i < 4; i++)
+		{
+			Vector2 offset = new Vector2(
+				Mathf.Cos(random_direction),
+				Mathf.Sin(random_direction)
+			) * SPAWN_RADIUS;		
+
+			spawn_position = player.GlobalPosition + offset;
+
+			var query_paramaters = PhysicsRayQueryParameters2D.Create(player.GlobalPosition, spawn_position, 1);
+			Dictionary result = GetTree().Root.World2D.DirectSpaceState.IntersectRay(query_paramaters);
+		
+			if (result.Count == 0)
+			{
+				break;
+			}
+			else
+			{
+				random_direction += 90;
+			}
+		}
+
+		return spawn_position;
+	}
+
+
 	public void OnTimerTimeout()
 	{
 		enemy_timer.Start();
@@ -32,22 +68,13 @@ public partial class EnemyManager : Node
 		if (player == null)
             return;
 
-		float random_direction = (float)(new Random().NextDouble() * Math.PI * 2); 
-
-		Vector2 offset = new Vector2(
-			Mathf.Cos(random_direction),
-			Mathf.Sin(random_direction)
-		) * SPAWN_RADIUS;		
-
-		Vector2 spawn_position = player.GlobalPosition + offset;
-
 		// Instantiate the enemy and check if it was successful
 		if (basic_enemy_scene.Instantiate() is not Node2D enemy_instance)
 			return;
 
 		Node2D entities_layer = GetTree().GetFirstNodeInGroup("entities_layer") as Node2D;
 		entities_layer.AddChild(enemy_instance);
-		enemy_instance.GlobalPosition = spawn_position;
+		enemy_instance.GlobalPosition = GetSpawnPosition();
 	}
 
 
