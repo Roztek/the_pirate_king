@@ -52,7 +52,8 @@ public partial class EnemyManager : Node
 			}
 			else
 			{
-				random_direction += 90;
+				random_direction += Mathf.Pi / 2;
+				random_direction %= Mathf.Pi * 2;
 			}
 		}
 
