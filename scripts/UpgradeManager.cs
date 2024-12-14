@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Godot.Collections;
+using System.Linq;
 
 public partial class UpgradeManager : Node
 {
@@ -14,20 +15,12 @@ public partial class UpgradeManager : Node
     public override void _Ready()
     {
 		experience_manager.LevelUp += OnLevelUp;
+
+		foreach (var upgrade in upgrade_pool)
+		{
+			GD.Print(upgrade);
+		}
     }
-
-
-	public void OnLevelUp(int new_level)
-	{
-		AbilityUpgrade chosen_upgrade = upgrade_pool.PickRandom();
-		if (chosen_upgrade == null)
-			return;
-
-		var upgrade_screen_instance = upgrade_screen_scene.Instantiate() as UpgradeScreen;
-		AddChild(upgrade_screen_instance);
-		upgrade_screen_instance.SetAbilityUpgrades(new Array<AbilityUpgrade> { chosen_upgrade });
-		upgrade_screen_instance.UpgradeSelected += OnUpgradeSelected;
-	}
 
 
 	public void ApplyUpgrade(AbilityUpgrade upgrade)
@@ -52,6 +45,32 @@ public partial class UpgradeManager : Node
 		game_events.EmitAbilityUpgradeAdded(upgrade, current_upgrades);
 
 		//GD.Print(current_upgrades);
+	}
+
+
+	public Array<AbilityUpgrade> PickUpgrades()
+	{
+		Array<AbilityUpgrade> chosen_upgrades = new Array<AbilityUpgrade>();
+		Array<AbilityUpgrade> filteredUpgrades = upgrade_pool.Duplicate();
+
+		for (int i = 0; i < 2; i++)
+		{
+			AbilityUpgrade chosen_upgrade = filteredUpgrades.PickRandom();
+			chosen_upgrades.Append(chosen_upgrade);
+			filteredUpgrades.Remove(chosen_upgrade);
+		}
+
+		return chosen_upgrades;
+	}
+
+
+	public void OnLevelUp(int new_level)
+	{
+		var upgrade_screen_instance = upgrade_screen_scene.Instantiate() as UpgradeScreen;
+		AddChild(upgrade_screen_instance);
+		Array<AbilityUpgrade> chosen_upgrades = PickUpgrades();
+		upgrade_screen_instance.SetAbilityUpgrades(chosen_upgrades);
+		upgrade_screen_instance.UpgradeSelected += OnUpgradeSelected;
 	}
 
 

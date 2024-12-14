@@ -1,10 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://dncasjtrj7q2m"]
+[gd_scene load_steps=26 format=3 uid="uid://dncasjtrj7q2m"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_akjv6"]
 [ext_resource type="PackedScene" uid="uid://bre00drvx0fbh" path="res://scenes/game_object/ability/sword_ability/sword_ability_controller.tscn" id="2_d7r11"]
 [ext_resource type="PackedScene" uid="uid://dyvb8sndjo40a" path="res://scenes/component/health_component.tscn" id="2_hbqi7"]
 [ext_resource type="Texture2D" uid="uid://w1puceghtcn1" path="res://assets/player/player.png" id="2_qfc5q"]
-[ext_resource type="PackedScene" uid="uid://dfj7xedxiu8xg" path="res://scenes/game_object/ability/axe_ability/axe_ability_controller.tscn" id="4_nb5jq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4jr4o"]
 bg_color = Color(0.133333, 0.133333, 0.133333, 1)
@@ -170,8 +169,6 @@ max_health = 10.0
 [node name="AbilityManager" type="Node" parent="."]
 
 [node name="SwordAbilityController" parent="AbilityManager" instance=ExtResource("2_d7r11")]
-
-[node name="AxeAbilityController" parent="AbilityManager" instance=ExtResource("4_nb5jq")]
 
 [node name="DamageIntervalTimer" type="Timer" parent="."]
 wait_time = 0.5
