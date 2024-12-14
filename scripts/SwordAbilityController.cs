@@ -63,8 +63,8 @@ public partial class SwordAbilityController : Node
             sword_instance.hitbox_component.damage = damage;
 
             sword_instance.GlobalPosition = closest_enemy.GlobalPosition;
-            float randomAngle = (float)(new Random().NextDouble() * Math.PI * 2);
-            sword_instance.GlobalPosition += Vector2.Right.Rotated(randomAngle);
+            float random_angle = (float)(new Random().NextDouble() * Math.PI * 2);
+            sword_instance.GlobalPosition += Vector2.Right.Rotated(random_angle);
 
             var enemy_direction = closest_enemy.GlobalPosition - sword_instance.GlobalPosition;
             sword_instance.Rotation = enemy_direction.Angle();
