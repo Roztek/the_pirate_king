@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 
 public partial class Player : CharacterBody2D
@@ -11,6 +12,7 @@ public partial class Player : CharacterBody2D
 	public HealthComponent health_component = null;
 	public Timer damage_interval_timer = null;
 	public ProgressBar health_bar = null;
+	public Node abilities = null;
 
 
     public override void _Ready()
@@ -29,6 +31,11 @@ public partial class Player : CharacterBody2D
 
 		Area2D body_exited = GetNode<Area2D>("CollisionArea2D");
 		body_exited.BodyExited += OnBodyExited;
+
+		abilities = GetNode<Node>("Abilities");
+
+		GameEvents game_events = (GameEvents) GetNode("/root/GameEvents");
+		game_events.AbilityUpgradeAdded += OnAbilityUpgradeAdded;
     }
 
 
@@ -93,5 +100,17 @@ public partial class Player : CharacterBody2D
 	public void OnHealthChanged()
 	{
 		UpdateHealthDisplay();
+	}
+
+
+	public void OnAbilityUpgradeAdded(AbilityUpgrade ability_upgrade, Dictionary current_upgrades)
+	{
+		if (ability_upgrade is not Ability ability)
+			return;
+		
+		if (ability.ability_controller_scene.Instantiate() is not Node2D ability_instance)
+			return;
+
+		abilities.AddChild(ability_instance);
 	}
 }

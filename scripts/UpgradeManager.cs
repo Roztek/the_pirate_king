@@ -9,6 +9,8 @@ public partial class UpgradeManager : Node
 	[Export] public ExperienceManager experience_manager { get; set; }
 	[Export] public PackedScene upgrade_screen_scene { get; set; }
 
+	public const int TOTAL_UPGRADES = 2;
+
 	public Dictionary current_upgrades = new Dictionary();
 
 
@@ -51,16 +53,23 @@ public partial class UpgradeManager : Node
 	public Array<AbilityUpgrade> PickUpgrades()
 	{
 		Array<AbilityUpgrade> chosen_upgrades = new Array<AbilityUpgrade>();
-		Array<AbilityUpgrade> filteredUpgrades = upgrade_pool.Duplicate();
+		Array<AbilityUpgrade> filtered_upgrades = upgrade_pool.Duplicate();
 
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < TOTAL_UPGRADES; i++)
 		{
-			AbilityUpgrade chosen_upgrade = filteredUpgrades.PickRandom();
-			chosen_upgrades.Append(chosen_upgrade);
-			filteredUpgrades.Remove(chosen_upgrade);
+			AbilityUpgrade chosen_upgrade = filtered_upgrades[(int)(GD.Randi() % filtered_upgrades.Count)];
+			chosen_upgrades.Add(chosen_upgrade);
+
+			filtered_upgrades = new Array<AbilityUpgrade>(filtered_upgrades.Where(upgrade => Filter(upgrade, chosen_upgrade)));
 		}
 
 		return chosen_upgrades;
+	}
+
+
+	public bool Filter(AbilityUpgrade upgrade, AbilityUpgrade chosen_upgrades)
+	{
+		return upgrade.id != chosen_upgrades.id;
 	}
 
 
