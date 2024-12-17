@@ -12,6 +12,7 @@ public partial class Player : CharacterBody2D
 	public HealthComponent health_component = null;
 	public Timer damage_interval_timer = null;
 	public ProgressBar health_bar = null;
+	public Node abilities = null;
 
 
     public override void _Ready()
@@ -33,6 +34,8 @@ public partial class Player : CharacterBody2D
 
 		GameEvents game_events = (GameEvents) GetNode("/root/GameEvents");
 		game_events.AbilityUpgradeAdded += OnAbilityUpgradeAdded;
+
+		abilities = GetTree().GetFirstNodeInGroup("Abilities");
     }
 
 
@@ -108,7 +111,6 @@ public partial class Player : CharacterBody2D
 		if (ability.ability_controller_scene.Instantiate() is not Node2D ability_instance)
 			return;
 
-		Node abilities = GetTree().GetFirstNodeInGroup("Abilities") as Node;
 		abilities.AddChild(ability_instance);
 	}
 }
