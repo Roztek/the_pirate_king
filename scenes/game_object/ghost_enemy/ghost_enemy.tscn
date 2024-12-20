@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://r5csjsw42nh0"]
+[gd_scene load_steps=12 format=3 uid="uid://r5csjsw42nh0"]
 
 [ext_resource type="Script" path="res://scripts/GhostEnemy.cs" id="1_a0lyj"]
 [ext_resource type="Texture2D" uid="uid://c1ceg3wb1djiw" path="res://assets/enemies/ghost_enemy.png" id="2_7dtra"]
@@ -7,6 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://cfby0or5fgxpk" path="res://scenes/component/velocity_component.tscn" id="3_oopj4"]
 [ext_resource type="PackedScene" uid="uid://byawkt2egsswg" path="res://scenes/component/vial_drop_component.tscn" id="3_xpo50"]
 [ext_resource type="PackedScene" uid="uid://1ym6hb4nw41k" path="res://scenes/component/hurtbox_component.tscn" id="5_lrtml"]
+
+[sub_resource type="Animation" id="Animation_osdmv"]
+resource_name = "walk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pp8bm"]
+_data = {
+"walk": SubResource("Animation_osdmv")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4snvk"]
 
@@ -17,6 +25,11 @@ radius = 5.0
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_a0lyj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pp8bm")
+}
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_5wg67")]
 max_health = 30.0
@@ -33,20 +46,22 @@ acceleration = 2.0
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
 
-[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_lrtml")]
-health_component = NodePath("../HealthComponent")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(0, -7)
-shape = SubResource("CircleShape2D_4snvk")
-
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals"]
 position = Vector2(0, -8)
 texture = ExtResource("2_7dtra")
 
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_lrtml")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+visible = false
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_4snvk")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 light_mask = 0
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_rfy1r")

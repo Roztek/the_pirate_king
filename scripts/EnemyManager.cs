@@ -5,6 +5,7 @@ using Godot.Collections;
 public partial class EnemyManager : Node
 {
 	[Export] public PackedScene basic_enemy_scene { get; set; }
+	[Export] public PackedScene ghost_enemy_scene { get; set; }
 	[Export] public ArenaTimeManager arena_time_manager { get; set; }
 
 	const int SPAWN_RADIUS = 376;
@@ -12,10 +13,14 @@ public partial class EnemyManager : Node
 	public Timer enemy_timer = null;
 
 	public double base_spawn_time = 0;
+
+	public WeightedTable enemy_table = new WeightedTable();
  
 
 	public override void _Ready()
 	{
+		enemy_table.AddItem(basic_enemy_scene, 20);
+
 		enemy_timer = GetNode<Timer>("Timer");
         enemy_timer.Timeout += OnTimerTimeout;
 
@@ -69,8 +74,9 @@ public partial class EnemyManager : Node
 		if (player == null)
             return;
 
+		var enemy_scene = enemy_table.PickRandom() as PackedScene;
 		// Instantiate the enemy and check if it was successful
-		if (basic_enemy_scene.Instantiate() is not Node2D enemy_instance)
+		if (enemy_scene.Instantiate() is not Node2D enemy_instance)
 			return;
 
 		Node2D entities_layer = GetTree().GetFirstNodeInGroup("entities_layer") as Node2D;
@@ -85,5 +91,10 @@ public partial class EnemyManager : Node
 		time_off = Math.Min(time_off, 0.7);
 
 		enemy_timer.WaitTime = base_spawn_time - time_off;
+
+		if (arena_difficulty == 6)
+		{
+			enemy_table.AddItem(ghost_enemy_scene, 10);
+		}
 	}
 }

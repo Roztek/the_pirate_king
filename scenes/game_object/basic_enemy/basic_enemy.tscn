@@ -104,6 +104,12 @@ acceleration = 10.0
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
 
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+position = Vector2(0, -4)
+texture = ExtResource("2_y63lw")
+
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_srq01")]
 position = Vector2(0, 2)
 health_component = NodePath("../HealthComponent")
@@ -111,12 +117,6 @@ health_component = NodePath("../HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" groups=["enemy"]]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_luplg")
-
-[node name="Visuals" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
-position = Vector2(0, -4)
-texture = ExtResource("2_y63lw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)
