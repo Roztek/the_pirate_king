@@ -74,7 +74,6 @@ public partial class Player : CharacterBody2D
 
 		health_component.Damage(1);
 		damage_interval_timer.Start();
-		//GD.Print(health_component.current_health);
 	}
 
 

@@ -17,11 +17,6 @@ public partial class UpgradeManager : Node
     public override void _Ready()
     {
 		experience_manager.LevelUp += OnLevelUp;
-
-		foreach (var upgrade in upgrade_pool)
-		{
-			GD.Print(upgrade);
-		}
     }
 
 

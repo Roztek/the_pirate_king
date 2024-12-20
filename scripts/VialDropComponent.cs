@@ -4,14 +4,14 @@ using System;
 public partial class VialDropComponent : Node
 {
     [Export] private PackedScene _vial_scene;
-    [Export] private HealthComponent _health_component;
+    [Export] public HealthComponent health_component { get; set; }
     [Export(PropertyHint.Range, "0, 1")] private float _spawn_rate;
 
 
     public override void _Ready()
 	{
-        _health_component = GetParent().GetNode<HealthComponent>("HealthComponent");
-        _health_component.Died += OnDied;
+        health_component = GetParent().GetNode<HealthComponent>("HealthComponent");
+        health_component.Died += OnDied;
 	}
 
 

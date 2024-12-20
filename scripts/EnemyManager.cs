@@ -83,7 +83,6 @@ public partial class EnemyManager : Node
 	{
 		double time_off = (0.1 / 12) * arena_difficulty;
 		time_off = Math.Min(time_off, 0.7);
-		GD.Print(time_off);
 
 		enemy_timer.WaitTime = base_spawn_time - time_off;
 	}

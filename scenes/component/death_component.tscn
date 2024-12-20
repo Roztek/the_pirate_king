@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://du8jbqq05dkmr"]
+[gd_scene load_steps=9 format=3 uid="uid://du8jbqq05dkmr"]
 
+[ext_resource type="Script" path="res://scripts/DeathComponent.cs" id="1_42use"]
 [ext_resource type="Texture2D" uid="uid://0b530lkd8pyv" path="res://assets/enemies/basic_enemy.png" id="1_gp85d"]
 
 [sub_resource type="Animation" id="Animation_tuyc1"]
@@ -53,7 +54,7 @@ _data = {
 }
 
 [sub_resource type="Curve" id="Curve_t0ajr"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.506438, 0.758242), 0.0, 0.0, 0, 0, Vector2(0.948498, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.497854, 1), 0.0, 0.0, 0, 0, Vector2(0.948498, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_q383x"]
@@ -63,27 +64,27 @@ curve = SubResource("Curve_t0ajr")
 particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
 spread = 30.0
-initial_velocity_min = 125.0
-initial_velocity_max = 200.0
-angular_velocity_min = -720.0
-angular_velocity_max = 720.0
-gravity = Vector3(0, 400, 0)
+initial_velocity_min = 75.0
+initial_velocity_max = 250.0
+angular_velocity_min = -1440.0
+angular_velocity_max = 1440.0
+gravity = Vector3(0, 800, 0)
 scale_curve = SubResource("CurveTexture_q383x")
 
 [node name="DeathComponent" type="Node2D"]
+script = ExtResource("1_42use")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_dq6wt")
 }
-autoplay = "default"
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_w1vhn")
 texture = ExtResource("1_gp85d")
-lifetime = 0.65
+lifetime = 0.5
 one_shot = true
 fixed_fps = 0
 interpolate = false

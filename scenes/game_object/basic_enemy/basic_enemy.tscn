@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmv222n6qrpo7"]
+[gd_scene load_steps=12 format=3 uid="uid://cmv222n6qrpo7"]
 
 [ext_resource type="Script" path="res://scripts/BasicEnemy.cs" id="1_7mcjc"]
 [ext_resource type="PackedScene" uid="uid://dyvb8sndjo40a" path="res://scenes/component/health_component.tscn" id="2_7nl67"]
 [ext_resource type="Texture2D" uid="uid://0b530lkd8pyv" path="res://assets/enemies/basic_enemy.png" id="2_y63lw"]
 [ext_resource type="PackedScene" uid="uid://byawkt2egsswg" path="res://scenes/component/vial_drop_component.tscn" id="3_5cba3"]
+[ext_resource type="PackedScene" uid="uid://du8jbqq05dkmr" path="res://scenes/component/death_component.tscn" id="4_mkpmd"]
 [ext_resource type="PackedScene" uid="uid://1ym6hb4nw41k" path="res://scenes/component/hurtbox_component.tscn" id="4_srq01"]
 
 [sub_resource type="Animation" id="Animation_r1i33"]
@@ -89,9 +90,12 @@ autoplay = "wak"
 [node name="HealthComponent" parent="." instance=ExtResource("2_7nl67")]
 max_health = 10.0
 
-[node name="VialDropComponent" parent="." node_paths=PackedStringArray("_health_component") instance=ExtResource("3_5cba3")]
-_health_component = NodePath("../HealthComponent")
+[node name="VialDropComponent" parent="." instance=ExtResource("3_5cba3")]
 _spawn_rate = 0.5
+
+[node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("4_mkpmd")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../Visuals/Sprite2D")
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_srq01")]
 health_component = NodePath("../HealthComponent")

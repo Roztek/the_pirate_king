@@ -6,11 +6,14 @@ public partial class BasicEnemy : CharacterBody2D
 	const int MAX_SPEED = 40;
 
 	public HealthComponent health_component = null;
+	public Node2D visuals = null;
 
 
 	public override void _Ready()
 	{
 		health_component = GetNode<HealthComponent>("HealthComponent");
+
+		visuals = GetNode<Node2D>("Visuals");
 	}
 
 
@@ -19,6 +22,10 @@ public partial class BasicEnemy : CharacterBody2D
 		Vector2 direction = GetDirectionToPlayer();
 		Velocity = direction * MAX_SPEED;
 		MoveAndSlide();
+
+		var move_sign = Mathf.Sign(Velocity.X);
+		if (move_sign != 0)
+			visuals.Scale = new Vector2(move_sign, 1);  
 	}
 
 
