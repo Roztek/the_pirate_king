@@ -24,6 +24,12 @@ public partial class VelocityComponent : Node
     }
 
 
+    public void decelerate()
+    {
+        accelerate_in_direction(Vector2.Zero);
+    }
+
+
     public void accelerate_to_player()
     {
         var owner_node2d = Owner as Node2D;
