@@ -9,7 +9,7 @@
 bg_color = Color(0.133333, 0.133333, 0.133333, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_27gpw"]
-bg_color = Color(0.929412, 0.298039, 0.329412, 1)
+bg_color = Color(0.262745, 0.882353, 0.701961, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -167,7 +167,6 @@ script = ExtResource("1_akjv6")
 max_health = 10.0
 
 [node name="Abilities" type="Node" parent="."]
-unique_name_in_owner = true
 
 [node name="SwordAbilityController" parent="Abilities" instance=ExtResource("2_d7r11")]
 

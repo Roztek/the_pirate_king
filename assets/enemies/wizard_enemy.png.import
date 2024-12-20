@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0gqu5chg0due"
-path="res://.godot/imported/basic_enemy.png-a2bd60413bf3de237d75ff120482dd76.ctex"
+uid="uid://dv2o8wre57v40"
+path="res://.godot/imported/wizard_enemy.png-c5cf62f6088cca2ef27a31418464148e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/basic_enemy.png"
-dest_files=["res://.godot/imported/basic_enemy.png-a2bd60413bf3de237d75ff120482dd76.ctex"]
+source_file="res://assets/enemies/wizard_enemy.png"
+dest_files=["res://.godot/imported/wizard_enemy.png-c5cf62f6088cca2ef27a31418464148e.ctex"]
 
 [params]
 

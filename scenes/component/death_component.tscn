@@ -1,7 +1,22 @@
 [gd_scene load_steps=9 format=3 uid="uid://du8jbqq05dkmr"]
 
 [ext_resource type="Script" path="res://scripts/DeathComponent.cs" id="1_42use"]
-[ext_resource type="Texture2D" uid="uid://0b530lkd8pyv" path="res://assets/enemies/basic_enemy.png" id="1_gp85d"]
+[ext_resource type="Texture2D" uid="uid://b0gqu5chg0due" path="res://assets/enemies/basic_enemy.png" id="1_gp85d"]
+
+[sub_resource type="Animation" id="Animation_33qja"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_tuyc1"]
 resource_name = "default"
@@ -30,21 +45,6 @@ tracks/1/keys = {
 "args": [],
 "method": &"queue_free"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_33qja"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles2D:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dq6wt"]

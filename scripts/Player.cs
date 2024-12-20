@@ -35,7 +35,7 @@ public partial class Player : CharacterBody2D
 		GameEvents game_events = (GameEvents) GetNode("/root/GameEvents");
 		game_events.AbilityUpgradeAdded += OnAbilityUpgradeAdded;
 
-		abilities = GetNode("%Abilities");
+		abilities = GetNode<Node>("Abilities");
     }
 
 
