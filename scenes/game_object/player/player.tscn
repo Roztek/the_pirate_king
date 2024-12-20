@@ -167,6 +167,7 @@ script = ExtResource("1_akjv6")
 max_health = 10.0
 
 [node name="Abilities" type="Node" parent="."]
+unique_name_in_owner = true
 
 [node name="SwordAbilityController" parent="Abilities" instance=ExtResource("2_d7r11")]
 

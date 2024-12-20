@@ -43,10 +43,19 @@ public partial class UpgradeManager : Node
 			upgrade_data["quantity"] = current_quantity + 1;
 		}
 
+		if (upgrade.max_quantity > 0)
+		{
+			Dictionary upgrade_data = (Dictionary) current_upgrades[upgrade.id];
+			int current_quantity = (int) upgrade_data["quantity"];
+			if (current_quantity == upgrade.max_quantity)
+			{
+				upgrade_pool = new Array<AbilityUpgrade>(upgrade_pool.Where(u => Filter(u, upgrade)));
+			}
+
+		}
+
 		GameEvents game_events = (GameEvents) GetNode("/root/GameEvents");
 		game_events.EmitAbilityUpgradeAdded(upgrade, current_upgrades);
-
-		//GD.Print(current_upgrades);
 	}
 
 
@@ -57,9 +66,10 @@ public partial class UpgradeManager : Node
 
 		for (int i = 0; i < TOTAL_UPGRADES; i++)
 		{
+			if (filtered_upgrades.Count() == 0)
+				break;
 			AbilityUpgrade chosen_upgrade = filtered_upgrades[(int)(GD.Randi() % filtered_upgrades.Count)];
 			chosen_upgrades.Add(chosen_upgrade);
-
 			filtered_upgrades = new Array<AbilityUpgrade>(filtered_upgrades.Where(upgrade => Filter(upgrade, chosen_upgrade)));
 		}
 
