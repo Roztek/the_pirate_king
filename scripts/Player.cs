@@ -106,9 +106,8 @@ public partial class Player : CharacterBody2D
 	{
 		if (ability_upgrade is not Ability ability)
 			return;
-		
-		if (ability.ability_controller_scene.Instantiate() is not Node2D ability_instance)
-			return;
+
+		var ability_instance = ability.ability_controller_scene.Instantiate();
 
 		abilities.AddChild(ability_instance);
 	}
