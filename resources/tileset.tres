@@ -1,7 +1,15 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://tfkuag4dp37g"]
+[gd_resource type="TileSet" load_steps=21 format=3 uid="uid://tfkuag4dp37g"]
 
 [ext_resource type="Texture2D" uid="uid://dkmjkmuj8l356" path="res://assets/environment/Water and Island tiles.png" id="1_5pmla"]
 [ext_resource type="Texture2D" uid="uid://cuj1tl8kn7vl0" path="res://assets/environment/animated_water.png" id="2_211qe"]
+[ext_resource type="Texture2D" uid="uid://dp0grjemth2w7" path="res://assets/environment/animated_shore_e.png" id="2_kbmw3"]
+[ext_resource type="Texture2D" uid="uid://c36lp6w8ujb0x" path="res://assets/environment/animated_shore_nw.png" id="2_oties"]
+[ext_resource type="Texture2D" uid="uid://ecdsgaofyd3u" path="res://assets/environment/animated_shore_s.png" id="3_am5vp"]
+[ext_resource type="Texture2D" uid="uid://bp83e21co837j" path="res://assets/environment/animated_shore_ne.png" id="6_s82dh"]
+[ext_resource type="Texture2D" uid="uid://64ic4k46e0uc" path="res://assets/environment/animated_shore_se.png" id="7_a7qh0"]
+[ext_resource type="Texture2D" uid="uid://53nrckmnjfbp" path="res://assets/environment/animated_shore_sw.png" id="8_dwayl"]
+[ext_resource type="Texture2D" uid="uid://djej1rtpglfxp" path="res://assets/environment/animated_shore_w.png" id="9_wc612"]
+[ext_resource type="Texture2D" uid="uid://dcqdswwix6ksb" path="res://assets/environment/animated_shore_n.png" id="10_sc02o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3pkwa"]
 texture = ExtResource("1_5pmla")
@@ -153,6 +161,27 @@ texture = ExtResource("1_5pmla")
 1:0/0/terrains_peering_bit/bottom_left_corner = 0
 1:0/0/terrains_peering_bit/left_side = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s7qod"]
+texture = ExtResource("2_kbmw3")
+0:0/animation_frame_0/duration = 0.2
+0:0/animation_frame_1/duration = 0.2
+0:0/animation_frame_2/duration = 0.2
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rw4qa"]
+texture = ExtResource("3_am5vp")
+0:0/animation_frame_0/duration = 0.2
+0:0/animation_frame_1/duration = 0.2
+0:0/animation_frame_2/duration = 0.2
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fk722"]
+texture = ExtResource("2_oties")
+0:0/animation_frame_0/duration = 0.2
+0:0/animation_frame_1/duration = 0.2
+0:0/animation_frame_2/duration = 0.2
+0:0/0 = 0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5sl0h"]
 texture = ExtResource("2_211qe")
 0:0/animation_frame_0/duration = 0.2
@@ -174,6 +203,41 @@ texture = ExtResource("2_211qe")
 0:0/0/terrains_peering_bit/top_side = 1
 0:0/0/terrains_peering_bit/top_right_corner = 1
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f7h5h"]
+texture = ExtResource("6_s82dh")
+0:0/animation_frame_0/duration = 0.2
+0:0/animation_frame_1/duration = 0.2
+0:0/animation_frame_2/duration = 0.2
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_su847"]
+texture = ExtResource("7_a7qh0")
+0:0/animation_frame_0/duration = 0.2
+0:0/animation_frame_1/duration = 0.2
+0:0/animation_frame_2/duration = 0.2
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r4vtj"]
+texture = ExtResource("8_dwayl")
+0:0/animation_frame_0/duration = 0.2
+0:0/animation_frame_1/duration = 0.2
+0:0/animation_frame_2/duration = 0.2
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r475h"]
+texture = ExtResource("9_wc612")
+0:0/animation_frame_0/duration = 0.2
+0:0/animation_frame_1/duration = 0.2
+0:0/animation_frame_2/duration = 0.2
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dfkvi"]
+texture = ExtResource("10_sc02o")
+0:0/animation_frame_0/duration = 0.2
+0:0/animation_frame_1/duration = 0.2
+0:0/animation_frame_2/duration = 0.2
+0:0/0 = 0
+
 [resource]
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
@@ -184,3 +248,11 @@ terrain_set_0/terrain_1/name = "water"
 terrain_set_0/terrain_1/color = Color(0.219555, 0.338184, 1, 1)
 sources/0 = SubResource("TileSetAtlasSource_3pkwa")
 sources/4 = SubResource("TileSetAtlasSource_5sl0h")
+sources/3 = SubResource("TileSetAtlasSource_fk722")
+sources/5 = SubResource("TileSetAtlasSource_f7h5h")
+sources/6 = SubResource("TileSetAtlasSource_su847")
+sources/7 = SubResource("TileSetAtlasSource_r4vtj")
+sources/8 = SubResource("TileSetAtlasSource_r475h")
+sources/9 = SubResource("TileSetAtlasSource_dfkvi")
+sources/10 = SubResource("TileSetAtlasSource_s7qod")
+sources/12 = SubResource("TileSetAtlasSource_rw4qa")
