@@ -35,6 +35,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="the-pirate-king"
 
+[gui]
+
+theme/custom="res://resources/theme/theme.tres"
+
 [input]
 
 move_left={
