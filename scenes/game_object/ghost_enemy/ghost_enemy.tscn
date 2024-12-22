@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://r5csjsw42nh0"]
+[gd_scene load_steps=18 format=3 uid="uid://r5csjsw42nh0"]
 
 [ext_resource type="Script" path="res://scripts/GhostEnemy.cs" id="1_a0lyj"]
 [ext_resource type="Texture2D" uid="uid://c1ceg3wb1djiw" path="res://assets/enemies/ghost_enemy.png" id="2_7dtra"]
@@ -7,7 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://cfby0or5fgxpk" path="res://scenes/component/velocity_component.tscn" id="3_oopj4"]
 [ext_resource type="PackedScene" uid="uid://byawkt2egsswg" path="res://scenes/component/vial_drop_component.tscn" id="3_xpo50"]
 [ext_resource type="PackedScene" uid="uid://1ym6hb4nw41k" path="res://scenes/component/hurtbox_component.tscn" id="5_lrtml"]
-[ext_resource type="PackedScene" uid="uid://3airktqu258q" path="res://scenes/ui/floating_text.tscn" id="8_l7m0o"]
+[ext_resource type="PackedScene" uid="uid://ihc7pk8y7mkf" path="res://scenes/component/hit_flash_component.tscn" id="5_s3304"]
+[ext_resource type="Material" uid="uid://d3yw7ubrop25s" path="res://scenes/component/hit_flash_component_material.tres" id="6_ajxgb"]
+[ext_resource type="Shader" path="res://scenes/shader/hit_flash_component.gdshader" id="6_cdv67"]
+[ext_resource type="PackedScene" uid="uid://3airktqu258q" path="res://scenes/ui/floating_damage.tscn" id="8_l7m0o"]
 
 [sub_resource type="Animation" id="Animation_7vmbb"]
 length = 0.001
@@ -113,6 +116,11 @@ _data = {
 "walk": SubResource("Animation_osdmv")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f2t0a"]
+resource_local_to_scene = true
+shader = ExtResource("6_cdv67")
+shader_parameter/lerp_percent = 0.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_4snvk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rfy1r"]
@@ -140,6 +148,11 @@ _spawn_rate = 0.75
 max_speed = 60
 acceleration = 20.0
 
+[node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("5_s3304")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../Visuals/Sprite2D")
+hit_flash_material = SubResource("ShaderMaterial_f2t0a")
+
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("3_mpbeb")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
@@ -147,6 +160,7 @@ sprite = NodePath("../Visuals/Sprite2D")
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+material = ExtResource("6_ajxgb")
 texture = ExtResource("2_7dtra")
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_lrtml")]

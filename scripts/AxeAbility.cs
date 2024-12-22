@@ -16,7 +16,7 @@ public partial class AxeAbility : Node2D
         
         base_rotation = Vector2.Right.Rotated((float) (new Random().NextDouble() * Math.PI * 2));
 
-        var tween = CreateTween();
+        Tween tween = CreateTween();
         tween.TweenMethod(new Callable(this, nameof(MyTweenMethod)), 0.0f, 2.0f, 3.0f);
 
         tween.Finished += OnTweenFinished;

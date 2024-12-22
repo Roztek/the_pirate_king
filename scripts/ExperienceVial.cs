@@ -54,7 +54,7 @@ public partial class ExperienceVial : Node2D
 
 		_startPosition = GlobalPosition;
 
-        var tween = CreateTween();
+        Tween tween = CreateTween();
 		tween.SetParallel();
         tween.TweenMethod(new Callable(this, nameof(TweenCollect)), 0.0, 1.0, 0.5).SetEase(Tween.EaseType.In).SetTrans(Tween.TransitionType.Back);
         tween.TweenProperty(sprite, "scale", Vector2.Zero, 0.05).SetDelay(0.45);

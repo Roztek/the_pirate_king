@@ -24,7 +24,7 @@ public partial class HurtboxComponent : Area2D
         HitboxComponent hitbox_component = area as HitboxComponent;
         health_component.Damage(hitbox_component.damage);
 
-        var floating_text_instance = floating_text_scene.Instantiate() as FloatingText;
+        var floating_text_instance = floating_text_scene.Instantiate() as FloatingDamage;
         if (floating_text_instance != null)
         {
             GetTree().GetFirstNodeInGroup("foreground_layer")?.AddChild(floating_text_instance);
