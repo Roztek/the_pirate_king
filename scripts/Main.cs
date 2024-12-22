@@ -3,7 +3,7 @@ using System;
 
 public partial class Main : Node
 {
-    [Export] PackedScene end_screen_scene { get; set; }
+    [Export] public PackedScene end_screen_scene { get; set; }
 
     public Player player = null;
 

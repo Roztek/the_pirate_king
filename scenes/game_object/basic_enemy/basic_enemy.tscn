@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmv222n6qrpo7"]
+[gd_scene load_steps=14 format=3 uid="uid://cmv222n6qrpo7"]
 
 [ext_resource type="Script" path="res://scripts/BasicEnemy.cs" id="1_7mcjc"]
 [ext_resource type="PackedScene" uid="uid://dyvb8sndjo40a" path="res://scenes/component/health_component.tscn" id="2_7nl67"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cfby0or5fgxpk" path="res://scenes/component/velocity_component.tscn" id="4_cghi7"]
 [ext_resource type="PackedScene" uid="uid://du8jbqq05dkmr" path="res://scenes/component/death_component.tscn" id="4_mkpmd"]
 [ext_resource type="PackedScene" uid="uid://1ym6hb4nw41k" path="res://scenes/component/hurtbox_component.tscn" id="4_srq01"]
+[ext_resource type="PackedScene" uid="uid://3airktqu258q" path="res://scenes/ui/floating_text.tscn" id="8_1yias"]
 
 [sub_resource type="Animation" id="Animation_r2cf1"]
 length = 0.001
@@ -113,6 +114,7 @@ texture = ExtResource("2_y63lw")
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_srq01")]
 position = Vector2(0, 2)
 health_component = NodePath("../HealthComponent")
+floating_text_scene = ExtResource("8_1yias")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" groups=["enemy"]]
 position = Vector2(0, -6)

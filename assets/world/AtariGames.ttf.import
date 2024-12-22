@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://n2lmfkqx1k23"
-path="res://.godot/imported/Bitfantasy.ttf-8d4091e2098a9e6ae893d4eafaa9bd11.fontdata"
+uid="uid://bibj2kbgmahx3"
+path="res://.godot/imported/AtariGames.ttf-c76655a62011ceaa3046385d4ce60462.fontdata"
 
 [deps]
 
-source_file="res://resources/theme/Bitfantasy.ttf"
-dest_files=["res://.godot/imported/Bitfantasy.ttf-8d4091e2098a9e6ae893d4eafaa9bd11.fontdata"]
+source_file="res://assets/world/AtariGames.ttf"
+dest_files=["res://.godot/imported/AtariGames.ttf-c76655a62011ceaa3046385d4ce60462.fontdata"]
 
 [params]
 

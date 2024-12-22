@@ -5,7 +5,7 @@ public partial class ArenaTimeManager : Node
 {
     [Signal] public delegate void ArenaDifficultyIncreasedEventHandler(int arena_difficulty);
 
-    [Export] PackedScene end_screen_scene { get; set; }
+    [Export] public PackedScene end_screen_scene { get; set; }
 
     const int DIFFICULTY_INTERVAL = 5;
 
