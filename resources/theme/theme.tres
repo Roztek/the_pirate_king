@@ -1,7 +1,17 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://s5donu6s528x"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://s5donu6s528x"]
 
 [ext_resource type="FontFile" uid="uid://bibj2kbgmahx3" path="res://assets/world/AtariGames.ttf" id="1_aggbn"]
+[ext_resource type="Texture2D" uid="uid://jcu8eq7sdnl8" path="res://assets/ui/ui.png" id="1_cokxd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xp2c7"]
+texture = ExtResource("1_cokxd")
+texture_margin_left = 4.0
+texture_margin_top = 6.0
+texture_margin_right = 4.0
+texture_margin_bottom = 3.0
+region_rect = Rect2(0, 0, 16, 16)
 
 [resource]
 default_font = ExtResource("1_aggbn")
 default_font_size = 16
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_xp2c7")
