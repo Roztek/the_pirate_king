@@ -9,9 +9,9 @@ public partial class ArenaTimeManager : Node
 
     const int DIFFICULTY_INTERVAL = 5;
 
-    private Timer _timer = null;
-
     int arena_difficulty = 0;
+
+    private Timer _timer = null;
 
 
     public override void _Ready()
