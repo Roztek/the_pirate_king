@@ -30,7 +30,11 @@ public partial class HurtboxComponent : Area2D
             GetTree().GetFirstNodeInGroup("foreground_layer")?.AddChild(floating_text_instance);
 
             floating_text_instance.GlobalPosition = GlobalPosition + (Vector2.Up * 16);
-            floating_text_instance.Start(hitbox_component.damage.ToString());
+            
+            if (Math.Round(hitbox_component.damage) == hitbox_component.damage)
+                floating_text_instance.Start(hitbox_component.damage.ToString("F0"));
+            else
+                floating_text_instance.Start(hitbox_component.damage.ToString("F1"));
         }
 	}
 }

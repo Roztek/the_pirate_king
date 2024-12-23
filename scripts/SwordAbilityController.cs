@@ -6,7 +6,8 @@ public partial class SwordAbilityController : Node
 {
     [Export] public PackedScene sword_ability_scene { get; set; }
     
-    public float damage = 5;
+    public float base_damage = 5;
+    public float additional_damage_percent = 1;
     public double base_wait_time;
 
 
@@ -58,7 +59,7 @@ public partial class SwordAbilityController : Node
             Node2D foreground_layer = GetTree().GetFirstNodeInGroup("foreground_layer") as Node2D;
             foreground_layer.AddChild(sword_instance);
 
-            sword_instance.hitbox_component.damage = damage;
+            sword_instance.hitbox_component.damage = base_damage * additional_damage_percent;
 
             sword_instance.GlobalPosition = closest_enemy.GlobalPosition;
             float random_angle = (float)(new Random().NextDouble() * Math.PI * 2);
@@ -74,15 +75,22 @@ public partial class SwordAbilityController : Node
     {
         Timer ability_timer = GetNode<Timer>("Timer");
 
-        if (upgrade.id != "sword_rate")
-            return;
-        
-        Dictionary upgrade_data = (Dictionary) current_upgrades[upgrade.id];
-        int quantity = (int) upgrade_data["quantity"];
+        if (upgrade.id == "sword_speed")
+        {
+            Dictionary upgrade_data = (Dictionary) current_upgrades[upgrade.id];
+            int quantity = (int) upgrade_data["quantity"];
 
-        float percent_reduction = quantity * 0.1f;
+            float percent_reduction = quantity * 0.1f;
 
-        ability_timer.WaitTime = base_wait_time * (1 - percent_reduction);
-        ability_timer.Start();
+            ability_timer.WaitTime = base_wait_time * (1 - percent_reduction);
+            ability_timer.Start();
+        }
+        else if (upgrade.id == "sword_damage")
+        {
+            Dictionary upgrade_data = (Dictionary) current_upgrades[upgrade.id];
+            int quantity = (int) upgrade_data["quantity"];
+
+            additional_damage_percent = 1 + (quantity * 0.15f);
+        }
     }
 }
