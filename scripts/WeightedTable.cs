@@ -66,41 +66,10 @@ public class WeightedTable
     // TODO: Use this PickRandom() if I decide to not offer the same ability twice where the functionality will
     //       be implemented in UpgradeManager. Will decide this in the future.
 
-    // public object PickRandom()
-    // {
-    //     List<Dictionary<string, object>> adjusted_items = items;
-    //     int adjusted_total_weight = total_weight;
-
-    //     if (adjusted_items.Count == 0)
-    //         return null;
-
-    //     int random_weight = (int)(GD.Randi() % adjusted_total_weight);
-    //     int current_weight = 0;
-
-    //     foreach (var item in adjusted_items)
-    //     {
-    //         current_weight += (int)item["weight"];
-    //         if (random_weight < current_weight)
-    //             return item["object"];
-    //     }
-
-    //     return null;
-    // }
-
-
-    public object PickRandom(object[] exclude = null)
+    public object PickRandom()
     {
-        List<Dictionary<string, object>> adjusted_items = new List<Dictionary<string, object>>();
-        int adjusted_total_weight = 0;
-
-        foreach (var item in items)
-        {
-            if (exclude != null && exclude.Contains(item["object"]))
-                continue;
-
-            adjusted_items.Add(item);
-            adjusted_total_weight += (int)item["weight"];
-        }
+        List<Dictionary<string, object>> adjusted_items = items;
+        int adjusted_total_weight = total_weight;
 
         if (adjusted_items.Count == 0)
             return null;
@@ -117,6 +86,37 @@ public class WeightedTable
 
         return null;
     }
+
+
+    // public object PickRandom(object[] exclude = null)
+    // {
+    //     List<Dictionary<string, object>> adjusted_items = new List<Dictionary<string, object>>();
+    //     int adjusted_total_weight = 0;
+
+    //     foreach (var item in items)
+    //     {
+    //         if (exclude != null && exclude.Contains(item["object"]))
+    //             continue;
+
+    //         adjusted_items.Add(item);
+    //         adjusted_total_weight += (int) item["weight"];
+    //     }
+
+    //     if (adjusted_items.Count == 0)
+    //         return null;
+
+    //     int random_weight = (int)(GD.Randi() % adjusted_total_weight);
+    //     int current_weight = 0;
+
+    //     foreach (var item in adjusted_items)
+    //     {
+    //         current_weight += (int)item["weight"];
+    //         if (random_weight < current_weight)
+    //             return item["object"];
+    //     }
+
+    //     return null;
+    // }
 
 
     public void RemoveItem(object item)

@@ -75,49 +75,47 @@ public partial class UpgradeManager : Node
 	}
 
 
+	// public Array<AbilityUpgrade> PickUpgrades()
+	// {
+	// 	Array<AbilityUpgrade> chosen_upgrades = new Array<AbilityUpgrade>();
+
+	// 	for (int i = 0; i < TOTAL_UPGRADES; i++)
+	// 	{
+	// 		if (upgrade_pool.items.Count == chosen_upgrades.Count)
+	// 			break;
+	// 		var chosen_upgrade = upgrade_pool.PickRandom() as AbilityUpgrade;
+	// 		chosen_upgrades.Add(chosen_upgrade);
+	// 	}
+
+	// 	return chosen_upgrades;
+	// }
+
+	// TODO: Decide if I want this code: this code allows for an ability NOT to be offered twice
+
 	public Array<AbilityUpgrade> PickUpgrades()
 	{
 		Array<AbilityUpgrade> chosen_upgrades = new Array<AbilityUpgrade>();
 
 		for (int i = 0; i < TOTAL_UPGRADES; i++)
 		{
-			if (upgrade_pool.items.Count == chosen_upgrades.Count)
-				break;
-			var chosen_upgrade = upgrade_pool.PickRandom() as AbilityUpgrade;
-			chosen_upgrades.Add(chosen_upgrade);
+			AbilityUpgrade chosen_upgrade = null;
+
+			while (chosen_upgrade == null || chosen_upgrades.Contains(chosen_upgrade))
+			{
+				chosen_upgrade = upgrade_pool.PickRandom() as AbilityUpgrade;
+
+				if (chosen_upgrade == null)
+					break;
+			}
+
+			if (chosen_upgrade != null)
+			{
+				chosen_upgrades.Add(chosen_upgrade);
+			}
 		}
 
 		return chosen_upgrades;
 	}
-
-	// TODO: Decide if I want this code: this code doesn't allowed for an ability to be offered twice
-
-	// public Array<AbilityUpgrade> PickUpgrades()
-	// {
-	// 	Array<AbilityUpgrade> chosen_upgrades = new Array<AbilityUpgrade>();
-	// 	System.Collections.Generic.HashSet<AbilityUpgrade> seen_in_this_round = new System.Collections.Generic.HashSet<AbilityUpgrade>();
-
-	// 	for (int i = 0; i < TOTAL_UPGRADES; i++)
-	// 	{
-	// 		AbilityUpgrade chosen_upgrade = null;
-
-	// 		while (chosen_upgrade == null || seen_in_this_round.Contains(chosen_upgrade))
-	// 		{
-	// 			chosen_upgrade = upgrade_pool.PickRandom() as AbilityUpgrade;
-
-	// 			if (chosen_upgrade == null)
-	// 				break;
-	// 		}
-
-	// 		if (chosen_upgrade != null)
-	// 		{
-	// 			chosen_upgrades.Add(chosen_upgrade);
-	// 			seen_in_this_round.Add(chosen_upgrade);
-	// 		}
-	// 	}
-
-	// 	return chosen_upgrades;
-	// }
 
 
 	public bool Filter(AbilityUpgrade upgrade, AbilityUpgrade chosen_upgrades)
