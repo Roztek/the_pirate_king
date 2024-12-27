@@ -7,6 +7,7 @@ public partial class EndScreen : CanvasLayer
     public Button quit_button = null;
     public Label title_label = null;
     public Label description_label = null;
+    public PanelContainer panel_container = null;
 
 
     public override void _Ready()
@@ -22,6 +23,13 @@ public partial class EndScreen : CanvasLayer
         title_label = GetNode<Label>("%TitleLabel");
 
         description_label = GetNode<Label>("%DescriptionLabel");
+
+        panel_container = GetNode<PanelContainer>("%PanelContainer");
+
+        panel_container.PivotOffset = panel_container.Size / 2;
+        var tween = CreateTween();
+        tween.TweenProperty(panel_container, "scale", Vector2.Zero, 0);
+        tween.TweenProperty(panel_container, "scale", Vector2.One, 0.3f).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Back);
     }
 
     
