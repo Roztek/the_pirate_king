@@ -10,9 +10,13 @@ public partial class UpgradeScreen : CanvasLayer
 
     private HBoxContainer _card_container = null;
 
+    public AnimationPlayer animation_player = null;
+
 
     public override void _Ready()
     {
+        animation_player = GetNode<AnimationPlayer>("AnimationPlayer");
+
         GetTree().Paused = true;
     }
 
@@ -34,9 +38,11 @@ public partial class UpgradeScreen : CanvasLayer
     }
 
 
-    public void OnUpgradeSelectedUi(AbilityUpgrade upgrade)
+    public async void OnUpgradeSelectedUi(AbilityUpgrade upgrade)
     {
         EmitSignal(SignalName.UpgradeSelected, upgrade);
+        animation_player.Play("out");
+        await ToSignal(animation_player, "animation_finished");
         GetTree().Paused = false;
         QueueFree();
     }
