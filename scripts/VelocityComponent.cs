@@ -3,7 +3,7 @@ using System;
 
 public partial class VelocityComponent : Node
 {
-    [Export] public int max_speed { get; set; }
+    [Export] public float max_speed { get; set; }
     [Export] public float acceleration { get; set; }
 
     public Vector2 velocity = Vector2.Zero;

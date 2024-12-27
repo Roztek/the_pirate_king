@@ -4,19 +4,21 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-	const int MAX_SPEED = 125;
-	const int ACCELERATION_SMOOTHING = 25;
-
 	public int bodies_colliding = 0;
+	public float base_speed = 0;
 
 	public HealthComponent health_component = null;
 	public Timer damage_interval_timer = null;
 	public ProgressBar health_bar = null;
 	public Node abilities = null;
+	public VelocityComponent velocity_component = null;
 
 
     public override void _Ready()
     {
+		velocity_component = GetNode<VelocityComponent>("VelocityComponent");
+		base_speed = velocity_component.max_speed;
+
 		health_component = GetNode<HealthComponent>("HealthComponent");
 		health_component.HealthChanged += OnHealthChanged;
 		
@@ -43,11 +45,8 @@ public partial class Player : CharacterBody2D
 	{
 		Vector2 movement_vector = GetMovementVector();
 		Vector2 direction = movement_vector.Normalized();
-		var target_velocity = direction * MAX_SPEED;
-
-		Velocity = Velocity.Lerp(target_velocity, 1.0f - Mathf.Exp(-(float)delta * ACCELERATION_SMOOTHING));
-
-		MoveAndSlide();
+		velocity_component.accelerate_in_direction(direction);
+		velocity_component.Move(this);
 	}
 
 
@@ -104,11 +103,16 @@ public partial class Player : CharacterBody2D
 
 	public void OnAbilityUpgradeAdded(AbilityUpgrade ability_upgrade, Dictionary current_upgrades)
 	{
-		if (ability_upgrade is not Ability ability)
-			return;
-
-		var ability_instance = ability.ability_controller_scene.Instantiate();
-
-		abilities.AddChild(ability_instance);
+		if (ability_upgrade is Ability ability)
+		{
+			var ability_instance = ability.ability_controller_scene.Instantiate();
+			abilities.AddChild(ability_instance);
+		}
+		else if (ability_upgrade.id == "player_speed")
+		{
+			Dictionary upgrade_data = (Dictionary) current_upgrades[ability_upgrade.id];
+			int current_quantity = (int) upgrade_data["quantity"];
+			velocity_component.max_speed = base_speed + (current_quantity * 0.1f);
+		}
 	}
 }

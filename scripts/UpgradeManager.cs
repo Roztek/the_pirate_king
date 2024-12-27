@@ -18,6 +18,7 @@ public partial class UpgradeManager : Node
 	public Resource upgrade_axe_damage = ResourceLoader.Load("res://resources/upgrade/axe_damage.tres");
 	public Resource upgrade_sword_speed = ResourceLoader.Load("res://resources/upgrade/sword_speed.tres");
 	public Resource upgrade_sword_damage = ResourceLoader.Load("res://resources/upgrade/sword_damage.tres");
+	public Resource upgrade_player_speed = ResourceLoader.Load("res://resources/upgrade/player_speed.tres");
 
 
     public override void _Ready()
@@ -25,6 +26,7 @@ public partial class UpgradeManager : Node
 		upgrade_pool.AddItem(upgrade_axe, 10);
 		upgrade_pool.AddItem(upgrade_sword_speed, 10);
 		upgrade_pool.AddItem(upgrade_sword_damage, 10);
+		upgrade_pool.AddItem(upgrade_player_speed, 5);
 
 		experience_manager.LevelUp += OnLevelUp;
     }
