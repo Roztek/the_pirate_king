@@ -12,6 +12,7 @@ public partial class Player : CharacterBody2D
 	public ProgressBar health_bar = null;
 	public Node abilities = null;
 	public VelocityComponent velocity_component = null;
+	public GameEvents game_events = null;
 
 
     public override void _Ready()
@@ -34,7 +35,7 @@ public partial class Player : CharacterBody2D
 		Area2D body_exited = GetNode<Area2D>("CollisionArea2D");
 		body_exited.BodyExited += OnBodyExited;
 
-		GameEvents game_events = (GameEvents) GetNode("/root/GameEvents");
+		game_events = (GameEvents) GetNode("/root/GameEvents");
 		game_events.AbilityUpgradeAdded += OnAbilityUpgradeAdded;
 
 		abilities = GetNode<Node>("Abilities");
@@ -97,6 +98,7 @@ public partial class Player : CharacterBody2D
 
 	public void OnHealthChanged()
 	{
+		game_events.EmitPlayerDamaged();
 		UpdateHealthDisplay();
 	}
 
