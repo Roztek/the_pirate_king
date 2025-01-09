@@ -74,7 +74,7 @@ public class WeightedTable
         if (adjusted_items.Count == 0)
             return null;
 
-        int random_weight = (int)(GD.Randi() % adjusted_total_weight);
+        int random_weight = (int) (GD.Randi() % adjusted_total_weight);
         int current_weight = 0;
 
         foreach (var item in adjusted_items)

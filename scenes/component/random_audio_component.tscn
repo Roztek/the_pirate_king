@@ -1,7 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://cxluym1wjsno4"]
 
-[ext_resource type="Script" path="res://scripts/RandomHitAudioComponent.cs" id="1_3q6d0"]
+[ext_resource type="Script" path="res://scripts/RandomAudioComponent.cs" id="1_rfjtb"]
 
-[node name="RandomHitAudioComponent" type="AudioStreamPlayer2D"]
+[node name="RandomAudioComponent" type="AudioStreamPlayer2D"]
+max_distance = 300.0
 bus = &"sfx"
-script = ExtResource("1_3q6d0")
+script = ExtResource("1_rfjtb")
