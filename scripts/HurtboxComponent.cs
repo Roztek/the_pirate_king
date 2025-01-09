@@ -3,6 +3,8 @@ using System;
 
 public partial class HurtboxComponent : Area2D
 {
+    [Signal] public delegate void HitEventHandler();
+
     [Export] public HealthComponent health_component { get; set; }
     [Export] public PackedScene floating_text_scene { get; set; }
 
@@ -36,5 +38,7 @@ public partial class HurtboxComponent : Area2D
             else
                 floating_text_instance.Start(hitbox_component.damage.ToString("F1"));
         }
+
+        EmitSignal(SignalName.Hit);
 	}
 }

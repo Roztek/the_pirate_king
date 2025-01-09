@@ -5,6 +5,8 @@ public partial class GhostEnemy : CharacterBody2D
 {
     public VelocityComponent velocity_component = null;
     public Node2D visuals = null;
+    public RandomHitAudioComponent random_audio_component = null;
+    public HurtboxComponent hurtbox_component = null;
 
     public bool is_moving = false;
 
@@ -14,6 +16,11 @@ public partial class GhostEnemy : CharacterBody2D
         velocity_component = GetNode<VelocityComponent>("VelocityComponent");
 
         visuals = GetNode<Node2D>("Visuals");
+
+        random_audio_component = GetNode<RandomHitAudioComponent>("RandomHitAudioComponent");
+
+        hurtbox_component = GetNode<HurtboxComponent>("HurtboxComponent");
+		hurtbox_component.Hit += OnHit;
     }
 
 
@@ -36,4 +43,10 @@ public partial class GhostEnemy : CharacterBody2D
     {
         is_moving = moving;
     }
+
+
+    public void OnHit()
+	{
+		random_audio_component.PlayRandom();
+	}
 }

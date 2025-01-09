@@ -8,6 +8,7 @@ public partial class DeathComponent : Node2D
 
     public AnimationPlayer animation_player = null;
     public GpuParticles2D gpu_particles_2d = null;
+    public RandomHitAudioComponent random_audio_component = null;
 
 
     public override void _Ready()
@@ -19,6 +20,8 @@ public partial class DeathComponent : Node2D
 
         gpu_particles_2d = GetNode<GpuParticles2D>("GPUParticles2D");
         gpu_particles_2d.Texture = sprite.Texture;
+
+        random_audio_component = GetNode<RandomHitAudioComponent>("RandomHitAudioComponent");
     }
 
 
@@ -27,6 +30,7 @@ public partial class DeathComponent : Node2D
         var owner_node = Owner as Node2D;
         if (owner_node == null)
             return;
+            
         Vector2 spawn_position = owner_node.GlobalPosition;
 
         var entities = GetTree().GetFirstNodeInGroup("entities_layer");
@@ -35,5 +39,7 @@ public partial class DeathComponent : Node2D
 
         GlobalPosition = spawn_position;
         animation_player.Play("default");
+
+        random_audio_component.PlayRandom();
     }
 }
