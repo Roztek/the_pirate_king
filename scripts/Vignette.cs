@@ -17,7 +17,6 @@ public partial class Vignette : CanvasLayer
 
     public void OnPlayerDamaged()
     {
-        animation_player = GetNode<AnimationPlayer>("AnimationPlayer");
         animation_player.Play("hit");
     }
 }

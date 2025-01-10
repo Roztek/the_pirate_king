@@ -7,6 +7,8 @@ public partial class MainMenu : CanvasLayer
     public Button options_button = null;
     public Button quit_button = null;
 
+    public PackedScene options_menu_scene = (PackedScene) ResourceLoader.Load("res://scenes/ui/options_menu.tscn");
+
 
     public override void _Ready()
     {
@@ -29,12 +31,21 @@ public partial class MainMenu : CanvasLayer
 
     public void OnOptionsButtonPressed()
     {
-        
+        if (options_menu_scene.Instantiate() is not OptionsMenu options_menu_instance)
+            return;
+        AddChild(options_menu_instance);
+        options_menu_instance.BackPressed += () => OnBackPressed(options_menu_instance);
     }
 
 
     public void OnQuitButtonPressed()
     {
         GetTree().Quit();
+    }
+
+
+    public void OnBackPressed(OptionsMenu options_menu_instance)
+    {
+        options_menu_instance.QueueFree();
     }
 }
