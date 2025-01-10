@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbf8hcodypulw"]
+[gd_scene load_steps=5 format=3 uid="uid://bbf8hcodypulw"]
 
 [ext_resource type="Script" path="res://scripts/OptionsMenu.cs" id="1_8ccri"]
+[ext_resource type="PackedScene" uid="uid://ctqjdcaupcbnq" path="res://scenes/ui/vignette.tscn" id="2_vtnra"]
 [ext_resource type="TileSet" uid="uid://tfkuag4dp37g" path="res://resources/tileset.tres" id="2_wy5xk"]
 [ext_resource type="PackedScene" uid="uid://b4k2bmmqhbvvg" path="res://scenes/ui/sound_button.tscn" id="3_oi4nn"]
 
 [node name="OptionsMenu" type="CanvasLayer"]
 script = ExtResource("1_8ccri")
+
+[node name="Vignette" parent="." instance=ExtResource("2_vtnra")]
+layer = 2
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_wy5xk")
@@ -41,7 +45,8 @@ theme_override_constants/separation = 24
 
 [node name="Title" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0.14902, 0.168627, 0.266667, 1)
+theme_override_colors/font_outline_color = Color(0.14902, 0.168627, 0.266667, 1)
+theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 32
 text = "Options"
 horizontal_alignment = 1
