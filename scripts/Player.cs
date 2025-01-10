@@ -13,7 +13,7 @@ public partial class Player : CharacterBody2D
 	public Node abilities = null;
 	public VelocityComponent velocity_component = null;
 	public GameEvents game_events = null;
-	public RandomAudioComponent2D random_audio_component = null;
+	public RandomAudioComponent2D random_audio_component_2d = null;
 
 
     public override void _Ready()
@@ -41,7 +41,7 @@ public partial class Player : CharacterBody2D
 
 		abilities = GetNode<Node>("Abilities");
 
-		random_audio_component = GetNode<RandomAudioComponent2D>("RandomHitAudioComponent");
+		random_audio_component_2d = GetNode<RandomAudioComponent2D>("RandomHitAudioComponent");
     }
 
 
@@ -90,7 +90,7 @@ public partial class Player : CharacterBody2D
 	{
 		bodies_colliding++;
 		DealDamage();
-		random_audio_component.PlayRandom();
+		random_audio_component_2d.PlayRandom();
 	}
 
 
