@@ -5,7 +5,7 @@ public partial class ExperienceVial : Node2D
 {
 	public CollisionShape2D collision_shape_2d = null;
 	public Sprite2D sprite = null;
-	public RandomAudioComponent random_audio_component = null;
+	public RandomAudioComponent2D random_audio_component = null;
 
 	private Vector2 _startPosition;
 
@@ -19,7 +19,7 @@ public partial class ExperienceVial : Node2D
 		Area2D experience_vial_area = GetNode<Area2D>("Area2D");
         experience_vial_area.AreaEntered += OnAreaEntered;
 
-		random_audio_component = GetNode<RandomAudioComponent>("RandomPickupAudioComponent");
+		random_audio_component = GetNode<RandomAudioComponent2D>("RandomPickupAudioComponent");
 	}
 
 

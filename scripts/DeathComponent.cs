@@ -8,7 +8,7 @@ public partial class DeathComponent : Node2D
 
     public AnimationPlayer animation_player = null;
     public GpuParticles2D gpu_particles_2d = null;
-    public RandomAudioComponent random_audio_component = null;
+    public RandomAudioComponent2D random_audio_component = null;
 
 
     public override void _Ready()
@@ -21,7 +21,7 @@ public partial class DeathComponent : Node2D
         gpu_particles_2d = GetNode<GpuParticles2D>("GPUParticles2D");
         gpu_particles_2d.Texture = sprite.Texture;
 
-        random_audio_component = GetNode<RandomAudioComponent>("RandomHitAudioComponent");
+        random_audio_component = GetNode<RandomAudioComponent2D>("RandomHitAudioComponent");
     }
 
 

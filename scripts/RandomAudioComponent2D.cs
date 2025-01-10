@@ -2,7 +2,7 @@ using Godot;
 using System;
 using Godot.Collections;
 
-public partial class RandomAudioComponent : AudioStreamPlayer2D
+public partial class RandomAudioComponent2D : AudioStreamPlayer2D
 {
     [Export] public Array<AudioStream> streams { get; set; } 
     [Export] public bool randomize_pitch = true;

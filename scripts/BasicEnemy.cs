@@ -6,7 +6,7 @@ public partial class BasicEnemy : CharacterBody2D
 	[Export] public VelocityComponent velocity_component;
 
 	public Node2D visuals = null;
-	public RandomAudioComponent random_audio_component = null;
+	public RandomAudioComponent2D random_audio_component = null;
 	public HurtboxComponent hurtbox_component = null;
 
 
@@ -14,7 +14,7 @@ public partial class BasicEnemy : CharacterBody2D
 	{
 		visuals = GetNode<Node2D>("Visuals");
 
-		random_audio_component = GetNode<RandomAudioComponent>("RandomHitAudioComponent");
+		random_audio_component = GetNode<RandomAudioComponent2D>("RandomHitAudioComponent");
 
 		hurtbox_component = GetNode<HurtboxComponent>("HurtboxComponent");
 		hurtbox_component.Hit += OnHit;
