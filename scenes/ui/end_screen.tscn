@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2aqy8a5wcaww"]
+[gd_scene load_steps=9 format=3 uid="uid://b2aqy8a5wcaww"]
 
 [ext_resource type="Script" path="res://scripts/EndScreen.cs" id="1_vp862"]
 [ext_resource type="PackedScene" uid="uid://b4k2bmmqhbvvg" path="res://scenes/ui/sound_button.tscn" id="2_70pon"]
+[ext_resource type="AudioStream" uid="uid://oafityglk220" path="res://assets/audio/jingles_victory.ogg" id="2_scojm"]
+[ext_resource type="AudioStream" uid="uid://cn24mw1abxfpy" path="res://assets/audio/jingles_defeat.ogg" id="3_lu0yg"]
 
 [sub_resource type="Animation" id="Animation_38kcw"]
 length = 0.001
@@ -69,6 +71,16 @@ libraries = {
 "": SubResource("AnimationLibrary_vf0sl")
 }
 autoplay = "in"
+
+[node name="VictoryAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_scojm")
+volume_db = -8.0
+bus = &"sfx"
+
+[node name="DefeatAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_lu0yg")
+volume_db = -8.0
+bus = &"sfx"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15

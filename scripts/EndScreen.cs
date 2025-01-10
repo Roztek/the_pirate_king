@@ -33,18 +33,35 @@ public partial class EndScreen : CanvasLayer
     }
 
     
+    public void SetVictory()
+    {
+        title_label.Text = "Victory";
+        description_label.Text = "You won!";
+        PlayJingle(false);
+    }
+
+
     public void SetDefeat()
     {
         title_label.Text = "Defeat";
         description_label.Text = "You lost!";
+        PlayJingle(true);
     }
+    
 
-
-    // public void SetVictory()
-    // {
-    //     title_label.Text = "Victory";
-    //     description_label.Text = "You won!";
-    // }
+    public void PlayJingle(bool defeat = false)
+    {
+        if (defeat)
+        {
+            AudioStreamPlayer audio_stream_player = GetNode<AudioStreamPlayer>("DefeatAudio");
+            audio_stream_player.Play();
+        }
+        else
+        {
+            AudioStreamPlayer audio_stream_player = GetNode<AudioStreamPlayer>("VictoryAudio");
+            audio_stream_player.Play();
+        }
+    }
 
 
     public void OnRestartButtonPressed()

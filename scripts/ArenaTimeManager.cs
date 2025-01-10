@@ -45,5 +45,6 @@ public partial class ArenaTimeManager : Node
             return;
 
         AddChild(end_screen_instance);
+        end_screen_instance.SetVictory();
     }
 }
