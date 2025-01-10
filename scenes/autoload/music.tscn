@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7blvvovltud0"]
+
+[ext_resource type="AudioStream" uid="uid://b04t51vb8se5e" path="res://assets/audio/music_arpent.mp3" id="1_j7gif"]
+[ext_resource type="Script" path="res://scripts/Music.cs" id="1_woxw8"]
+
+[node name="Music" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_j7gif")
+volume_db = -12.0
+autoplay = true
+bus = &"music"
+script = ExtResource("1_woxw8")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
