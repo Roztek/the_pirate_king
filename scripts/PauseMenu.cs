@@ -3,10 +3,10 @@ using System;
 
 public partial class PauseMenu : CanvasLayer
 {
+    public ScreenTransition screen_transition = null;
     public Button resume_button = null;
     public Button options_button = null;
     public Button menu_button = null;
-
     public AnimationPlayer animation_player = null;
     public PanelContainer panel_container = null;
 
@@ -18,6 +18,8 @@ public partial class PauseMenu : CanvasLayer
     public override void _Ready()
     {
         GetTree().Paused = true;
+
+        screen_transition = (ScreenTransition) GetNode("/root/ScreenTransition");
 
         resume_button = GetNode<Button>("%ResumeButton");
         resume_button.Pressed += OnResumeButtonPressed;
@@ -75,8 +77,11 @@ public partial class PauseMenu : CanvasLayer
     }
 
 
-    public void OnOptionsButtonPressed()
+    public async void OnOptionsButtonPressed()
     {
+        screen_transition.Transition();
+        await ToSignal(screen_transition, "TransitionedHalfway");
+
         if (options_menu_scene.Instantiate() is not OptionsMenu options_menu_instance)
             return;
         AddChild(options_menu_instance);
@@ -84,9 +89,11 @@ public partial class PauseMenu : CanvasLayer
     }
 
 
-    public void OnMenuButtonPressed()
+    public async void OnMenuButtonPressed()
     {
-         GetTree().Paused = false;
+        screen_transition.Transition();
+        await ToSignal(screen_transition, "TransitionedHalfway");
+        GetTree().Paused = false;
         GetTree().ChangeSceneToFile("res://scenes/ui/main_menu.tscn");
     }
 

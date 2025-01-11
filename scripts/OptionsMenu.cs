@@ -5,6 +5,7 @@ public partial class OptionsMenu : CanvasLayer
 {
     [Signal] public delegate void BackPressedEventHandler();
 
+    public ScreenTransition screen_transition = null;
     public Button window_button = null;
     public Button back_button = null;
     public HSlider sfx_slider = null;
@@ -13,6 +14,8 @@ public partial class OptionsMenu : CanvasLayer
 
     public override void _Ready()
     {
+        screen_transition = (ScreenTransition) GetNode("/root/ScreenTransition");
+
         window_button = GetNode<Button>("%WindowButton");
         window_button.Pressed += OnWindowButtonPressed;
 
@@ -70,8 +73,11 @@ public partial class OptionsMenu : CanvasLayer
     }
 
 
-    public void OnBackButtonPressed()
+    public async void OnBackButtonPressed()
     {
+        screen_transition.Transition();
+        await ToSignal(screen_transition, "TransitionedHalfway");
+
         EmitSignal(SignalName.BackPressed);
     }
 

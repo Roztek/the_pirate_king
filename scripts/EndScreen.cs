@@ -3,6 +3,7 @@ using System;
 
 public partial class EndScreen : CanvasLayer
 {
+    public ScreenTransition screen_transition = null;
     public Button restart_button = null;
     public Button quit_button = null;
     public Label title_label = null;
@@ -13,6 +14,8 @@ public partial class EndScreen : CanvasLayer
     public override void _Ready()
     {
         GetTree().Paused = true;
+
+        screen_transition = (ScreenTransition) GetNode("/root/ScreenTransition");
 
         restart_button = GetNode<Button>("%RestartButton");
         restart_button.Pressed += OnRestartButtonPressed;
@@ -64,8 +67,10 @@ public partial class EndScreen : CanvasLayer
     }
 
 
-    public void OnRestartButtonPressed()
+    public async void OnRestartButtonPressed()
     {
+        screen_transition.Transition();
+        await ToSignal(screen_transition, "TransitionedHalfway");
         GetTree().Paused = false;
         GetTree().ChangeSceneToFile("res://scenes/main/main.tscn");
     }

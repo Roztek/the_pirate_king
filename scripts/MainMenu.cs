@@ -3,6 +3,7 @@ using System;
 
 public partial class MainMenu : CanvasLayer
 {
+    public ScreenTransition screen_transition = null;
     public Button play_button = null;
     public Button options_button = null;
     public Button quit_button = null;
@@ -12,6 +13,8 @@ public partial class MainMenu : CanvasLayer
 
     public override void _Ready()
     {
+        screen_transition = (ScreenTransition) GetNode("/root/ScreenTransition");
+
         play_button = GetNode<Button>("%PlayButton");
         play_button.Pressed += OnPlayButtonPressed;
 
@@ -23,14 +26,20 @@ public partial class MainMenu : CanvasLayer
     }
 
 
-    public void OnPlayButtonPressed()
+    public async void OnPlayButtonPressed()
     {
+        screen_transition.Transition();
+        await ToSignal(screen_transition, "TransitionedHalfway");
+
         GetTree().ChangeSceneToFile("res://scenes/main/main.tscn");
     }
 
 
-    public void OnOptionsButtonPressed()
+    public async void OnOptionsButtonPressed()
     {
+        screen_transition.Transition();
+        await ToSignal(screen_transition, "TransitionedHalfway");
+
         if (options_menu_scene.Instantiate() is not OptionsMenu options_menu_instance)
             return;
         AddChild(options_menu_instance);
