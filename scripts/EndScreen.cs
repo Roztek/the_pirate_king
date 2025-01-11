@@ -27,7 +27,7 @@ public partial class EndScreen : CanvasLayer
         panel_container = GetNode<PanelContainer>("%PanelContainer");
 
         panel_container.PivotOffset = panel_container.Size / 2;
-        var tween = CreateTween();
+        Tween tween = CreateTween();
         tween.TweenProperty(panel_container, "scale", Vector2.Zero, 0);
         tween.TweenProperty(panel_container, "scale", Vector2.One, 0.3f).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Back);
     }
