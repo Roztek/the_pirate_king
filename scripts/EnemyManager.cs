@@ -44,11 +44,16 @@ public partial class EnemyManager : Node
 			Vector2 offset = new Vector2(
 				Mathf.Cos(random_direction),
 				Mathf.Sin(random_direction)
-			) * SPAWN_RADIUS;		
+			) * SPAWN_RADIUS;
+
+			Vector2 additional_offset = new Vector2(
+				Mathf.Cos(random_direction),
+				Mathf.Sin(random_direction)
+			) * 20;
 
 			spawn_position = player.GlobalPosition + offset;
 
-			var query_paramaters = PhysicsRayQueryParameters2D.Create(player.GlobalPosition, spawn_position, 1);
+			var query_paramaters = PhysicsRayQueryParameters2D.Create(player.GlobalPosition, spawn_position + additional_offset, 1);
 			Dictionary result = GetTree().Root.World2D.DirectSpaceState.IntersectRay(query_paramaters);
 		
 			if (result.Count == 0)
