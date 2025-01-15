@@ -14,11 +14,11 @@ public partial class UpgradeManager : Node
 	public Dictionary current_upgrades = new Dictionary();
 	public WeightedTable upgrade_pool = new WeightedTable();
 
-	public Resource upgrade_axe = ResourceLoader.Load("res://resources/upgrade/axe.tres");
-	public Resource upgrade_axe_damage = ResourceLoader.Load("res://resources/upgrade/axe_damage.tres");
-	public Resource upgrade_sword_speed = ResourceLoader.Load("res://resources/upgrade/sword_speed.tres");
-	public Resource upgrade_sword_damage = ResourceLoader.Load("res://resources/upgrade/sword_damage.tres");
-	public Resource upgrade_player_speed = ResourceLoader.Load("res://resources/upgrade/player_speed.tres");
+	public Resource upgrade_axe = ResourceLoader.Load("res://resources/upgrades/axe.tres");
+	public Resource upgrade_axe_damage = ResourceLoader.Load("res://resources/upgrades/axe_damage.tres");
+	public Resource upgrade_sword_speed = ResourceLoader.Load("res://resources/upgrades/sword_speed.tres");
+	public Resource upgrade_sword_damage = ResourceLoader.Load("res://resources/upgrades/sword_damage.tres");
+	public Resource upgrade_player_speed = ResourceLoader.Load("res://resources/upgrades/player_speed.tres");
 
 
     public override void _Ready()
@@ -34,7 +34,7 @@ public partial class UpgradeManager : Node
 
 	public void ApplyUpgrade(AbilityUpgrade upgrade)
 	{
-		var has_upgrade = current_upgrades.ContainsKey(upgrade.id);
+		bool has_upgrade = current_upgrades.ContainsKey(upgrade.id);
 		if (!has_upgrade)
 		{
 			current_upgrades[upgrade.id] = new Dictionary()

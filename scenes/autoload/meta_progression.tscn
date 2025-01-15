@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d162p68sn4fwb"]
+
+[ext_resource type="Script" path="res://scripts/MetaProgression.cs" id="1_2dlc5"]
+
+[node name="MetaProgression" type="Node"]
+script = ExtResource("1_2dlc5")

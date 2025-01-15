@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cbu1tewsem61m"]
+
+[ext_resource type="Script" path="res://scripts/MetaUpgrade.cs" id="1_f7uoa"]
+
+[resource]
+script = ExtResource("1_f7uoa")
+id = "experience_gain"
+name = "Increase Experience"
+description = "Increases experience drop chance by 10%."
+max_quantity = 1
