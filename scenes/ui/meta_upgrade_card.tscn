@@ -1,12 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://cjjx4xwphp4qx"]
+[gd_scene load_steps=19 format=3 uid="uid://cjjx4xwphp4qx"]
 
 [ext_resource type="Script" path="res://scripts/MetaUpgradeCard.cs" id="1_0bgdl"]
 [ext_resource type="PackedScene" uid="uid://jjuy6phueceo" path="res://scenes/component/random_audio_component.tscn" id="2_uo7pt"]
-[ext_resource type="AudioStream" uid="uid://cauetfuf2it2n" path="res://assets/audio/rollover1.ogg" id="3_xkqty"]
-[ext_resource type="AudioStream" uid="uid://djs6uanoad12y" path="res://assets/audio/rollover2.ogg" id="4_nlig0"]
-[ext_resource type="AudioStream" uid="uid://b2p2g8vtccmbd" path="res://assets/audio/rollover4.ogg" id="5_fjsqi"]
-[ext_resource type="AudioStream" uid="uid://cdjj3ondoxou" path="res://assets/audio/rollover5.ogg" id="6_afan7"]
-[ext_resource type="AudioStream" uid="uid://cl3uyt4ah5t22" path="res://assets/audio/rollover6.ogg" id="7_1wa6u"]
 [ext_resource type="AudioStream" uid="uid://dj3hr24cwhbid" path="res://assets/audio/switch1.ogg" id="8_a05ae"]
 [ext_resource type="AudioStream" uid="uid://dnberwnc735x1" path="res://assets/audio/switch2.ogg" id="9_34ye7"]
 [ext_resource type="AudioStream" uid="uid://b8umacl7x6bwd" path="res://assets/audio/switch3.ogg" id="10_cdhpu"]
@@ -125,10 +120,6 @@ offset_bottom = 160.0
 pivot_offset = Vector2(65, 80)
 script = ExtResource("1_0bgdl")
 
-[node name="RandomHoverAudioComponent" parent="." instance=ExtResource("2_uo7pt")]
-volume_db = -10.0
-streams = Array[AudioStream]([ExtResource("3_xkqty"), ExtResource("4_nlig0"), ExtResource("5_fjsqi"), ExtResource("6_afan7"), ExtResource("7_1wa6u")])
-
 [node name="RandomClickAudioComponent" parent="." instance=ExtResource("2_uo7pt")]
 streams = Array[AudioStream]([ExtResource("8_a05ae"), ExtResource("9_34ye7"), ExtResource("10_cdhpu"), ExtResource("11_5eys1"), ExtResource("12_n0hit"), ExtResource("13_yei6m"), ExtResource("14_i7udp"), ExtResource("15_p8ujt"), ExtResource("16_tkhd4"), ExtResource("17_1fkfg")])
 
@@ -210,7 +201,7 @@ size_flags_vertical = 0
 mouse_filter = 2
 texture = ExtResource("18_oalj5")
 
-[node name="SoundButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("19_gkrdm")]
+[node name="PurchaseButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("19_gkrdm")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Purchase"
