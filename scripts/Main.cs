@@ -36,5 +36,8 @@ public partial class Main : Node
 
         AddChild(end_screen_instance);
         end_screen_instance.SetDefeat();
+
+        MetaProgression meta_progression = (MetaProgression) GetNode("/root/MetaProgression");
+        meta_progression.Save();
     }
 }

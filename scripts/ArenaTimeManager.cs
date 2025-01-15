@@ -46,5 +46,8 @@ public partial class ArenaTimeManager : Node
 
         AddChild(end_screen_instance);
         end_screen_instance.SetVictory();
+        
+        MetaProgression meta_progression = (MetaProgression) GetNode("/root/MetaProgression");
+        meta_progression.Save();
     }
 }

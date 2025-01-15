@@ -1,9 +1,12 @@
 using Godot;
 using System;
 using Godot.Collections;
+using System.IO;
 
 public partial class MetaProgression : Node
 {
+    private const string SAVE_FILE_PATH = "user://game.save";
+
     public Dictionary save_data = new Dictionary
     {
         { "meta_upgrade_currency", 0 },
@@ -15,6 +18,25 @@ public partial class MetaProgression : Node
     {
         GameEvents game_events = (GameEvents) GetNode("/root/GameEvents");
         game_events.ExperienceVialCollected += OnExperienceVialCollected;
+
+        LoadSaveFile();
+    }
+
+
+    public void LoadSaveFile()
+    {
+        if (!Godot.FileAccess.FileExists(SAVE_FILE_PATH))
+            return;
+        
+        var file = Godot.FileAccess.Open(SAVE_FILE_PATH, Godot.FileAccess.ModeFlags.Read);
+        save_data = (Dictionary) file.GetVar(); 
+    }
+
+
+    public void Save()
+    {
+        var file = Godot.FileAccess.Open(SAVE_FILE_PATH, Godot.FileAccess.ModeFlags.Write);
+        file.StoreVar(save_data);
     }
 
 
