@@ -8,3 +8,4 @@ id = "experience_gain"
 name = "Increase Experience"
 description = "Increases experience drop chance by 10%."
 max_quantity = 1
+experience_cost = 100

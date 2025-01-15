@@ -7,4 +7,5 @@ public partial class MetaUpgrade : Resource
 	[Export] public string name { get; set; }
 	[Export] public string description { get; set; }
 	[Export] public int max_quantity { get; set; }
+	[Export] public int experience_cost { get; set; }
 }

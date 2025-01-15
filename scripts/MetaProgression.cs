@@ -42,7 +42,6 @@ public partial class MetaProgression : Node
 
     public void AddMetaUpgrade(MetaUpgrade upgrade)
     {
-
         var meta_upgrades = (Dictionary) save_data["meta_upgrades"];
         bool has_upgrade = save_data.ContainsKey(upgrade.id);
         if (!has_upgrade)
@@ -55,6 +54,7 @@ public partial class MetaProgression : Node
 
         var upgrade_data = (Dictionary) meta_upgrades[upgrade.id];
         upgrade_data["quantity"] = (int) upgrade_data["quantity"] + 1;
+        Save();
     }
 
 
