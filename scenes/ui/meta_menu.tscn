@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://doxk2a3lpp2aq"]
+[gd_scene load_steps=6 format=3 uid="uid://doxk2a3lpp2aq"]
 
 [ext_resource type="Script" path="res://scripts/MetaMenu.cs" id="1_j5u21"]
 [ext_resource type="Resource" uid="uid://cbu1tewsem61m" path="res://resources/meta_upgrades/experience_gain.tres" id="2_d84al"]
 [ext_resource type="PackedScene" uid="uid://ctqjdcaupcbnq" path="res://scenes/ui/vignette.tscn" id="2_lyy2j"]
 [ext_resource type="TileSet" uid="uid://tfkuag4dp37g" path="res://resources/tileset.tres" id="3_0bw3n"]
+[ext_resource type="PackedScene" uid="uid://b4k2bmmqhbvvg" path="res://scenes/ui/sound_button.tscn" id="6_rs4im"]
 
 [node name="MetaMenu" type="CanvasLayer"]
 layer = 2
@@ -36,4 +37,12 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 16
-columns = 3
+columns = 2
+
+[node name="BackButton" parent="MarginContainer" instance=ExtResource("6_rs4im")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Back"

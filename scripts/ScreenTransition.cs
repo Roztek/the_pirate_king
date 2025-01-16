@@ -35,4 +35,13 @@ public partial class ScreenTransition : CanvasLayer
 
         EmitSignal(SignalName.TransitionedHalfway);
     }
+
+
+    public async void TransitionToScene(string scene_path)
+    {
+        Transition();
+        await ToSignal(this, "TransitionedHalfway");
+
+        GetTree().ChangeSceneToFile(scene_path);
+    }
 }

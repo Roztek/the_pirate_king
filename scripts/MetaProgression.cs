@@ -1,7 +1,6 @@
 using Godot;
 using System;
 using Godot.Collections;
-using System.IO;
 
 public partial class MetaProgression : Node
 {
@@ -25,17 +24,17 @@ public partial class MetaProgression : Node
 
     public void LoadSaveFile()
     {
-        if (!Godot.FileAccess.FileExists(SAVE_FILE_PATH))
+        if (!FileAccess.FileExists(SAVE_FILE_PATH))
             return;
         
-        var file = Godot.FileAccess.Open(SAVE_FILE_PATH, Godot.FileAccess.ModeFlags.Read);
+        var file = FileAccess.Open(SAVE_FILE_PATH, FileAccess.ModeFlags.Read);
         save_data = (Dictionary) file.GetVar(); 
     }
 
 
     public void Save()
     {
-        var file = Godot.FileAccess.Open(SAVE_FILE_PATH, Godot.FileAccess.ModeFlags.Write);
+        var file = FileAccess.Open(SAVE_FILE_PATH, FileAccess.ModeFlags.Write);
         file.StoreVar(save_data);
     }
 
@@ -55,6 +54,24 @@ public partial class MetaProgression : Node
         var upgrade_data = (Dictionary) meta_upgrades[upgrade.id];
         upgrade_data["quantity"] = (int) upgrade_data["quantity"] + 1;
         Save();
+    }
+
+
+    public int GetUpgradeCount(string upgrade_id)
+    {
+        Dictionary meta_upgrades = (Dictionary) save_data["meta_upgrades"];
+        
+        if (meta_upgrades != null && meta_upgrades.ContainsKey(upgrade_id))
+        {
+            Dictionary upgrade_data = (Dictionary) meta_upgrades[upgrade_id];
+            
+            if (upgrade_data != null && upgrade_data.ContainsKey("quantity"))
+            {
+                return Convert.ToInt32(upgrade_data["quantity"]);
+            }
+        }
+        
+        return 0;
     }
 
 

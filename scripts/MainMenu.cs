@@ -5,6 +5,7 @@ public partial class MainMenu : CanvasLayer
 {
     public ScreenTransition screen_transition = null;
     public Button play_button = null;
+    public Button upgrades_button = null;
     public Button options_button = null;
     public Button quit_button = null;
 
@@ -18,6 +19,9 @@ public partial class MainMenu : CanvasLayer
         play_button = GetNode<Button>("%PlayButton");
         play_button.Pressed += OnPlayButtonPressed;
 
+        upgrades_button = GetNode<Button>("%UpgradesButton");
+        upgrades_button.Pressed += OnUpgradesButtonPressed;
+
         options_button = GetNode<Button>("%OptionsButton");
         options_button.Pressed += OnOptionsButtonPressed;
 
@@ -26,12 +30,15 @@ public partial class MainMenu : CanvasLayer
     }
 
 
-    public async void OnPlayButtonPressed()
+    public void OnPlayButtonPressed()
     {
-        screen_transition.Transition();
-        await ToSignal(screen_transition, "TransitionedHalfway");
+        screen_transition.TransitionToScene("res://scenes/main/main.tscn");
+    }
 
-        GetTree().ChangeSceneToFile("res://scenes/main/main.tscn");
+
+    public void OnUpgradesButtonPressed()
+    {
+        screen_transition.TransitionToScene("res://scenes/ui/meta_menu.tscn");
     }
 
 

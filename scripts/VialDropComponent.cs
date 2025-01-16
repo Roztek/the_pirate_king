@@ -7,9 +7,13 @@ public partial class VialDropComponent : Node
     [Export] public HealthComponent health_component { get; set; }
     [Export(PropertyHint.Range, "0, 1")] private float _spawn_rate;
 
+    public MetaProgression meta_progress = null;
+
 
     public override void _Ready()
 	{
+        meta_progress = (MetaProgression) GetNode("/root/MetaProgression");
+
         health_component = GetParent().GetNode<HealthComponent>("HealthComponent");
         health_component.Died += OnDied;
 	}
@@ -23,8 +27,13 @@ public partial class VialDropComponent : Node
 
     private void SpawnVial()
     {
+        float adjusted_drop_percent = _spawn_rate;
+        var experience_gain_upgrade_count = meta_progress.GetUpgradeCount("experience_gain");
+        if (experience_gain_upgrade_count > 0)
+            adjusted_drop_percent += 0.1f;
+
         float random_number = (float) new Random().NextDouble();
-        if (random_number > _spawn_rate)
+        if (random_number > adjusted_drop_percent)
             return;
 
         if (_vial_scene == null || Owner is not Node2D owner_node)

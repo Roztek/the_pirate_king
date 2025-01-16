@@ -1,11 +1,12 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class EndScreen : CanvasLayer
 {
     public ScreenTransition screen_transition = null;
-    public Button restart_button = null;
-    public Button quit_button = null;
+    public Button continue_button = null;
+    public Button menu_button = null;
     public Label title_label = null;
     public Label description_label = null;
     public PanelContainer panel_container = null;
@@ -17,11 +18,11 @@ public partial class EndScreen : CanvasLayer
 
         screen_transition = (ScreenTransition) GetNode("/root/ScreenTransition");
 
-        restart_button = GetNode<Button>("%RestartButton");
-        restart_button.Pressed += OnRestartButtonPressed;
+        continue_button = GetNode<Button>("%ContinueButton");
+        continue_button.Pressed += OnContinueButtonPressed;
 
-        quit_button = GetNode<Button>("%QuitButton");
-        quit_button.Pressed += OnQuitButtonPressed;
+        menu_button = GetNode<Button>("%MenuButton");
+        menu_button.Pressed += OnMenuButtonPressed;
 
         title_label = GetNode<Label>("%TitleLabel");
 
@@ -67,17 +68,17 @@ public partial class EndScreen : CanvasLayer
     }
 
 
-    public async void OnRestartButtonPressed()
+    public void OnContinueButtonPressed()
     {
-        screen_transition.Transition();
-        await ToSignal(screen_transition, "TransitionedHalfway");
+        screen_transition.TransitionToScene("res://scenes/ui/meta_menu.tscn");
         GetTree().Paused = false;
-        GetTree().ChangeSceneToFile("res://scenes/main/main.tscn");
     }
 
 
-    public void OnQuitButtonPressed()
+    public async void OnMenuButtonPressed()
     {
-        GetTree().Quit();
+        screen_transition.TransitionToScene("res://scenes/ui/main_menu.tscn");
+        await ToSignal(screen_transition, "TransitionedHalfway");
+        GetTree().Paused = false;
     }
 }
