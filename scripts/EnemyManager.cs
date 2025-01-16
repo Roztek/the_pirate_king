@@ -47,9 +47,9 @@ public partial class EnemyManager : Node
 			) * SPAWN_RADIUS;
 
 			Vector2 additional_offset = new Vector2(
-				Mathf.Cos(random_direction),
-				Mathf.Sin(random_direction)
-			) * 20;
+				Mathf.Cos(random_direction) * 20,
+				Mathf.Sin(random_direction) * 20
+			);
 
 			spawn_position = player.GlobalPosition + offset;
 
