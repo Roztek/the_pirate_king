@@ -109,7 +109,7 @@ max_health = 10.0
 
 [node name="VialDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_5cba3")]
 health_component = NodePath("../HealthComponent")
-_spawn_rate = 0.5
+_spawn_rate = 0.35
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_cghi7")]
 max_speed = 40.0
@@ -125,7 +125,6 @@ health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
 
 [node name="RandomHitAudioComponent" parent="." instance=ExtResource("12_68b1r")]
-max_distance = 300.0
 streams = Array[AudioStream]([ExtResource("12_4j2jc"), ExtResource("14_47iff"), ExtResource("15_pclbu"), ExtResource("16_b3ylu"), ExtResource("17_1ap3c")])
 
 [node name="Visuals" type="Node2D" parent="."]

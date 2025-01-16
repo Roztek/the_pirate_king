@@ -53,6 +53,7 @@ public partial class MetaUpgradeCard : PanelContainer
         }
         
         int currency = (int) meta_progress.save_data["meta_upgrade_currency"];
+        currency = Math.Max(0, currency);
         int experience_cost = meta_upgrade.experience_cost;
 
         float percent = (float) currency / experience_cost;
@@ -66,14 +67,7 @@ public partial class MetaUpgradeCard : PanelContainer
 
         progress_bar.Value = percent; 
         progress_label.Text = currency.ToString() + "/" + experience_cost.ToString();
-
-        // if (upgrades != null && upgrades.ContainsKey(meta_upgrade.id))
-        // {
-        //     if (upgrade_data != null && upgrade_data.ContainsKey("quantity"))
-        //     {
-                count_label.Text = $"X{quantity}";
-        //     }
-        // }
+        count_label.Text = $"X{quantity}";
     }
 
 
@@ -93,5 +87,6 @@ public partial class MetaUpgradeCard : PanelContainer
         meta_progress.Save();
         GetTree().CallGroup("meta_upgrade_card", "upgrade_progress");
         card_animation_player.Play("selected");
+        UpdateProgress();
     }
 }

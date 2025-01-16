@@ -67,7 +67,7 @@ public partial class MetaProgression : Node
             
             if (upgrade_data != null && upgrade_data.ContainsKey("quantity"))
             {
-                return Convert.ToInt32(upgrade_data["quantity"]);
+                return (int) upgrade_data["quantity"];
             }
         }
         

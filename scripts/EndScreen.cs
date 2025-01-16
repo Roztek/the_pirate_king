@@ -75,10 +75,9 @@ public partial class EndScreen : CanvasLayer
     }
 
 
-    public async void OnMenuButtonPressed()
+    public void OnMenuButtonPressed()
     {
         screen_transition.TransitionToScene("res://scenes/ui/main_menu.tscn");
-        await ToSignal(screen_transition, "TransitionedHalfway");
         GetTree().Paused = false;
     }
 }
