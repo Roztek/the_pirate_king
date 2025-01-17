@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cb5r2ioffrnql"]
+
+[ext_resource type="PackedScene" uid="uid://bx5r8i7n1am0" path="res://scenes/game_object/ability/anvil_ability/anvil_ability_controller.tscn" id="1_f2w2o"]
+[ext_resource type="Script" path="res://scripts/Ability.cs" id="2_5fqd4"]
+
+[resource]
+script = ExtResource("2_5fqd4")
+ability_controller_scene = ExtResource("1_f2w2o")
+id = "anvil"
+name = "Anvil"
+description = "Randomly drop a falling anvil."
+max_quantity = 1

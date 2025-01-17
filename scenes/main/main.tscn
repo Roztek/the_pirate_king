@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://o5qlugnr2ahk" path="res://scenes/manager/experience_manager.tscn" id="4_6utp3"]
 [ext_resource type="PackedScene" uid="uid://b2aqy8a5wcaww" path="res://scenes/ui/end_screen.tscn" id="5_l6fh2"]
 [ext_resource type="PackedScene" uid="uid://dpswo6mi0fipt" path="res://scenes/manager/upgrade_manager.tscn" id="7_jutdg"]
-[ext_resource type="PackedScene" uid="uid://r5csjsw42nh0" path="res://scenes/game_object/ghost_enemy/ghost_enemy.tscn" id="8_awwvj"]
-[ext_resource type="PackedScene" uid="uid://dld0b2d48iho" path="res://scenes/game_object/flying_enemy/flying_enemy.tscn" id="10_8f115"]
+[ext_resource type="PackedScene" uid="uid://r5csjsw42nh0" path="res://scenes/game_object/enemy/ghost_enemy/ghost_enemy.tscn" id="8_awwvj"]
+[ext_resource type="PackedScene" uid="uid://dld0b2d48iho" path="res://scenes/game_object/enemy/flying_enemy/flying_enemy.tscn" id="10_8f115"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_xx458")

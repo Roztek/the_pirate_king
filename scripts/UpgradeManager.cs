@@ -15,15 +15,17 @@ public partial class UpgradeManager : Node
 	public WeightedTable upgrade_pool = new WeightedTable();
 
 	public Resource upgrade_axe = ResourceLoader.Load("res://resources/upgrades/axe.tres");
+	public Resource upgrade_anvil = ResourceLoader.Load("res://resources/upgrades/anvil.tres");
 	public Resource upgrade_axe_damage = ResourceLoader.Load("res://resources/upgrades/axe_damage.tres");
 	public Resource upgrade_sword_speed = ResourceLoader.Load("res://resources/upgrades/sword_speed.tres");
 	public Resource upgrade_sword_damage = ResourceLoader.Load("res://resources/upgrades/sword_damage.tres");
 	public Resource upgrade_player_speed = ResourceLoader.Load("res://resources/upgrades/player_speed.tres");
-
+	
 
     public override void _Ready()
     {
 		upgrade_pool.AddItem(upgrade_axe, 10);
+		upgrade_pool.AddItem(upgrade_anvil, 10);
 		upgrade_pool.AddItem(upgrade_sword_speed, 10);
 		upgrade_pool.AddItem(upgrade_sword_damage, 10);
 		upgrade_pool.AddItem(upgrade_player_speed, 5);

@@ -6,7 +6,7 @@ public partial class SwordAbilityController : Node
 {
     [Export] public PackedScene sword_ability_scene { get; set; }
     
-    public float base_damage = 5;
+    public int base_damage = 5;
     public float additional_damage_percent = 1;
     public double base_wait_time;
 
