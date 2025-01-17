@@ -9,9 +9,6 @@
 layer = 2
 script = ExtResource("1_8ccri")
 
-[node name="Vignette" parent="." instance=ExtResource("2_vtnra")]
-layer = 3
-
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_wy5xk")
 format = 2
@@ -105,3 +102,6 @@ custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Back"
+
+[node name="Vignette" parent="." instance=ExtResource("2_vtnra")]
+layer = 3

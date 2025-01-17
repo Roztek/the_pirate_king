@@ -11,9 +11,6 @@ layer = 2
 script = ExtResource("1_j5u21")
 upgrades = Array[Resource]([ExtResource("2_d84al")])
 
-[node name="Vignette" parent="." instance=ExtResource("2_lyy2j")]
-layer = 3
-
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("3_0bw3n")
 format = 2
@@ -58,3 +55,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Back"
+
+[node name="Vignette" parent="." instance=ExtResource("2_lyy2j")]
+layer = 3
