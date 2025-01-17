@@ -6,6 +6,7 @@ public partial class EnemyManager : Node
 {
 	[Export] public PackedScene basic_enemy_scene { get; set; }
 	[Export] public PackedScene ghost_enemy_scene { get; set; }
+	[Export] public PackedScene flying_enemy_scene { get; set; }
 	[Export] public ArenaTimeManager arena_time_manager { get; set; }
 
 	const int SPAWN_RADIUS = 376;
@@ -47,8 +48,8 @@ public partial class EnemyManager : Node
 			) * SPAWN_RADIUS;
 
 			Vector2 additional_offset = new Vector2(
-				Mathf.Cos(random_direction) * 20,
-				Mathf.Sin(random_direction) * 20
+				Mathf.Cos(random_direction) * 10,
+				Mathf.Sin(random_direction) * 10
 			);
 
 			spawn_position = player.GlobalPosition + offset;
@@ -99,7 +100,11 @@ public partial class EnemyManager : Node
 
 		if (arena_difficulty == 6)
 		{
-			enemy_table.AddItem(ghost_enemy_scene, 10);
+			enemy_table.AddItem(ghost_enemy_scene, 15);
+		}
+		else if (arena_difficulty == 18)
+		{
+			enemy_table.AddItem(flying_enemy_scene, 7);
 		}
 	}
 }
