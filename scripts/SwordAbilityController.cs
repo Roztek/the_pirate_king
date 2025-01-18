@@ -16,7 +16,7 @@ public partial class SwordAbilityController : Node
         Timer ability_timer = GetNode<Timer>("Timer");
         ability_timer.Timeout += OnTimerTimeout;
 
-        GameEvents game_events = (GameEvents) GetNode("/root/GameEvents");
+        GameEvents game_events = GetNode<GameEvents>("/root/GameEvents");
         game_events.AbilityUpgradeAdded += OnAbilityUpgradeAdded;
 
         base_wait_time = ability_timer.WaitTime;

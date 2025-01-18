@@ -20,12 +20,13 @@ public partial class UpgradeManager : Node
 	public Resource upgrade_sword_speed = ResourceLoader.Load("res://resources/upgrades/sword_speed.tres");
 	public Resource upgrade_sword_damage = ResourceLoader.Load("res://resources/upgrades/sword_damage.tres");
 	public Resource upgrade_player_speed = ResourceLoader.Load("res://resources/upgrades/player_speed.tres");
+	public Resource upgrade_anvil_amount = ResourceLoader.Load("res://resources/upgrades/anvil_amount.tres");
 	
 
     public override void _Ready()
     {
 		upgrade_pool.AddItem(upgrade_axe, 10);
-		upgrade_pool.AddItem(upgrade_anvil, 10);
+		upgrade_pool.AddItem(upgrade_anvil, 1000);
 		upgrade_pool.AddItem(upgrade_sword_speed, 10);
 		upgrade_pool.AddItem(upgrade_sword_damage, 10);
 		upgrade_pool.AddItem(upgrade_player_speed, 5);
@@ -75,7 +76,10 @@ public partial class UpgradeManager : Node
 		{
 			upgrade_pool.AddItem(upgrade_axe_damage, 10);
 		}
-
+		else if (chosen_upgrade == upgrade_anvil)
+		{
+			upgrade_pool.AddItem(upgrade_anvil_amount, 5000);
+		}
 	}
 
 

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://c27nf0pk3ygs8"]
+
+[ext_resource type="PackedScene" uid="uid://bx5r8i7n1am0" path="res://scenes/game_object/ability/anvil_ability/anvil_ability_controller.tscn" id="1_0sxai"]
+[ext_resource type="Script" path="res://scripts/Ability.cs" id="1_mhku6"]
+
+[resource]
+script = ExtResource("1_mhku6")
+ability_controller_scene = ExtResource("1_0sxai")
+id = "anvil_amount"
+name = "Anvil Amount"
+description = "Adds 1 additional anvil."
+max_quantity = 2
