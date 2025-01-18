@@ -4,6 +4,8 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
+	[Export] public ArenaTimeManager area_time_manager { get; set; }
+
 	public int bodies_colliding = 0;
 	public float base_speed = 0;
 
@@ -23,6 +25,7 @@ public partial class Player : CharacterBody2D
 
 		health_component = GetNode<HealthComponent>("HealthComponent");
 		health_component.HealthChanged += OnHealthChanged;
+		health_component.HealthDecreased += OnHealthDecreased;
 		
 		health_bar = GetNode<ProgressBar>("HealthBar");
 		UpdateHealthDisplay();
@@ -42,6 +45,8 @@ public partial class Player : CharacterBody2D
 		abilities = GetNode<Node>("Abilities");
 
 		random_audio_component_2d = GetNode<RandomAudioComponent2D>("RandomHitAudioComponent");
+
+		area_time_manager.ArenaDifficultyIncreased += OnArenaDifficultyIncreased;
     }
 
 
@@ -100,9 +105,14 @@ public partial class Player : CharacterBody2D
 	}
 	
 
-	public void OnHealthChanged()
+	public void OnHealthDecreased()
 	{
 		game_events.EmitPlayerDamaged();
+	}
+
+
+	public void OnHealthChanged()
+	{
 		UpdateHealthDisplay();
 	}
 
@@ -120,5 +130,15 @@ public partial class Player : CharacterBody2D
 			int current_quantity = (int) upgrade_data["quantity"];
 			velocity_component.max_speed = base_speed + (current_quantity * 0.1f);
 		}
+	}
+
+
+	public void OnArenaDifficultyIncreased(int arena_difficulty)
+	{
+		int health_regeneration_quantity = meta
+		bool is_thirty_second_interval = (arena_difficulty % 6) == 0;
+
+		if (is_thirty_second_interval)
+			health_component.
 	}
 }

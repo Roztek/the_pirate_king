@@ -12,11 +12,11 @@ public partial class HitFlashComponent : Node
 
     public override void _Ready()
     {
-        health_component.HealthChanged += OnHealthChanged;
+        health_component.HealthDecreased += OnHealthDecreased;
     }
 
 
-    public void OnHealthChanged()
+    public void OnHealthDecreased()
     {
         if (hit_flash_tween != null && hit_flash_tween.IsValid())
             hit_flash_tween.Kill();

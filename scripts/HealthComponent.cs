@@ -5,6 +5,7 @@ public partial class HealthComponent : Node
 {
     [Signal] public delegate void DiedEventHandler();
     [Signal] public delegate void HealthChangedEventHandler();
+    [Signal] public delegate void HealthDecreasedEventHandler();
 
     [Export] public float max_health { get; set; }
 
@@ -22,7 +23,16 @@ public partial class HealthComponent : Node
         // this allows _current_health to never drop below zero
         current_health = Math.Max(current_health - damage_amount, 0);
         EmitSignal(SignalName.HealthChanged);
+        if (damage_amount > 0)
+            EmitSignal(SignalName.HealthDecreased);
         CallDeferred(nameof(CheckDeath));
+    }
+
+
+    public void Heal(float heal_amount)
+    {
+        // this looks strange, but it's just healing a single health point
+        Damage(-1);
     }
 
 
