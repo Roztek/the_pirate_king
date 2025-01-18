@@ -9,6 +9,7 @@ public partial class Player : CharacterBody2D
 	public int bodies_colliding = 0;
 	public float base_speed = 0;
 
+	public MetaProgression meta_progression = null;
 	public HealthComponent health_component = null;
 	public Timer damage_interval_timer = null;
 	public ProgressBar health_bar = null;
@@ -20,6 +21,8 @@ public partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
+		meta_progression = GetNode<MetaProgression>("/root/MetaProgression");
+
 		velocity_component = GetNode<VelocityComponent>("VelocityComponent");
 		base_speed = velocity_component.max_speed;
 
@@ -39,7 +42,7 @@ public partial class Player : CharacterBody2D
 		Area2D body_exited = GetNode<Area2D>("CollisionArea2D");
 		body_exited.BodyExited += OnBodyExited;
 
-		game_events = (GameEvents) GetNode("/root/GameEvents");
+		game_events = GetNode<GameEvents>("/root/GameEvents");
 		game_events.AbilityUpgradeAdded += OnAbilityUpgradeAdded;
 
 		abilities = GetNode<Node>("Abilities");
@@ -135,10 +138,15 @@ public partial class Player : CharacterBody2D
 
 	public void OnArenaDifficultyIncreased(int arena_difficulty)
 	{
-		int health_regeneration_quantity = meta
-		bool is_thirty_second_interval = (arena_difficulty % 6) == 0;
-
-		if (is_thirty_second_interval)
-			health_component.
+		int health_regeneration_quantity = meta_progression.GetUpgradeCount("health_regeneration");
+		
+		if (health_regeneration_quantity > 0)
+		{
+			bool is_thirty_second_interval = (arena_difficulty % 6) == 0;
+			if (is_thirty_second_interval)
+			{
+				health_component.Heal(health_regeneration_quantity);
+			}
+		}
 	}
 }

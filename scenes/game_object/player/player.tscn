@@ -1,12 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://dncasjtrj7q2m"]
+[gd_scene load_steps=33 format=3 uid="uid://dncasjtrj7q2m"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_akjv6"]
 [ext_resource type="PackedScene" uid="uid://bre00drvx0fbh" path="res://scenes/game_object/ability/sword_ability/sword_ability_controller.tscn" id="2_d7r11"]
 [ext_resource type="PackedScene" uid="uid://dyvb8sndjo40a" path="res://scenes/component/health_component.tscn" id="2_hbqi7"]
 [ext_resource type="Texture2D" uid="uid://w1puceghtcn1" path="res://assets/player/player.png" id="2_qfc5q"]
 [ext_resource type="PackedScene" uid="uid://cfby0or5fgxpk" path="res://scenes/component/velocity_component.tscn" id="2_tmx51"]
-[ext_resource type="PackedScene" uid="uid://c8hjyjjje31ls" path="res://scenes/manager/arena_time_manager.tscn" id="2_xbqjl"]
-[ext_resource type="PackedScene" uid="uid://cxluym1wjsno4" path="res://scenes/component/random_audio_component_2d.tscn" id="6_2vnd4"]
+[ext_resource type="PackedScene" path="res://scenes/component/random_audio_component_2d.tscn" id="6_2vnd4"]
 [ext_resource type="AudioStream" uid="uid://b01tuhf0e1a3c" path="res://assets/audio/impactMining_000.ogg" id="6_tv6i8"]
 [ext_resource type="AudioStream" uid="uid://dlq1ekas8a0er" path="res://assets/audio/impactMining_001.ogg" id="7_45wc4"]
 [ext_resource type="AudioStream" uid="uid://bbw3nxse8hl8y" path="res://assets/audio/impactMining_002.ogg" id="8_m1201"]
@@ -170,7 +169,6 @@ radius = 5.0
 collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_akjv6")
-area_time_manager = ExtResource("2_xbqjl")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("2_tmx51")]
 max_speed = 90.0

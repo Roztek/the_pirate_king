@@ -21,7 +21,7 @@ public partial class HealthComponent : Node
     public void Damage(float damage_amount)
     {
         // this allows _current_health to never drop below zero
-        current_health = Math.Max(current_health - damage_amount, 0);
+        current_health = Math.Clamp(current_health - damage_amount, 0, max_health);
         EmitSignal(SignalName.HealthChanged);
         if (damage_amount > 0)
             EmitSignal(SignalName.HealthDecreased);
@@ -29,10 +29,10 @@ public partial class HealthComponent : Node
     }
 
 
-    public void Heal(float heal_amount)
+    public void Heal(int heal_amount)
     {
         // this looks strange, but it's just healing a single health point
-        Damage(-1);
+        Damage(-heal_amount);
     }
 
 

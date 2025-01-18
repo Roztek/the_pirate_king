@@ -15,7 +15,7 @@ public partial class MetaProgression : Node
 
     public override void _Ready()
     {
-        GameEvents game_events = (GameEvents) GetNode("/root/GameEvents");
+        GameEvents game_events = GetNode<GameEvents>("/root/GameEvents");
         game_events.ExperienceVialCollected += OnExperienceVialCollected;
 
         LoadSaveFile();
@@ -42,7 +42,8 @@ public partial class MetaProgression : Node
     public void AddMetaUpgrade(MetaUpgrade upgrade)
     {
         var meta_upgrades = (Dictionary) save_data["meta_upgrades"];
-        bool has_upgrade = save_data.ContainsKey(upgrade.id);
+        
+        bool has_upgrade = meta_upgrades.ContainsKey(upgrade.id);
         if (!has_upgrade)
         {
             meta_upgrades[upgrade.id] = new Dictionary
@@ -52,7 +53,11 @@ public partial class MetaProgression : Node
         }
 
         var upgrade_data = (Dictionary) meta_upgrades[upgrade.id];
-        upgrade_data["quantity"] = (int) upgrade_data["quantity"] + 1;
+        int current_quantity = (int) upgrade_data["quantity"];
+        
+        if (current_quantity < upgrade.max_quantity)
+            upgrade_data["quantity"] = current_quantity + 1;
+
         Save();
     }
 
