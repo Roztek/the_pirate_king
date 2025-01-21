@@ -13,6 +13,7 @@ public partial class EnemyManager : Node
 
 	public Timer enemy_timer = null;
 
+	public int number_to_spawn = 1;
 	public double base_spawn_time = 0;
 
 	public WeightedTable enemy_table = new WeightedTable();
@@ -80,14 +81,17 @@ public partial class EnemyManager : Node
 		if (player == null)
             return;
 
-		var enemy_scene = enemy_table.PickRandom() as PackedScene;
-		// Instantiate the enemy and check if it was successful
-		if (enemy_scene.Instantiate() is not Node2D enemy_instance)
-			return;
+		for (int i = 0; i < number_to_spawn; i++)
+		{
+			var enemy_scene = enemy_table.PickRandom() as PackedScene;
+			// Instantiate the enemy and check if it was successful
+			if (enemy_scene.Instantiate() is not Node2D enemy_instance)
+				return;
 
-		Node2D entities_layer = GetTree().GetFirstNodeInGroup("entities_layer") as Node2D;
-		entities_layer.AddChild(enemy_instance);
-		enemy_instance.GlobalPosition = GetSpawnPosition();
+			Node2D entities_layer = GetTree().GetFirstNodeInGroup("entities_layer") as Node2D;
+			entities_layer.AddChild(enemy_instance);
+			enemy_instance.GlobalPosition = GetSpawnPosition();
+		}
 	}
 
 
@@ -106,5 +110,8 @@ public partial class EnemyManager : Node
 		{
 			enemy_table.AddItem(flying_enemy_scene, 7);
 		}
+
+		if ((arena_difficulty % 6) == 0)
+			number_to_spawn++;
 	}
 }
