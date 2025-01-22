@@ -1,6 +1,5 @@
 using Godot;
 using Godot.Collections;
-using System;
 
 public partial class AxeAbilityController : Node
 {
@@ -15,8 +14,7 @@ public partial class AxeAbilityController : Node
         Timer ability_timer = GetNode<Timer>("Timer");
         ability_timer.Timeout += OnTimerTimeout;
 
-        GameEvents game_events = (GameEvents) GetNode("/root/GameEvents");
-        game_events.AbilityUpgradeAdded += OnAbilityUpgradeAdded;
+        GetNode<GameEvents>("/root/GameEvents").AbilityUpgradeAdded += OnAbilityUpgradeAdded;
 	}
 
 
@@ -43,11 +41,6 @@ public partial class AxeAbilityController : Node
     public void OnAbilityUpgradeAdded(AbilityUpgrade upgrade, Dictionary<string, Dictionary> current_upgrades)
     {
         if (upgrade.id == "axe_damage")
-        {
-            Dictionary upgrade_data = (Dictionary) current_upgrades[upgrade.id];
-            int quantity = (int) upgrade_data["quantity"];
-
-            additional_damage_percent = 1 + (quantity * 0.1f);
-        }
+            additional_damage_percent = 1 + ((int) current_upgrades["axe_damage"]["quantity"] * 0.1f);
     }
 }

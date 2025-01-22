@@ -1,12 +1,10 @@
 using Godot;
-using System;
 
 public partial class BasicEnemy : CharacterBody2D
 {
 	[Export] public VelocityComponent velocity_component;
 
 	public Node2D visuals = null;
-	public RandomAudioComponent2D random_audio_component_2d = null;
 	public HurtboxComponent hurtbox_component = null;
 
 
@@ -14,10 +12,7 @@ public partial class BasicEnemy : CharacterBody2D
 	{
 		visuals = GetNode<Node2D>("Visuals");
 
-		random_audio_component_2d = GetNode<RandomAudioComponent2D>("RandomHitAudioComponent");
-
-		hurtbox_component = GetNode<HurtboxComponent>("HurtboxComponent");
-		hurtbox_component.Hit += OnHit;
+		GetNode<HurtboxComponent>("HurtboxComponent").Hit += OnHit;
 	}
 
 
@@ -34,6 +29,6 @@ public partial class BasicEnemy : CharacterBody2D
 
 	public void OnHit()
 	{
-		random_audio_component_2d.PlayRandom();
+		GetNode<RandomAudioComponent2D>("RandomHitAudioComponent").PlayRandom();
 	}
 }

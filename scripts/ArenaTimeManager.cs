@@ -7,11 +7,10 @@ public partial class ArenaTimeManager : Node
 
     [Export] public PackedScene end_screen_scene { get; set; }
 
-    const int DIFFICULTY_INTERVAL = 5;
-
-    int arena_difficulty = 0;
+    private const int DIFFICULTY_INTERVAL = 5;
 
     private Timer _timer = null;
+    private int _arena_difficulty = 0;
 
 
     public override void _Ready()
@@ -23,12 +22,12 @@ public partial class ArenaTimeManager : Node
 
     public override void _Process(double delta)
     {
-        double next_time_target = _timer.WaitTime - ((arena_difficulty + 1) * DIFFICULTY_INTERVAL);
+        double next_time_target = _timer.WaitTime - ((_arena_difficulty + 1) * DIFFICULTY_INTERVAL);
 
         if (_timer.TimeLeft <= next_time_target)
         {
-            arena_difficulty++;
-            EmitSignal(SignalName.ArenaDifficultyIncreased, arena_difficulty);
+            _arena_difficulty++;
+            EmitSignal(SignalName.ArenaDifficultyIncreased, _arena_difficulty);
         }
     }
 
@@ -46,8 +45,6 @@ public partial class ArenaTimeManager : Node
 
         AddChild(end_screen_instance);
         end_screen_instance.SetVictory();
-        
-        MetaProgression meta_progression = (MetaProgression) GetNode("/root/MetaProgression");
-        meta_progression.Save();
+        GetNode<MetaProgression>("/root/MetaProgression").Save();
     }
 }

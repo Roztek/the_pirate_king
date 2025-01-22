@@ -19,8 +19,7 @@ public partial class AnvilAbilityController : Node
         ability_timer = GetNode<Timer>("Timer");
         ability_timer.Timeout += OnTimerTimeout;
 
-        GameEvents game_events = GetNode<GameEvents>("/root/GameEvents");
-        game_events.AbilityUpgradeAdded += OnAbilityUpgradeAdded;
+        GetNode<GameEvents>("/root/GameEvents").AbilityUpgradeAdded += OnAbilityUpgradeAdded;
 	}
 
 
@@ -62,8 +61,6 @@ public partial class AnvilAbilityController : Node
     private void OnAbilityUpgradeAdded(AbilityUpgrade upgrade, Dictionary<string, Dictionary> current_upgrades)
     {
         if (upgrade.id == "anvil_count")
-        {
             anvil_amount = (int) current_upgrades["anvil_count"]["quantity"];
-        }
     }
 }

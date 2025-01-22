@@ -1,27 +1,16 @@
 using Godot;
-using System;
 
 public partial class DeathComponent : Node2D
 {
     [Export] public HealthComponent health_component { get; set; }
     [Export] public Sprite2D sprite { get; set; }
 
-    public AnimationPlayer animation_player = null;
-    public GpuParticles2D gpu_particles_2d = null;
-    public RandomAudioComponent2D random_audio_component_2d = null;
-
 
     public override void _Ready()
     {
-        health_component = GetParent().GetNode<HealthComponent>("HealthComponent");
-        health_component.Died += OnDied;
+        GetParent().GetNode<HealthComponent>("HealthComponent").Died += OnDied;
 
-        animation_player = GetNode<AnimationPlayer>("AnimationPlayer");
-
-        gpu_particles_2d = GetNode<GpuParticles2D>("GPUParticles2D");
-        gpu_particles_2d.Texture = sprite.Texture;
-
-        random_audio_component_2d = GetNode<RandomAudioComponent2D>("RandomHitAudioComponent");
+        GetNode<GpuParticles2D>("GPUParticles2D").Texture = sprite.Texture;
     }
 
 
@@ -38,8 +27,7 @@ public partial class DeathComponent : Node2D
         entities.AddChild(this);
 
         GlobalPosition = spawn_position;
-        animation_player.Play("default");
-
-        random_audio_component_2d.PlayRandom();
+        GetNode<AnimationPlayer>("AnimationPlayer").Play("default");
+        GetNode<RandomAudioComponent2D>("RandomHitAudioComponent").PlayRandom();
     }
 }

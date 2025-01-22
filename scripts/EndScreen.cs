@@ -1,12 +1,8 @@
 using Godot;
-using System;
-using System.Threading.Tasks;
 
 public partial class EndScreen : CanvasLayer
 {
     public ScreenTransition screen_transition = null;
-    public Button continue_button = null;
-    public Button menu_button = null;
     public Label title_label = null;
     public Label description_label = null;
     public PanelContainer panel_container = null;
@@ -16,24 +12,21 @@ public partial class EndScreen : CanvasLayer
     {
         GetTree().Paused = true;
 
-        screen_transition = (ScreenTransition) GetNode("/root/ScreenTransition");
-
-        continue_button = GetNode<Button>("%ContinueButton");
-        continue_button.Pressed += OnContinueButtonPressed;
-
-        menu_button = GetNode<Button>("%MenuButton");
-        menu_button.Pressed += OnMenuButtonPressed;
+        screen_transition = GetNode<ScreenTransition>("/root/ScreenTransition");
 
         title_label = GetNode<Label>("%TitleLabel");
-
         description_label = GetNode<Label>("%DescriptionLabel");
 
         panel_container = GetNode<PanelContainer>("%PanelContainer");
-
         panel_container.PivotOffset = panel_container.Size / 2;
+
         Tween tween = CreateTween();
         tween.TweenProperty(panel_container, "scale", Vector2.Zero, 0);
-        tween.TweenProperty(panel_container, "scale", Vector2.One, 0.3f).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Back);
+        tween.TweenProperty(panel_container, "scale", Vector2.One, 0.3f)
+            .SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Back);
+        
+        GetNode<Button>("%ContinueButton").Pressed += OnContinueButtonPressed;
+        GetNode<Button>("%MenuButton").Pressed += OnMenuButtonPressed;
     }
 
     
@@ -56,15 +49,9 @@ public partial class EndScreen : CanvasLayer
     public void PlayJingle(bool defeat = false)
     {
         if (defeat)
-        {
-            AudioStreamPlayer audio_stream_player = GetNode<AudioStreamPlayer>("DefeatAudio");
-            audio_stream_player.Play();
-        }
+            GetNode<AudioStreamPlayer>("DefeatAudio").Play();
         else
-        {
-            AudioStreamPlayer audio_stream_player = GetNode<AudioStreamPlayer>("VictoryAudio");
-            audio_stream_player.Play();
-        }
+            GetNode<AudioStreamPlayer>("VictoryAudio").Play();
     }
 
 

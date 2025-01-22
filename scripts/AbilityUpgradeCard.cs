@@ -1,29 +1,26 @@
 using Godot;
-using System;
-using System.Threading.Tasks;
 
 public partial class AbilityUpgradeCard : PanelContainer
 {
     [Signal] public delegate void SelectedEventHandler();
 
-    private Label _name_label = null;
-    private Label _description_label = null;
+    public Label name_label = null;
+    public Label description_label = null;
     public AnimationPlayer card_animation_player = null;
     public AnimationPlayer hover_animation_player = null;
 
-    public bool disabled = false;
+    private bool _disabled = false;
     
     
     public override void _Ready()
     {
-        _name_label = GetNode<Label>("%NameLabel");
-        _description_label = GetNode<Label>("%DescriptionLabel");
+        name_label = GetNode<Label>("%NameLabel");
+        description_label = GetNode<Label>("%DescriptionLabel");
 
         card_animation_player = GetNode<AnimationPlayer>("%CardAnimationPlayer");
         hover_animation_player = GetNode<AnimationPlayer>("%HoverAnimationPlayer");
 
         GuiInput += OnGuiInput;
-
         MouseEntered += OnMouseEntered;
     }
 
@@ -44,14 +41,14 @@ public partial class AbilityUpgradeCard : PanelContainer
 
     public void SetAbilityUpgrade(AbilityUpgrade upgrade)
     {
-        _name_label.Text = upgrade.name;
-        _description_label.Text = upgrade.description;
+        name_label.Text = upgrade.name;
+        description_label.Text = upgrade.description;
     }
 
 
     public async void SelectCard()
     {
-        disabled = true;
+        _disabled = true;
         card_animation_player.Play("selected");
 
         foreach (AbilityUpgradeCard other_card in GetTree().GetNodesInGroup("upgrade_card"))
@@ -69,7 +66,7 @@ public partial class AbilityUpgradeCard : PanelContainer
 
     public void OnGuiInput(InputEvent input)
     {
-        if (disabled)
+        if (_disabled)
             return;
 
         if (input.IsActionPressed("left_click"))
@@ -79,7 +76,7 @@ public partial class AbilityUpgradeCard : PanelContainer
 
     public void OnMouseEntered()
     {
-        if (disabled)
+        if (_disabled)
             return;
 
         hover_animation_player.Play("hover");
