@@ -1,14 +1,11 @@
 using Godot;
-using System;
 
 public partial class GhostEnemy : CharacterBody2D
 {
     public VelocityComponent velocity_component = null;
     public Node2D visuals = null;
-    public RandomAudioComponent2D random_audio_component_2d = null;
-    public HurtboxComponent hurtbox_component = null;
 
-    public bool is_moving = false;
+    private bool _is_moving = false;
 
 
     public override void _Ready()
@@ -17,16 +14,13 @@ public partial class GhostEnemy : CharacterBody2D
 
         visuals = GetNode<Node2D>("Visuals");
 
-        random_audio_component_2d = GetNode<RandomAudioComponent2D>("RandomHitAudioComponent");
-
-        hurtbox_component = GetNode<HurtboxComponent>("HurtboxComponent");
-		hurtbox_component.Hit += OnHit;
+        GetNode<HurtboxComponent>("HurtboxComponent").Hit += OnHit;
     }
 
 
     public override void _Process(double delta)
     {
-        if (is_moving)
+        if (_is_moving)
             velocity_component.accelerate_to_player();
         else
             velocity_component.decelerate();
@@ -41,12 +35,12 @@ public partial class GhostEnemy : CharacterBody2D
 
     public void SetIsMoving(bool moving)
     {
-        is_moving = moving;
+        _is_moving = moving;
     }
 
 
     public void OnHit()
 	{
-		random_audio_component_2d.PlayRandom();
+		GetNode<RandomAudioComponent2D>("RandomHitAudioComponent").PlayRandom();
 	}
 }

@@ -1,20 +1,10 @@
 using Godot;
-using System;
 
 public partial class FloatingDamage : Node2D
 {
-	public Label damage_label = null;
-
-
-	public override void _Ready()
-	{
-		damage_label = GetNode<Label>("%DamageLabel");
-	}
-
-
 	public void Start(string text)
 	{
-		damage_label.Text = text;
+		GetNode<Label>("%DamageLabel").Text = text;
 
 		Tween tween = CreateTween();
 		tween.SetParallel();

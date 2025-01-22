@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class HitFlashComponent : Node
 {
@@ -24,6 +23,7 @@ public partial class HitFlashComponent : Node
         (sprite.Material as ShaderMaterial).SetShaderParameter("lerp_percent", 1.0);
 
         hit_flash_tween = CreateTween();
-        hit_flash_tween.TweenProperty(sprite.Material, "shader_parameter/lerp_percent", 0.0f, 0.25f).SetEase(Tween.EaseType.In).SetTrans(Tween.TransitionType.Cubic);
+        hit_flash_tween.TweenProperty(sprite.Material, "shader_parameter/lerp_percent", 0.0f, 0.25f)
+            .SetEase(Tween.EaseType.In).SetTrans(Tween.TransitionType.Cubic);
     }
 }

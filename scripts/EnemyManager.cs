@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using Godot.Collections;
 
 public partial class EnemyManager : Node
 {
@@ -9,13 +8,11 @@ public partial class EnemyManager : Node
 	[Export] public PackedScene flying_enemy_scene { get; set; }
 	[Export] public ArenaTimeManager arena_time_manager { get; set; }
 
-	const int SPAWN_RADIUS = 376;
+	private const int SPAWN_RADIUS = 376;
 
 	public Timer enemy_timer = null;
-
 	public int number_to_spawn = 1;
 	public double base_spawn_time = 0;
-
 	public WeightedTable enemy_table = new WeightedTable();
  
 
@@ -25,77 +22,35 @@ public partial class EnemyManager : Node
 
 		enemy_timer = GetNode<Timer>("Timer");
         enemy_timer.Timeout += OnTimerTimeout;
-
 		base_spawn_time = enemy_timer.WaitTime;
 
 		arena_time_manager.ArenaDifficultyIncreased += OnArenaDifficultyIncreased;
 	}
 
 
-	public Vector2 GetSpawnPosition()
+	private Vector2 GetSpawnPosition()
 	{
 		var player = GetTree().GetFirstNodeInGroup("player") as Node2D;
 		if (player == null)
-            return Vector2.Zero;
+			return Vector2.Zero;
 
 		Vector2 spawn_position = Vector2.Zero;
-		float random_direction = (float)(new Random().NextDouble() * Math.PI * 2); 
-
-		for(int i = 0; i < 4; i++)
+		Vector2 random_direction = Vector2.Right.Rotated((float)GD.RandRange(0, Mathf.Tau));
+		for (int i = 0; i < 4; i++)
 		{
-			Vector2 offset = new Vector2(
-				Mathf.Cos(random_direction),
-				Mathf.Sin(random_direction)
-			) * SPAWN_RADIUS;
+			spawn_position = player.GlobalPosition + (random_direction * SPAWN_RADIUS);
+			var additional_offset = random_direction * 20;
 
-			Vector2 additional_offset = new Vector2(
-				Mathf.Cos(random_direction) * 10,
-				Mathf.Sin(random_direction) * 10
-			);
-
-			spawn_position = player.GlobalPosition + offset;
-
-			var query_paramaters = PhysicsRayQueryParameters2D.Create(player.GlobalPosition, spawn_position + additional_offset, 1);
-			Dictionary result = GetTree().Root.World2D.DirectSpaceState.IntersectRay(query_paramaters);
-		
-			if (result.Count == 0)
-			{
+			var query_parameters = PhysicsRayQueryParameters2D.Create(player.GlobalPosition, spawn_position + additional_offset, 1<<0);
+			var result = GetTree().Root.World2D.DirectSpaceState.IntersectRay(query_parameters);
+			if (result.Count <= 0)
 				break;
-			}
-			else
-			{
-				random_direction += Mathf.Pi / 2;
-				random_direction %= Mathf.Pi * 2;
-			}
+			
+			random_direction = random_direction.Rotated(Mathf.DegToRad(90));
 		}
 
 		return spawn_position;
 	}
-
-
-	// private Vector2 GetSpawnPosition()
-	// {
-	// 	var player = GetTree().GetFirstNodeInGroup("player") as Node2D;
-	// 	if (player == null)
-	// 		return Vector2.Zero;
-
-	// 	Vector2 spawn_position = Vector2.Zero;
-	// 	Vector2 random_direction = Vector2.Right.Rotated((float)GD.RandRange(0, Mathf.Tau));
-	// 	for (int i = 0; i < 4; i++)
-	// 	{
-	// 		spawn_position = player.GlobalPosition + (random_direction * SPAWN_RADIUS);
-	// 		var additional_offset = random_direction * 20;
-
-	// 		var query_parameters = PhysicsRayQueryParameters2D.Create(player.GlobalPosition, spawn_position + additional_offset, 1<<0);
-	// 		var result = GetTree().Root.World2D.DirectSpaceState.IntersectRay(query_parameters);
-	// 		if (result.Count <= 0)
-	// 			break;
-			
-	// 		random_direction = random_direction.Rotated(Mathf.DegToRad(90));
-	// 	}
-
-	// 	return spawn_position;
-	// }
 
 
 	public void OnTimerTimeout()
@@ -128,13 +83,9 @@ public partial class EnemyManager : Node
 		enemy_timer.WaitTime = base_spawn_time - time_off;
 
 		if (arena_difficulty == 6)
-		{
 			enemy_table.AddItem(ghost_enemy_scene, 15);
-		}
 		else if (arena_difficulty == 18)
-		{
 			enemy_table.AddItem(flying_enemy_scene, 7);
-		}
 
 		if ((arena_difficulty % 6) == 0)
 			number_to_spawn++;

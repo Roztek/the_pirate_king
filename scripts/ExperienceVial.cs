@@ -5,7 +5,6 @@ public partial class ExperienceVial : Node2D
 {
 	public CollisionShape2D collision_shape_2d = null;
 	public Sprite2D sprite = null;
-	public RandomAudioComponent2D random_audio_component = null;
 
 	private Vector2 _startPosition;
 
@@ -16,10 +15,7 @@ public partial class ExperienceVial : Node2D
 
 		sprite = GetNode<Sprite2D>("Sprite2D");
 
-		Area2D experience_vial_area = GetNode<Area2D>("Area2D");
-        experience_vial_area.AreaEntered += OnAreaEntered;
-
-		random_audio_component = GetNode<RandomAudioComponent2D>("RandomPickupAudioComponent");
+		GetNode<Area2D>("Area2D").AreaEntered += OnAreaEntered;
 	}
 
 
@@ -39,8 +35,7 @@ public partial class ExperienceVial : Node2D
 
 	public void Collect()
 	{
-		GameEvents game_events = (GameEvents) GetNode("/root/GameEvents");
-		game_events.EmitExperienceVialCollected(1);
+		GetNode<GameEvents>("/root/GameEvents").EmitExperienceVialCollected(1);
 		QueueFree();
 	}
 
@@ -59,11 +54,12 @@ public partial class ExperienceVial : Node2D
 
         Tween tween = CreateTween();
 		tween.SetParallel();
-        tween.TweenMethod(new Callable(this, nameof(TweenCollect)), 0.0, 1.0, 0.5).SetEase(Tween.EaseType.In).SetTrans(Tween.TransitionType.Back);
+        tween.TweenMethod(new Callable(this, nameof(TweenCollect)), 0.0, 1.0, 0.5)
+			.SetEase(Tween.EaseType.In).SetTrans(Tween.TransitionType.Back);
         tween.TweenProperty(sprite, "scale", Vector2.Zero, 0.05).SetDelay(0.45);
 		tween.Chain();
 		tween.TweenCallback(new Callable(this, nameof(Collect)));
 
-		random_audio_component.PlayRandom();
+		GetNode<RandomAudioComponent2D>("RandomPickupAudioComponent").PlayRandom();
 	}
 }

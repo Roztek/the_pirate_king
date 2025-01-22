@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class GameCamera : Camera2D
 {
@@ -15,7 +14,8 @@ public partial class GameCamera : Camera2D
 	public override void _Process(double delta)
 	{
 		AcquireTarget();
-		GlobalPosition = GlobalPosition.Lerp(target_position, 1.0f - Mathf.Exp(-(float)delta * 20));
+		float weight_lerp = 1.0f - Mathf.Exp(-(float) delta * 20);
+		GlobalPosition = GlobalPosition.Lerp(target_position, weight_lerp);
 	}
 
 
@@ -26,9 +26,8 @@ public partial class GameCamera : Camera2D
 		if (player_nodes.Count > 0) {
 			Node2D player = player_nodes[0] as Node2D;
 
-			if (player != null) {	
+			if (player != null)
 				target_position = player.GlobalPosition;
-			}
 		}
 	}
 }

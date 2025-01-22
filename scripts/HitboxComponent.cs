@@ -1,7 +1,6 @@
 using Godot;
-using System;
 
 public partial class HitboxComponent : Area2D
 {
-    public float damage = 0;
+    public float damage { get; set; } = 0;
 }

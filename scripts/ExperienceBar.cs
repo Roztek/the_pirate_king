@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class ExperienceBar : CanvasLayer
 {
@@ -12,6 +11,7 @@ public partial class ExperienceBar : CanvasLayer
     {
 		progress_bar = GetNode<ProgressBar>("MarginContainer/ProgressBar");
 		progress_bar.Value = 0;
+
 		experience_manager.ExperienceUpdated += OnExperienceUpdated;
     }
 
