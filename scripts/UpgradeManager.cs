@@ -1,11 +1,8 @@
 using Godot;
-using System;
 using Godot.Collections;
-using System.Linq;
 
 public partial class UpgradeManager : Node
 {
-	// [Export] public Array<AbilityUpgrade> upgrade_pool { get; set; } 
 	[Export] public ExperienceManager experience_manager { get; set; }
 	[Export] public PackedScene upgrade_screen_scene { get; set; }
 
@@ -64,8 +61,7 @@ public partial class UpgradeManager : Node
 		}
 
 		UpdateUpgradePool(upgrade);
-		GameEvents game_events = (GameEvents) GetNode("/root/GameEvents");
-		game_events.EmitAbilityUpgradeAdded(upgrade, current_upgrades);
+		GetNode<GameEvents>("/root/GameEvents").EmitAbilityUpgradeAdded(upgrade, current_upgrades);
 	}
 
 
@@ -81,23 +77,6 @@ public partial class UpgradeManager : Node
 		}
 	}
 
-
-	// public Array<AbilityUpgrade> PickUpgrades()
-	// {
-	// 	Array<AbilityUpgrade> chosen_upgrades = new Array<AbilityUpgrade>();
-
-	// 	for (int i = 0; i < TOTAL_UPGRADES; i++)
-	// 	{
-	// 		if (upgrade_pool.items.Count == chosen_upgrades.Count)
-	// 			break;
-	// 		var chosen_upgrade = upgrade_pool.PickRandom() as AbilityUpgrade;
-	// 		chosen_upgrades.Add(chosen_upgrade);
-	// 	}
-
-	// 	return chosen_upgrades;
-	// }
-
-	// TODO: Decide if I want this code: this code allows for an ability NOT to be offered twice
 
 	public Array<AbilityUpgrade> PickUpgrades()
 	{
@@ -125,15 +104,11 @@ public partial class UpgradeManager : Node
 	}
 
 
-	public bool Filter(AbilityUpgrade upgrade, AbilityUpgrade chosen_upgrades)
-	{
-		return upgrade.id != chosen_upgrades.id;
-	}
-
-
 	public void OnLevelUp(int new_level)
 	{
-		var upgrade_screen_instance = upgrade_screen_scene.Instantiate() as UpgradeScreen;
+		if (upgrade_screen_scene.Instantiate() is not UpgradeScreen upgrade_screen_instance)
+			return;
+
 		AddChild(upgrade_screen_instance);
 		Array<AbilityUpgrade> chosen_upgrades = PickUpgrades();
 		upgrade_screen_instance.SetAbilityUpgrades(chosen_upgrades);

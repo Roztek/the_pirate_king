@@ -21,9 +21,9 @@ public partial class GhostEnemy : CharacterBody2D
     public override void _Process(double delta)
     {
         if (_is_moving)
-            velocity_component.accelerate_to_player();
+            velocity_component.AccelerateToPlayer();
         else
-            velocity_component.decelerate();
+            velocity_component.Decelerate();
             
 		velocity_component.Move(this);
 

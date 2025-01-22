@@ -3,18 +3,17 @@ using System;
 
 public partial class VialDropComponent : Node
 {
-    [Export] private PackedScene _vial_scene;
-    [Export] public HealthComponent health_component { get; set; }
     [Export(PropertyHint.Range, "0, 1")] private float _spawn_rate;
+    [Export] public HealthComponent health_component { get; set; }
+    [Export] public PackedScene vial_scene { get; set; }
 
     public MetaProgression meta_progress = null;
 
 
     public override void _Ready()
 	{
-        meta_progress = (MetaProgression) GetNode("/root/MetaProgression");
+        meta_progress = GetNode<MetaProgression>("/root/MetaProgression");
 
-        health_component = GetParent().GetNode<HealthComponent>("HealthComponent");
         health_component.Died += OnDied;
 	}
 
@@ -36,13 +35,13 @@ public partial class VialDropComponent : Node
         if (random_number > adjusted_drop_percent)
             return;
 
-        if (_vial_scene == null || Owner is not Node2D owner_node)
+        if (vial_scene == null || Owner is not Node2D owner_node)
             return;
 
         var spawn_position = owner_node.GlobalPosition;
 
         // Instantiate the vial and check if it was successful
-        if (_vial_scene.Instantiate() is not Node2D vial_instance)
+        if (vial_scene.Instantiate() is not Node2D vial_instance)
             return;
 
         Node2D entities_layer = GetTree().GetFirstNodeInGroup("entities_layer") as Node2D;

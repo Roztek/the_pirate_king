@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class ScreenTransition : CanvasLayer
 {
@@ -7,7 +6,7 @@ public partial class ScreenTransition : CanvasLayer
 
     public AnimationPlayer animation_player = null;
 
-    bool skip_emit = false;
+    private bool _skip_emit = false;
 
 
     public override void _Ready()
@@ -20,16 +19,16 @@ public partial class ScreenTransition : CanvasLayer
     {
         animation_player.Play("default");
         await ToSignal(animation_player, "animation_finished");
-        skip_emit = true;
+        _skip_emit = true;
         animation_player.PlayBackwards("default");
     }
 
 
     public void EmitTransitionedHalfway()
     {
-        if (skip_emit)
+        if (_skip_emit)
         {
-            skip_emit = false;
+            _skip_emit = false;
             return;
         }
 

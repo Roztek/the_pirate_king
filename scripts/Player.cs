@@ -49,7 +49,7 @@ public partial class Player : CharacterBody2D
 	{
 		Vector2 movement_vector = GetMovementVector();
 		Vector2 direction = movement_vector.Normalized();
-		velocity_component.accelerate_in_direction(direction);
+		velocity_component.AccelerateInDirection(direction);
 		velocity_component.Move(this);
 	}
 

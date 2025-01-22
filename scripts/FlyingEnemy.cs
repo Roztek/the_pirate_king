@@ -18,7 +18,7 @@ public partial class FlyingEnemy : CharacterBody2D
 
     public override void _Process(double delta)
     {
-        velocity_component.accelerate_to_player();
+        velocity_component.AccelerateToPlayer();
 		velocity_component.Move(this);
 
         var move_sign = Mathf.Sign(Velocity.X);

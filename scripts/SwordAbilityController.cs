@@ -5,7 +5,10 @@ using System;
 public partial class SwordAbilityController : Node
 {
     [Export] public PackedScene sword_ability_scene { get; set; }
+
+    private const int MAX_RANGE = 150;
     
+    public Timer ability_timer = null;
     public int base_damage = 5;
     public float additional_damage_percent = 1;
     public double base_wait_time;
@@ -13,13 +16,18 @@ public partial class SwordAbilityController : Node
 
     public override void _Ready()
 	{
-        Timer ability_timer = GetNode<Timer>("Timer");
+        ability_timer = GetNode<Timer>("Timer");
         ability_timer.Timeout += OnTimerTimeout;
 
-        GameEvents game_events = GetNode<GameEvents>("/root/GameEvents");
-        game_events.AbilityUpgradeAdded += OnAbilityUpgradeAdded;
-
         base_wait_time = ability_timer.WaitTime;
+
+        GetNode<GameEvents>("/root/GameEvents").AbilityUpgradeAdded += OnAbilityUpgradeAdded;
+	}
+
+
+    public override void _ExitTree()
+	{
+		GetNode<GameEvents>("/root/GameEvents").AbilityUpgradeAdded -= OnAbilityUpgradeAdded;
 	}
 
 
@@ -50,7 +58,7 @@ public partial class SwordAbilityController : Node
         }
 
         // Check if we found a closest enemy, then spawn the sword at that position
-        if (closest_enemy != null)
+        if (closest_enemy != null && closest_distance <= MAX_RANGE)
         {
             // Instantiate the sword and check if it was successful
             if (sword_ability_scene.Instantiate() is not SwordAbility sword_instance)
@@ -73,8 +81,6 @@ public partial class SwordAbilityController : Node
 
     public void OnAbilityUpgradeAdded(AbilityUpgrade upgrade, Dictionary<string, Dictionary> current_upgrades)
     {
-        Timer ability_timer = GetNode<Timer>("Timer");
-
         if (upgrade.id == "sword_speed")
         {
             Dictionary upgrade_data = (Dictionary) current_upgrades[upgrade.id];

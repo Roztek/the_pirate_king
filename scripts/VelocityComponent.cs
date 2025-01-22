@@ -1,36 +1,36 @@
 using Godot;
-using System;
 
 public partial class VelocityComponent : Node
 {
     [Export] public float max_speed { get; set; }
     [Export] public float acceleration { get; set; }
 
-    public Vector2 velocity = Vector2.Zero;
+    private Vector2 _velocity = Vector2.Zero;
 
 
     public void Move(CharacterBody2D character_body)
     {
-        character_body.Velocity = velocity;
+        character_body.Velocity = _velocity;
         character_body.MoveAndSlide();
-        velocity = character_body.Velocity;
+        _velocity = character_body.Velocity;
     }
 
 
-    public void accelerate_in_direction(Vector2 direction)
+    public void AccelerateInDirection(Vector2 direction)
     {
         var desired_velocity = direction * max_speed;
-        velocity = velocity.Lerp(desired_velocity, 1.0f - Mathf.Exp(-acceleration * (float) GetPhysicsProcessDeltaTime()));
+        float weight_lerp = 1.0f - Mathf.Exp(-acceleration * (float) GetPhysicsProcessDeltaTime());
+        _velocity = _velocity.Lerp(desired_velocity, weight_lerp);
     }
 
 
-    public void decelerate()
+    public void Decelerate()
     {
-        accelerate_in_direction(Vector2.Zero);
+        AccelerateInDirection(Vector2.Zero);
     }
 
 
-    public void accelerate_to_player()
+    public void AccelerateToPlayer()
     {
         var owner_node2d = Owner as Node2D;
         if (owner_node2d == null)
@@ -41,6 +41,6 @@ public partial class VelocityComponent : Node
             return;
 
         var direction = (player.GlobalPosition - owner_node2d.GlobalPosition).Normalized();
-        accelerate_in_direction(direction);
+        AccelerateInDirection(direction);
     }
 }
