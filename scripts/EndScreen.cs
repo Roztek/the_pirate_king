@@ -57,14 +57,12 @@ public partial class EndScreen : CanvasLayer
 
     public void OnContinueButtonPressed()
     {
-        screen_transition.TransitionToScene("res://scenes/ui/meta_menu.tscn");
-        GetTree().Paused = false;
+        screen_transition.TransitionToScene("res://scenes/ui/meta_menu.tscn", true);
     }
 
 
     public void OnMenuButtonPressed()
     {
-        screen_transition.TransitionToScene("res://scenes/ui/main_menu.tscn");
-        GetTree().Paused = false;
+        screen_transition.TransitionToScene("res://scenes/ui/main_menu.tscn", true);
     }
 }

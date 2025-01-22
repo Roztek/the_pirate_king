@@ -36,10 +36,13 @@ public partial class ScreenTransition : CanvasLayer
     }
 
 
-    public async void TransitionToScene(string scene_path)
+    public async void TransitionToScene(string scene_path, bool unpause_game = false)
     {
         Transition();
         await ToSignal(this, "TransitionedHalfway");
+
+        if (unpause_game)
+            GetTree().Paused = false;
 
         GetTree().ChangeSceneToFile(scene_path);
     }
