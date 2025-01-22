@@ -17,7 +17,7 @@ public partial class MetaUpgradeCard : PanelContainer
     
     public override void _Ready()
     {
-        meta_progress = (MetaProgression) GetNode("/root/MetaProgression");
+        meta_progress = GetNode<MetaProgression>("/root/MetaProgression");
 
         name_label = GetNode<Label>("%NameLabel");
         description_label = GetNode<Label>("%DescriptionLabel");
@@ -25,7 +25,7 @@ public partial class MetaUpgradeCard : PanelContainer
         count_label = GetNode<Label>("%CountLabel");
 
         card_animation_player = GetNode<AnimationPlayer>("%CardAnimationPlayer");
-
+        
         progress_bar = GetNode<ProgressBar>("%ProgressBar");
 
         purchase_button = GetNode<SoundButton>("%PurchaseButton");

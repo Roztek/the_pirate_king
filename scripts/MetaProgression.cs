@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using Godot.Collections;
 
 public partial class MetaProgression : Node
@@ -15,10 +14,14 @@ public partial class MetaProgression : Node
 
     public override void _Ready()
     {
-        GameEvents game_events = GetNode<GameEvents>("/root/GameEvents");
-        game_events.ExperienceVialCollected += OnExperienceVialCollected;
-
+        GetNode<GameEvents>("/root/GameEvents").ExperienceVialCollected += OnExperienceVialCollected;
         LoadSaveFile();
+    }
+
+
+    public override void _ExitTree()
+    {
+        GetNode<GameEvents>("/root/GameEvents").ExperienceVialCollected -= OnExperienceVialCollected;
     }
 
 

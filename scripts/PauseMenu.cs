@@ -1,18 +1,14 @@
 using Godot;
-using System;
 
 public partial class PauseMenu : CanvasLayer
 {
+    public PackedScene options_menu_scene = (PackedScene) ResourceLoader.Load("res://scenes/ui/options_menu.tscn");
+
     public ScreenTransition screen_transition = null;
-    public Button resume_button = null;
-    public Button options_button = null;
-    public Button menu_button = null;
     public AnimationPlayer animation_player = null;
     public PanelContainer panel_container = null;
 
-    public bool is_closing = false;
-
-    public PackedScene options_menu_scene = (PackedScene) ResourceLoader.Load("res://scenes/ui/options_menu.tscn");
+    private bool _is_closing = false;
 
 
     public override void _Ready()
@@ -21,24 +17,20 @@ public partial class PauseMenu : CanvasLayer
 
         screen_transition = (ScreenTransition) GetNode("/root/ScreenTransition");
 
-        resume_button = GetNode<Button>("%ResumeButton");
-        resume_button.Pressed += OnResumeButtonPressed;
-
-        options_button = GetNode<Button>("%OptionsButton");
-        options_button.Pressed += OnOptionsButtonPressed;
-
-        menu_button = GetNode<Button>("%MenuButton");
-        menu_button.Pressed += OnMenuButtonPressed;
+        GetNode<Button>("%ResumeButton").Pressed += OnResumeButtonPressed;
+        GetNode<Button>("%OptionsButton").Pressed += OnOptionsButtonPressed;
+        GetNode<Button>("%MenuButton").Pressed += OnMenuButtonPressed;
 
         animation_player = GetNode<AnimationPlayer>("AnimationPlayer");
         animation_player.Play("default");
 
         panel_container = GetNode<PanelContainer>("%PanelContainer");
-
         panel_container.PivotOffset = panel_container.Size / 2;
+
         Tween tween = CreateTween();
         tween.TweenProperty(panel_container, "scale", Vector2.Zero, 0);
-        tween.TweenProperty(panel_container, "scale", Vector2.One, 0.3f).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Back);
+        tween.TweenProperty(panel_container, "scale", Vector2.One, 0.3f)
+            .SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Back);
     }
 
 
@@ -54,9 +46,9 @@ public partial class PauseMenu : CanvasLayer
 
     public async void close()
     {
-        if (is_closing)
+        if (_is_closing)
             return;
-        is_closing = true;
+        _is_closing = true;
 
         animation_player.PlayBackwards("default");
 

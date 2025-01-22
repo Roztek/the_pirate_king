@@ -1,32 +1,23 @@
 using Godot;
-using System;
 
 public partial class MainMenu : CanvasLayer
 {
-    public ScreenTransition screen_transition = null;
-    public Button play_button = null;
-    public Button upgrades_button = null;
-    public Button options_button = null;
-    public Button quit_button = null;
-
     public PackedScene options_menu_scene = (PackedScene) ResourceLoader.Load("res://scenes/ui/options_menu.tscn");
 
+    public ScreenTransition screen_transition = null;
 
+    
     public override void _Ready()
     {
-        screen_transition = (ScreenTransition) GetNode("/root/ScreenTransition");
+        screen_transition = GetNode<ScreenTransition>("/root/ScreenTransition");
 
-        play_button = GetNode<Button>("%PlayButton");
-        play_button.Pressed += OnPlayButtonPressed;
+        GetNode<Button>("%PlayButton").Pressed += OnPlayButtonPressed;
 
-        upgrades_button = GetNode<Button>("%UpgradesButton");
-        upgrades_button.Pressed += OnUpgradesButtonPressed;
+        GetNode<Button>("%UpgradesButton").Pressed += OnUpgradesButtonPressed;
 
-        options_button = GetNode<Button>("%OptionsButton");
-        options_button.Pressed += OnOptionsButtonPressed;
+        GetNode<Button>("%OptionsButton").Pressed += OnOptionsButtonPressed;
 
-        quit_button = GetNode<Button>("%QuitButton");
-        quit_button.Pressed += OnQuitButtonPressed;
+        GetNode<Button>("%QuitButton").Pressed += OnQuitButtonPressed;
     }
 
 
@@ -54,8 +45,10 @@ public partial class MainMenu : CanvasLayer
     }
 
 
-    public void OnQuitButtonPressed()
+    public async void OnQuitButtonPressed()
     {
+        screen_transition.Transition();
+        await ToSignal(screen_transition, "TransitionedHalfway");
         GetTree().Quit();
     }
 

@@ -1,55 +1,47 @@
 using Godot;
 using Godot.Collections;
-using System;
 
 public partial class Player : CharacterBody2D
 {
 	[Export] public ArenaTimeManager area_time_manager { get; set; }
 
-	public int bodies_colliding = 0;
-	public float base_speed = 0;
-
 	public MetaProgression meta_progression = null;
 	public HealthComponent health_component = null;
+	public VelocityComponent velocity_component = null;
 	public Timer damage_interval_timer = null;
 	public ProgressBar health_bar = null;
 	public Node abilities = null;
-	public VelocityComponent velocity_component = null;
 	public GameEvents game_events = null;
-	public RandomAudioComponent2D random_audio_component_2d = null;
+
+	public int bodies_colliding = 0;
+	public float base_speed = 0;
 
 
     public override void _Ready()
     {
 		meta_progression = GetNode<MetaProgression>("/root/MetaProgression");
 
-		velocity_component = GetNode<VelocityComponent>("VelocityComponent");
-		base_speed = velocity_component.max_speed;
-
 		health_component = GetNode<HealthComponent>("HealthComponent");
 		health_component.HealthChanged += OnHealthChanged;
 		health_component.HealthDecreased += OnHealthDecreased;
-		
+
+		velocity_component = GetNode<VelocityComponent>("VelocityComponent");
+		base_speed = velocity_component.max_speed;
+
 		health_bar = GetNode<ProgressBar>("HealthBar");
+		abilities = GetNode<Node>("Abilities");
 		UpdateHealthDisplay();
 
 		damage_interval_timer = GetNode<Timer>("DamageIntervalTimer");
 		damage_interval_timer.Timeout += OnDamageIntervalTimerTimeout;
 
-        Area2D body_entered = GetNode<Area2D>("CollisionArea2D");
-		body_entered.BodyEntered += OnBodyEntered;
-
-		Area2D body_exited = GetNode<Area2D>("CollisionArea2D");
-		body_exited.BodyExited += OnBodyExited;
-
 		game_events = GetNode<GameEvents>("/root/GameEvents");
 		game_events.AbilityUpgradeAdded += OnAbilityUpgradeAdded;
 
-		abilities = GetNode<Node>("Abilities");
-
-		random_audio_component_2d = GetNode<RandomAudioComponent2D>("RandomHitAudioComponent");
-
 		area_time_manager.ArenaDifficultyIncreased += OnArenaDifficultyIncreased;
+
+		GetNode<Area2D>("CollisionArea2D").BodyEntered += OnBodyEntered;
+		GetNode<Area2D>("CollisionArea2D").BodyExited += OnBodyExited;
     }
 
 
@@ -98,7 +90,7 @@ public partial class Player : CharacterBody2D
 	{
 		bodies_colliding++;
 		DealDamage();
-		random_audio_component_2d.PlayRandom();
+		GetNode<RandomAudioComponent2D>("RandomHitAudioComponent").PlayRandom();
 	}
 
 
