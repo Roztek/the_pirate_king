@@ -120,16 +120,16 @@ public partial class Player : CharacterBody2D
 	}
 
 
-	public void OnAbilityUpgradeAdded(AbilityUpgrade ability_upgrade, Dictionary current_upgrades)
+	public void OnAbilityUpgradeAdded(AbilityUpgrade upgrade, Dictionary<string, Dictionary> current_upgrades)
 	{
-		if (ability_upgrade is Ability ability)
+		if (upgrade is Ability ability)
 		{
 			var ability_instance = ability.ability_controller_scene.Instantiate();
 			abilities.AddChild(ability_instance);
 		}
-		else if (ability_upgrade.id == "player_speed")
+		else if (upgrade.id == "player_speed")
 		{
-			Dictionary upgrade_data = (Dictionary) current_upgrades[ability_upgrade.id];
+			Dictionary upgrade_data = (Dictionary) current_upgrades[upgrade.id];
 			int current_quantity = (int) upgrade_data["quantity"];
 			velocity_component.max_speed = base_speed + (current_quantity * 0.1f);
 		}

@@ -3,20 +3,21 @@ using System;
 
 public partial class Vignette : CanvasLayer
 {
-    public AnimationPlayer animation_player = null;
-
-    
     public override void _Ready()
     {
-        animation_player = GetNode<AnimationPlayer>("AnimationPlayer");
+        GetNode<AnimationPlayer>("AnimationPlayer").Play("RESET");
+        GetNode<GameEvents>("/root/GameEvents").PlayerDamaged += OnPlayerDamaged;
+    }
 
-        GameEvents game_events = (GameEvents) GetNode("/root/GameEvents");
-		game_events.PlayerDamaged += OnPlayerDamaged;
+
+    public override void _ExitTree()
+    {
+        GetNode<GameEvents>("/root/GameEvents").PlayerDamaged -= OnPlayerDamaged;
     }
 
 
     public void OnPlayerDamaged()
     {
-        animation_player.Play("hit");
+        GetNode<AnimationPlayer>("AnimationPlayer").Play("hit");
     }
 }

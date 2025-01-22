@@ -9,11 +9,6 @@ public partial class UpgradeManager : Node
 	[Export] public ExperienceManager experience_manager { get; set; }
 	[Export] public PackedScene upgrade_screen_scene { get; set; }
 
-	public const int TOTAL_UPGRADES = 2;
-
-	public Dictionary current_upgrades = new Dictionary();
-	public WeightedTable upgrade_pool = new WeightedTable();
-
 	public Resource upgrade_axe = ResourceLoader.Load("res://resources/upgrades/axe.tres");
 	public Resource upgrade_anvil = ResourceLoader.Load("res://resources/upgrades/anvil.tres");
 	public Resource upgrade_axe_damage = ResourceLoader.Load("res://resources/upgrades/axe_damage.tres");
@@ -21,12 +16,16 @@ public partial class UpgradeManager : Node
 	public Resource upgrade_sword_damage = ResourceLoader.Load("res://resources/upgrades/sword_damage.tres");
 	public Resource upgrade_player_speed = ResourceLoader.Load("res://resources/upgrades/player_speed.tres");
 	public Resource upgrade_anvil_amount = ResourceLoader.Load("res://resources/upgrades/anvil_amount.tres");
+
+	private Dictionary<string, Dictionary> current_upgrades = new Dictionary<string, Dictionary>();
+
+	public WeightedTable upgrade_pool = new WeightedTable();
 	
 
     public override void _Ready()
     {
 		upgrade_pool.AddItem(upgrade_axe, 10);
-		upgrade_pool.AddItem(upgrade_anvil, 1000);
+		upgrade_pool.AddItem(upgrade_anvil, 10);
 		upgrade_pool.AddItem(upgrade_sword_speed, 10);
 		upgrade_pool.AddItem(upgrade_sword_damage, 10);
 		upgrade_pool.AddItem(upgrade_player_speed, 5);
@@ -78,7 +77,7 @@ public partial class UpgradeManager : Node
 		}
 		else if (chosen_upgrade == upgrade_anvil)
 		{
-			upgrade_pool.AddItem(upgrade_anvil_amount, 5000);
+			upgrade_pool.AddItem(upgrade_anvil_amount, 5);
 		}
 	}
 
@@ -104,7 +103,7 @@ public partial class UpgradeManager : Node
 	{
 		Array<AbilityUpgrade> chosen_upgrades = new Array<AbilityUpgrade>();
 
-		for (int i = 0; i < TOTAL_UPGRADES; i++)
+		for (int i = 0; i < 2; i++)
 		{
 			AbilityUpgrade chosen_upgrade = null;
 

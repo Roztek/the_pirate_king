@@ -16,8 +16,13 @@ public partial class ExperienceManager : Node
 
     public override void _Ready()
     {
-        GameEvents game_events = (GameEvents) GetNode("/root/GameEvents");
-        game_events.ExperienceVialCollected += OnExperienceVialCollected;
+        GetNode<GameEvents>("/root/GameEvents").ExperienceVialCollected += OnExperienceVialCollected;
+    }
+    
+    
+    public override void _ExitTree()
+    {
+        GetNode<GameEvents>("/root/GameEvents").ExperienceVialCollected -= OnExperienceVialCollected;
     }
 
 

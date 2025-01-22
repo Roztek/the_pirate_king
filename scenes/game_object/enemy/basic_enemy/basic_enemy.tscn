@@ -12,7 +12,7 @@
 [ext_resource type="Material" uid="uid://d3yw7ubrop25s" path="res://scenes/component/hit_flash_component_material.tres" id="8_kejbw"]
 [ext_resource type="PackedScene" uid="uid://ihc7pk8y7mkf" path="res://scenes/component/hit_flash_component.tscn" id="9_ndyfd"]
 [ext_resource type="AudioStream" uid="uid://bfg1uuitkmqcx" path="res://assets/audio/footstep_carpet_000.ogg" id="12_4j2jc"]
-[ext_resource type="PackedScene" path="res://scenes/component/random_audio_component_2d.tscn" id="12_68b1r"]
+[ext_resource type="PackedScene" uid="uid://cxluym1wjsno4" path="res://scenes/component/random_audio_component_2d.tscn" id="12_68b1r"]
 [ext_resource type="AudioStream" uid="uid://8kpgklhdelmw" path="res://assets/audio/footstep_carpet_001.ogg" id="14_47iff"]
 [ext_resource type="AudioStream" uid="uid://dqmenb5w4w0ki" path="res://assets/audio/footstep_carpet_002.ogg" id="15_pclbu"]
 [ext_resource type="AudioStream" uid="uid://c057nbdqw5kqo" path="res://assets/audio/footstep_carpet_003.ogg" id="16_b3ylu"]
@@ -109,7 +109,7 @@ max_health = 10.0
 
 [node name="VialDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_5cba3")]
 health_component = NodePath("../HealthComponent")
-_spawn_rate = 0.35
+_spawn_rate = 1.0
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_cghi7")]
 max_speed = 40.0

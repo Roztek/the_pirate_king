@@ -5,7 +5,7 @@ using System;
 public partial class GameEvents : Node
 {
     [Signal] public delegate void ExperienceVialCollectedEventHandler(float number);
-    [Signal] public delegate void AbilityUpgradeAddedEventHandler(AbilityUpgrade upgrade, Dictionary current_upgrades);
+    [Signal] public delegate void AbilityUpgradeAddedEventHandler(AbilityUpgrade upgrade, Dictionary<string, Dictionary> current_upgrades);
     [Signal] public delegate void PlayerDamagedEventHandler();
 
 
@@ -15,7 +15,7 @@ public partial class GameEvents : Node
     }
 
 
-    public void EmitAbilityUpgradeAdded(AbilityUpgrade upgrade, Dictionary current_upgrades)
+    public void EmitAbilityUpgradeAdded(AbilityUpgrade upgrade, Dictionary<string, Dictionary> current_upgrades)
     {
         EmitSignal(SignalName.AbilityUpgradeAdded, upgrade, current_upgrades);
     }

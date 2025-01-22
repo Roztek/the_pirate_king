@@ -71,7 +71,7 @@ public partial class SwordAbilityController : Node
     }
 
 
-    public void OnAbilityUpgradeAdded(AbilityUpgrade upgrade, Dictionary current_upgrades)
+    public void OnAbilityUpgradeAdded(AbilityUpgrade upgrade, Dictionary<string, Dictionary> current_upgrades)
     {
         Timer ability_timer = GetNode<Timer>("Timer");
 

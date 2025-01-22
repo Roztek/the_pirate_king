@@ -8,10 +8,10 @@ public partial class AnvilAbilityController : Node
 
     public const int BASE_RANGE = 100;
 
-    public int base_damage = 15;
-    public int anvil_amount = 0;
-
     public Timer ability_timer = null;
+    public float base_damage = 15;
+    public float additional_damage_percent = 1;
+    public int anvil_amount = 0;
 
 
     public override void _Ready()
@@ -54,17 +54,16 @@ public partial class AnvilAbilityController : Node
 
             foreground_layer.AddChild(anvil_instance);
             anvil_instance.GlobalPosition = spawn_position;
-            anvil_instance.hitbox_component.damage = base_damage;
+            anvil_instance.hitbox_component.damage = base_damage * additional_damage_percent;
         }
     }
 
 
-    public void OnAbilityUpgradeAdded(AbilityUpgrade upgrade, Dictionary current_upgrades)
+    private void OnAbilityUpgradeAdded(AbilityUpgrade upgrade, Dictionary<string, Dictionary> current_upgrades)
     {
-        if (upgrade.id == "anvil_amount")
+        if (upgrade.id == "anvil_count")
         {
-            Dictionary upgrade_data = (Dictionary) current_upgrades[upgrade.id];
-            anvil_amount = (int) upgrade_data["quantity"];
+            anvil_amount = (int) current_upgrades["anvil_count"]["quantity"];
         }
     }
 }

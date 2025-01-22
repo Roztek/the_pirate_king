@@ -40,7 +40,7 @@ public partial class AxeAbilityController : Node
     }
 
 
-    public void OnAbilityUpgradeAdded(AbilityUpgrade upgrade, Dictionary current_upgrades)
+    public void OnAbilityUpgradeAdded(AbilityUpgrade upgrade, Dictionary<string, Dictionary> current_upgrades)
     {
         if (upgrade.id == "axe_damage")
         {
