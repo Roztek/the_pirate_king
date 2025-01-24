@@ -87,6 +87,5 @@ public partial class MetaUpgradeCard : PanelContainer
         meta_progress.Save();
         GetTree().CallGroup("meta_upgrade_card", "UpdateProgress");
         card_animation_player.Play("selected");
-        //UpdateProgress();
     }
 }
