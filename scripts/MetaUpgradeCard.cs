@@ -85,8 +85,8 @@ public partial class MetaUpgradeCard : PanelContainer
         meta_progress.AddMetaUpgrade(meta_upgrade);
         meta_progress.save_data["meta_upgrade_currency"] = (int) meta_progress.save_data["meta_upgrade_currency"] - meta_upgrade.experience_cost;
         meta_progress.Save();
-        GetTree().CallGroup("meta_upgrade_card", "upgrade_progress");
+        GetTree().CallGroup("meta_upgrade_card", "UpdateProgress");
         card_animation_player.Play("selected");
-        UpdateProgress();
+        //UpdateProgress();
     }
 }
