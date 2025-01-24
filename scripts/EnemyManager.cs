@@ -87,7 +87,7 @@ public partial class EnemyManager : Node
 		else if (arena_difficulty == 18)
 			enemy_table.AddItem(flying_enemy_scene, 7);
 
-		if ((arena_difficulty % 6) == 0)
+		if ((arena_difficulty % 12) == 0)
 			number_to_spawn++;
 	}
 }

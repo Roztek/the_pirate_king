@@ -149,7 +149,7 @@ public partial class Player : CharacterBody2D
 		}
 		else if (upgrade.id == "player_speed")
 		{
-			Dictionary upgrade_data = (Dictionary) current_upgrades[upgrade.id];
+			Dictionary upgrade_data = current_upgrades[upgrade.id];
 			int current_quantity = (int) upgrade_data["quantity"];
 			velocity_component.max_speed = base_speed + (current_quantity * 0.1f);
 		}
