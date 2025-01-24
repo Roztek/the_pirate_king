@@ -7,12 +7,12 @@ public partial class UpgradeManager : Node
 	[Export] public PackedScene upgrade_screen_scene { get; set; }
 
 	public Resource upgrade_axe = ResourceLoader.Load("res://resources/upgrades/axe.tres");
-	public Resource upgrade_anvil = ResourceLoader.Load("res://resources/upgrades/anvil.tres");
+	public Resource upgrade_anchor = ResourceLoader.Load("res://resources/upgrades/anchor.tres");
 	public Resource upgrade_axe_damage = ResourceLoader.Load("res://resources/upgrades/axe_damage.tres");
 	public Resource upgrade_sword_speed = ResourceLoader.Load("res://resources/upgrades/sword_speed.tres");
 	public Resource upgrade_sword_damage = ResourceLoader.Load("res://resources/upgrades/sword_damage.tres");
 	public Resource upgrade_player_speed = ResourceLoader.Load("res://resources/upgrades/player_speed.tres");
-	public Resource upgrade_anvil_amount = ResourceLoader.Load("res://resources/upgrades/anvil_amount.tres");
+	public Resource upgrade_anchor_amount = ResourceLoader.Load("res://resources/upgrades/anchor_amount.tres");
 
 	private Dictionary<string, Dictionary> current_upgrades = new Dictionary<string, Dictionary>();
 
@@ -22,7 +22,7 @@ public partial class UpgradeManager : Node
     public override void _Ready()
     {
 		upgrade_pool.AddItem(upgrade_axe, 10);
-		upgrade_pool.AddItem(upgrade_anvil, 10);
+		upgrade_pool.AddItem(upgrade_anchor, 10);
 		upgrade_pool.AddItem(upgrade_sword_speed, 10);
 		upgrade_pool.AddItem(upgrade_sword_damage, 10);
 		upgrade_pool.AddItem(upgrade_player_speed, 5);
@@ -68,13 +68,9 @@ public partial class UpgradeManager : Node
 	public void UpdateUpgradePool(AbilityUpgrade chosen_upgrade)
 	{
 		if (chosen_upgrade == upgrade_axe)
-		{
 			upgrade_pool.AddItem(upgrade_axe_damage, 10);
-		}
-		else if (chosen_upgrade == upgrade_anvil)
-		{
-			upgrade_pool.AddItem(upgrade_anvil_amount, 5);
-		}
+		else if (chosen_upgrade == upgrade_anchor)
+			upgrade_pool.AddItem(upgrade_anchor_amount, 5);
 	}
 
 
@@ -95,9 +91,7 @@ public partial class UpgradeManager : Node
 			}
 
 			if (chosen_upgrade != null)
-			{
 				chosen_upgrades.Add(chosen_upgrade);
-			}
 		}
 
 		return chosen_upgrades;

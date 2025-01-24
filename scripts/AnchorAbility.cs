@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class AnvilAbility : Node2D
+public partial class AnchorAbility : Node2D
 {
     public HitboxComponent hitbox_component = null;
 

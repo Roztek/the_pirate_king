@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://daicfrdlqyy2j"]
 
-[ext_resource type="Script" path="res://scripts/AnvilAbility.cs" id="1_jch4g"]
-[ext_resource type="Texture2D" uid="uid://bk4fo2555bq2m" path="res://assets/ability/anvil.png" id="1_t1y66"]
-[ext_resource type="PackedScene" uid="uid://pegtou4vu4tk" path="res://scenes/component/hitbox_component.tscn" id="2_dglu6"]
-[ext_resource type="Texture2D" uid="uid://bxtxrp5v7ck3j" path="res://assets/ability/particle.png" id="4_2ocn2"]
+[ext_resource type="Script" path="res://scripts/AnchorAbility.cs" id="1_3bnsn"]
+[ext_resource type="Texture2D" uid="uid://bxtxrp5v7ck3j" path="res://assets/ability/particle.png" id="2_yusrf"]
+[ext_resource type="Texture2D" uid="uid://cc2j7ncxqq7se" path="res://assets/ability/anchor.png" id="3_0j88h"]
+[ext_resource type="PackedScene" uid="uid://pegtou4vu4tk" path="res://scenes/component/hitbox_component.tscn" id="4_mngma"]
 
 [sub_resource type="Animation" id="Animation_8mdw4"]
 length = 0.001
@@ -154,8 +154,8 @@ scale_curve = SubResource("CurveTexture_84paq")
 [sub_resource type="CircleShape2D" id="CircleShape2D_1fcwk"]
 radius = 32.0
 
-[node name="AnvilAbility" type="Node2D"]
-script = ExtResource("1_jch4g")
+[node name="AnchorAbility" type="Node2D"]
+script = ExtResource("1_3bnsn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -167,7 +167,7 @@ autoplay = "default"
 emitting = false
 amount = 30
 process_material = SubResource("ParticleProcessMaterial_8gpnw")
-texture = ExtResource("4_2ocn2")
+texture = ExtResource("2_yusrf")
 lifetime = 0.25
 one_shot = true
 explosiveness = 0.9
@@ -178,9 +178,9 @@ interpolate = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals"]
 position = Vector2(0, -7)
-texture = ExtResource("1_t1y66")
+texture = ExtResource("3_0j88h")
 
-[node name="HitboxComponent" parent="." instance=ExtResource("2_dglu6")]
+[node name="HitboxComponent" parent="." instance=ExtResource("4_mngma")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(0, -3)
