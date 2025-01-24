@@ -12,6 +12,7 @@ public partial class Player : CharacterBody2D
 	public ProgressBar health_bar = null;
 	public Node abilities = null;
 	public GameEvents game_events = null;
+	public AnimatedSprite2D animated_sprite = null;
 
 	public int bodies_colliding = 0;
 	public float base_speed = 0;
@@ -42,6 +43,8 @@ public partial class Player : CharacterBody2D
 
 		GetNode<Area2D>("CollisionArea2D").BodyEntered += OnBodyEntered;
 		GetNode<Area2D>("CollisionArea2D").BodyExited += OnBodyExited;
+
+		animated_sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
     }
 
 
@@ -51,7 +54,32 @@ public partial class Player : CharacterBody2D
 		Vector2 direction = movement_vector.Normalized();
 		velocity_component.AccelerateInDirection(direction);
 		velocity_component.Move(this);
+
+		UpdateAnimation(movement_vector);
 	}
+
+
+	public void UpdateAnimation(Vector2 movement_vector)
+    {
+        if (movement_vector == Vector2.Zero)
+        {
+            animated_sprite.Play("idle");
+        }
+        else if (Mathf.Abs(movement_vector.X) > Mathf.Abs(movement_vector.Y))
+        {
+            if (movement_vector.X > 0)
+                animated_sprite.Play("walk_right");
+            else
+                animated_sprite.Play("walk_left");
+        }
+        else
+        {
+            if (movement_vector.Y > 0)
+                animated_sprite.Play("walk_down");
+            else
+                animated_sprite.Play("walk_up");
+        }
+    }
 
 
 	static private Vector2 GetMovementVector()
