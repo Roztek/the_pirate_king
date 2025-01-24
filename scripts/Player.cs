@@ -48,6 +48,12 @@ public partial class Player : CharacterBody2D
     }
 
 
+    public override void _ExitTree()
+    {
+		game_events.AbilityUpgradeAdded -= OnAbilityUpgradeAdded;
+    }
+
+
     public override void _Process(double delta)
 	{
 		Vector2 movement_vector = GetMovementVector();
@@ -164,9 +170,7 @@ public partial class Player : CharacterBody2D
 		{
 			bool is_thirty_second_interval = (arena_difficulty % 6) == 0;
 			if (is_thirty_second_interval)
-			{
 				health_component.Heal(health_regeneration_quantity);
-			}
 		}
 	}
 }
