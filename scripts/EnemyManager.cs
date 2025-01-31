@@ -35,13 +35,13 @@ public partial class EnemyManager : Node
 			return Vector2.Zero;
 
 		Vector2 spawn_position = Vector2.Zero;
-		Vector2 random_direction = Vector2.Right.Rotated((float)GD.RandRange(0, Mathf.Tau));
+		Vector2 random_direction = Vector2.Right.Rotated((float) GD.RandRange(0, Mathf.Tau));
 		for (int i = 0; i < 4; i++)
 		{
 			spawn_position = player.GlobalPosition + (random_direction * SPAWN_RADIUS);
 			var additional_offset = random_direction * 20;
 
-			var query_parameters = PhysicsRayQueryParameters2D.Create(player.GlobalPosition, spawn_position + additional_offset, 1<<0);
+			var query_parameters = PhysicsRayQueryParameters2D.Create(player.GlobalPosition, spawn_position + additional_offset, 1 << 0);
 			var result = GetTree().Root.World2D.DirectSpaceState.IntersectRay(query_parameters);
 			if (result.Count <= 0)
 				break;
