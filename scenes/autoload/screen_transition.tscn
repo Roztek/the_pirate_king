@@ -1,8 +1,34 @@
 [gd_scene load_steps=8 format=3 uid="uid://c7smxsknj67mj"]
 
 [ext_resource type="Script" path="res://scripts/ScreenTransition.cs" id="1_plgj1"]
-[ext_resource type="Shader" path="res://scenes/shader/screen_transition.gdshader" id="1_tvee8"]
 [ext_resource type="Texture2D" uid="uid://bdnt2l4t28aw4" path="res://assets/ui/screen_transition.png" id="2_tpf7h"]
+
+[sub_resource type="Animation" id="Animation_rnauv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/percent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.325]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_r2d87"]
 resource_name = "default"
@@ -47,41 +73,32 @@ tracks/2/keys = {
 "values": [false, true]
 }
 
-[sub_resource type="Animation" id="Animation_rnauv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:material:shader_parameter/percent")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.325]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gd5wn"]
 _data = {
 "RESET": SubResource("Animation_rnauv"),
 "default": SubResource("Animation_r2d87")
 }
 
+[sub_resource type="Shader" id="Shader_s022l"]
+code = "shader_type canvas_item;
+
+uniform vec4 transition_colour : source_color;
+uniform sampler2D transition_texture : filter_nearest;
+uniform float percent : hint_range(0.0, 1.0);
+
+void fragment() {
+	vec4 transition_texture_colour = texture(transition_texture, UV);
+	if (transition_texture_colour.r > percent) {
+		COLOR.a = 0.0;
+	}
+	else {
+		COLOR = transition_colour;
+	}
+}
+"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ura3l"]
-shader = ExtResource("1_tvee8")
+shader = SubResource("Shader_s022l")
 shader_parameter/transition_colour = Color(0, 0, 0, 1)
 shader_parameter/percent = 0.325
 shader_parameter/transition_texture = ExtResource("2_tpf7h")

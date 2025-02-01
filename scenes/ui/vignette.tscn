@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ctqjdcaupcbnq"]
 
-[ext_resource type="Shader" path="res://scenes/shader/vignette.gdshader" id="1_5u830"]
+[ext_resource type="Shader" path="res://scripts/shader/vignette.gdshader" id="1_5u830"]
 [ext_resource type="Script" path="res://scripts/Vignette.cs" id="1_noclv"]
 
 [sub_resource type="Animation" id="Animation_tx662"]

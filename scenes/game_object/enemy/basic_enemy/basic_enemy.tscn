@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cfby0or5fgxpk" path="res://scenes/component/velocity_component.tscn" id="4_cghi7"]
 [ext_resource type="PackedScene" uid="uid://du8jbqq05dkmr" path="res://scenes/component/death_component.tscn" id="4_mkpmd"]
 [ext_resource type="PackedScene" uid="uid://1ym6hb4nw41k" path="res://scenes/component/hurtbox_component.tscn" id="4_srq01"]
-[ext_resource type="Shader" path="res://scenes/shader/hit_flash_component.gdshader" id="6_gjqgd"]
+[ext_resource type="Shader" path="res://scripts/shader/hit_flash_component.gdshader" id="6_gjqgd"]
 [ext_resource type="PackedScene" uid="uid://3airktqu258q" path="res://scenes/ui/floating_damage.tscn" id="8_1yias"]
 [ext_resource type="Material" uid="uid://d3yw7ubrop25s" path="res://scenes/component/hit_flash_component_material.tres" id="8_kejbw"]
 [ext_resource type="PackedScene" uid="uid://ihc7pk8y7mkf" path="res://scenes/component/hit_flash_component.tscn" id="9_ndyfd"]

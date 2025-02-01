@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://1ym6hb4nw41k" path="res://scenes/component/hurtbox_component.tscn" id="5_lrtml"]
 [ext_resource type="PackedScene" uid="uid://ihc7pk8y7mkf" path="res://scenes/component/hit_flash_component.tscn" id="5_s3304"]
 [ext_resource type="Material" uid="uid://d3yw7ubrop25s" path="res://scenes/component/hit_flash_component_material.tres" id="6_ajxgb"]
-[ext_resource type="Shader" path="res://scenes/shader/hit_flash_component.gdshader" id="6_cdv67"]
+[ext_resource type="Shader" path="res://scripts/shader/hit_flash_component.gdshader" id="6_cdv67"]
 [ext_resource type="PackedScene" uid="uid://cxluym1wjsno4" path="res://scenes/component/random_audio_component_2d.tscn" id="8_i1gyh"]
 [ext_resource type="PackedScene" uid="uid://3airktqu258q" path="res://scenes/ui/floating_damage.tscn" id="8_l7m0o"]
 [ext_resource type="AudioStream" uid="uid://bfg1uuitkmqcx" path="res://assets/audio/footstep_carpet_000.ogg" id="9_0n5vo"]
