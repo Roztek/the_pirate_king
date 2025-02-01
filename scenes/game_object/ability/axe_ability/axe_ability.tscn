@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://pr2wf57mi7p2"]
 
-[ext_resource type="Texture2D" uid="uid://d4sbvffpbt8s" path="res://assets/ability/axe.png" id="1_460f6"]
+[ext_resource type="Texture2D" uid="uid://blr7hp1hobu2a" path="res://assets/ability/axe.png" id="1_460f6"]
 [ext_resource type="Script" path="res://scripts/AxeAbility.cs" id="1_mafgk"]
 [ext_resource type="PackedScene" uid="uid://pegtou4vu4tk" path="res://scenes/component/hitbox_component.tscn" id="3_rl3dj"]
 

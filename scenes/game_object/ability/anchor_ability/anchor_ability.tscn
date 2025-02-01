@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/AnchorAbility.cs" id="1_3bnsn"]
 [ext_resource type="Texture2D" uid="uid://bxtxrp5v7ck3j" path="res://assets/ability/particle.png" id="2_yusrf"]
-[ext_resource type="Texture2D" uid="uid://c8d6a43tgwqpt" path="res://assets/ability/anchor.png" id="3_0j88h"]
+[ext_resource type="Texture2D" uid="uid://dei2ssivskqv0" path="res://assets/ability/anchor.png" id="3_0j88h"]
 [ext_resource type="PackedScene" uid="uid://pegtou4vu4tk" path="res://scenes/component/hitbox_component.tscn" id="4_mngma"]
 
 [sub_resource type="Animation" id="Animation_8mdw4"]
