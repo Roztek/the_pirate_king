@@ -6,13 +6,13 @@ public partial class UpgradeManager : Node
 	[Export] public ExperienceManager experience_manager { get; set; }
 	[Export] public PackedScene upgrade_screen_scene { get; set; }
 
-	public Resource upgrade_axe = ResourceLoader.Load("res://resources/upgrades/axe.tres");
-	public Resource upgrade_anchor = ResourceLoader.Load("res://resources/upgrades/anchor.tres");
-	public Resource upgrade_axe_damage = ResourceLoader.Load("res://resources/upgrades/axe_damage.tres");
-	public Resource upgrade_sword_speed = ResourceLoader.Load("res://resources/upgrades/sword_speed.tres");
-	public Resource upgrade_sword_damage = ResourceLoader.Load("res://resources/upgrades/sword_damage.tres");
-	public Resource upgrade_player_speed = ResourceLoader.Load("res://resources/upgrades/player_speed.tres");
-	public Resource upgrade_anchor_amount = ResourceLoader.Load("res://resources/upgrades/anchor_amount.tres");
+	public Resource upgrade_axe = ResourceLoader.Load("res://resources/ability_upgrades/axe.tres");
+	public Resource upgrade_anchor = ResourceLoader.Load("res://resources/ability_upgrades/anchor.tres");
+	public Resource upgrade_axe_damage = ResourceLoader.Load("res://resources/ability_upgrades/axe_damage.tres");
+	public Resource upgrade_sword_speed = ResourceLoader.Load("res://resources/ability_upgrades/sword_speed.tres");
+	public Resource upgrade_sword_damage = ResourceLoader.Load("res://resources/ability_upgrades/sword_damage.tres");
+	public Resource upgrade_player_speed = ResourceLoader.Load("res://resources/ability_upgrades/player_speed.tres");
+	public Resource upgrade_anchor_amount = ResourceLoader.Load("res://resources/ability_upgrades/anchor_amount.tres");
 
 	private Dictionary<string, Dictionary> current_upgrades = new Dictionary<string, Dictionary>();
 

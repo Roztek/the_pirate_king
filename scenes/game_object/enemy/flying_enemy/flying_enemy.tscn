@@ -107,11 +107,11 @@ autoplay = "walk"
 max_health = 30.0
 
 [node name="VialDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_em700")]
-_spawn_rate = 0.5
+_spawn_rate = 0.65
 health_component = NodePath("../HealthComponent")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_8loqh")]
-max_speed = 110.0
+max_speed = 120.0
 acceleration = 0.75
 
 [node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("5_ry830")]
