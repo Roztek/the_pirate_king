@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://dld0b2d48iho"]
 
-[ext_resource type="Script" path="res://scripts/FlyingEnemy.cs" id="1_r7ju8"]
+[ext_resource type="Script" path="res://scripts/game_object/FlyingEnemy.cs" id="1_r7ju8"]
 [ext_resource type="PackedScene" uid="uid://dyvb8sndjo40a" path="res://scenes/component/health_component.tscn" id="2_j6vm3"]
 [ext_resource type="PackedScene" uid="uid://byawkt2egsswg" path="res://scenes/component/vial_drop_component.tscn" id="3_em700"]
 [ext_resource type="PackedScene" uid="uid://cfby0or5fgxpk" path="res://scenes/component/velocity_component.tscn" id="4_8loqh"]

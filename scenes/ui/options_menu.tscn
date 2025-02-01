@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bbf8hcodypulw"]
 
-[ext_resource type="Script" path="res://scripts/OptionsMenu.cs" id="1_8ccri"]
+[ext_resource type="Script" path="res://scripts/ui/OptionsMenu.cs" id="1_8ccri"]
 [ext_resource type="PackedScene" uid="uid://ctqjdcaupcbnq" path="res://scenes/ui/vignette.tscn" id="2_vtnra"]
-[ext_resource type="TileSet" uid="uid://tfkuag4dp37g" path="res://resources/tileset.tres" id="2_wy5xk"]
+[ext_resource type="TileSet" uid="uid://tfkuag4dp37g" path="res://resources/tileset/tileset.tres" id="2_wy5xk"]
 [ext_resource type="PackedScene" uid="uid://b4k2bmmqhbvvg" path="res://scenes/ui/sound_button.tscn" id="3_oi4nn"]
 
 [node name="OptionsMenu" type="CanvasLayer"]

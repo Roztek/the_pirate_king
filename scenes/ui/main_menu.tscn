@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c8mpae63vv71u"]
 
-[ext_resource type="Script" path="res://scripts/MainMenu.cs" id="1_1mywx"]
-[ext_resource type="TileSet" uid="uid://tfkuag4dp37g" path="res://resources/tileset.tres" id="1_usfow"]
+[ext_resource type="Script" path="res://scripts/ui/MainMenu.cs" id="1_1mywx"]
+[ext_resource type="TileSet" uid="uid://tfkuag4dp37g" path="res://resources/tileset/tileset.tres" id="1_usfow"]
 [ext_resource type="PackedScene" uid="uid://ctqjdcaupcbnq" path="res://scenes/ui/vignette.tscn" id="2_5afsu"]
 [ext_resource type="PackedScene" uid="uid://b4k2bmmqhbvvg" path="res://scenes/ui/sound_button.tscn" id="2_atk1d"]
 

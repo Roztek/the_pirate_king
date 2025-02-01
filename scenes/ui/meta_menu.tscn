@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://doxk2a3lpp2aq"]
 
-[ext_resource type="Script" path="res://scripts/MetaMenu.cs" id="1_j5u21"]
+[ext_resource type="Script" path="res://scripts/ui/MetaMenu.cs" id="1_j5u21"]
 [ext_resource type="Resource" uid="uid://cbu1tewsem61m" path="res://resources/meta_upgrades/experience_gain.tres" id="2_d84al"]
 [ext_resource type="PackedScene" uid="uid://ctqjdcaupcbnq" path="res://scenes/ui/vignette.tscn" id="2_lyy2j"]
-[ext_resource type="TileSet" uid="uid://tfkuag4dp37g" path="res://resources/tileset.tres" id="3_0bw3n"]
+[ext_resource type="TileSet" uid="uid://tfkuag4dp37g" path="res://resources/tileset/tileset.tres" id="3_0bw3n"]
 [ext_resource type="Resource" uid="uid://blet7fd4u43yf" path="res://resources/meta_upgrades/health_regeneration.tres" id="3_ax7sg"]
 [ext_resource type="PackedScene" uid="uid://b4k2bmmqhbvvg" path="res://scenes/ui/sound_button.tscn" id="6_rs4im"]
 

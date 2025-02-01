@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://r5csjsw42nh0"]
 
-[ext_resource type="Script" path="res://scripts/GhostEnemy.cs" id="1_a0lyj"]
+[ext_resource type="Script" path="res://scripts/game_object/GhostEnemy.cs" id="1_a0lyj"]
 [ext_resource type="Texture2D" uid="uid://c1ceg3wb1djiw" path="res://assets/enemies/ghost_enemy.png" id="2_7dtra"]
 [ext_resource type="PackedScene" uid="uid://dyvb8sndjo40a" path="res://scenes/component/health_component.tscn" id="3_5wg67"]
 [ext_resource type="PackedScene" uid="uid://du8jbqq05dkmr" path="res://scenes/component/death_component.tscn" id="3_mpbeb"]

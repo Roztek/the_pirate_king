@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://fhfmdhmybbvq"]
 
-[ext_resource type="Script" path="res://scripts/ExperienceVial.cs" id="1_eykme"]
+[ext_resource type="Script" path="res://scripts/game_object/ExperienceVial.cs" id="1_eykme"]
 [ext_resource type="Texture2D" uid="uid://dayxhubfyk42a" path="res://assets/world/experience_vial.png" id="1_wqq60"]
-[ext_resource type="PackedScene" path="res://scenes/component/random_audio_component_2d.tscn" id="2_bd7fl"]
+[ext_resource type="PackedScene" uid="uid://cxluym1wjsno4" path="res://scenes/component/random_audio_component_2d.tscn" id="2_bd7fl"]
 [ext_resource type="AudioStream" uid="uid://c4j0ldhvdjpwc" path="res://assets/audio/drop_002.ogg" id="4_3njxj"]
 [ext_resource type="AudioStream" uid="uid://v6q0fb52hqcx" path="res://assets/audio/drop_003.ogg" id="5_e4r5c"]
 

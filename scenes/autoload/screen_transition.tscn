@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c7smxsknj67mj"]
 
-[ext_resource type="Script" path="res://scripts/ScreenTransition.cs" id="1_plgj1"]
+[ext_resource type="Script" path="res://scripts/autoload/ScreenTransition.cs" id="1_plgj1"]
 [ext_resource type="Texture2D" uid="uid://bdnt2l4t28aw4" path="res://assets/ui/screen_transition.png" id="2_tpf7h"]
 
 [sub_resource type="Animation" id="Animation_rnauv"]

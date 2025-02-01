@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://swu2ahilfub0"]
 
-[ext_resource type="Script" path="res://scripts/SwordAbility.cs" id="1_m43ob"]
+[ext_resource type="Script" path="res://scripts/game_object/SwordAbility.cs" id="1_m43ob"]
 [ext_resource type="Texture2D" uid="uid://b5j0ps6a6g62" path="res://assets/ability/sword.png" id="1_pba1u"]
 [ext_resource type="PackedScene" uid="uid://pegtou4vu4tk" path="res://scenes/component/hitbox_component.tscn" id="2_v2yuq"]
 

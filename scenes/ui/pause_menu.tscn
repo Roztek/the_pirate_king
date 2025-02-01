@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://nu4e2e47ygq2"]
 
-[ext_resource type="Script" path="res://scripts/PauseMenu.cs" id="1_5kuws"]
+[ext_resource type="Script" path="res://scripts/ui/PauseMenu.cs" id="1_5kuws"]
 [ext_resource type="PackedScene" uid="uid://b4k2bmmqhbvvg" path="res://scenes/ui/sound_button.tscn" id="3_0dbra"]
 
 [sub_resource type="Animation" id="Animation_ran5u"]

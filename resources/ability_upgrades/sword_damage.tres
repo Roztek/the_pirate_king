@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://cxfnhbf57t76c"]
 
-[ext_resource type="Script" path="res://scripts/AbilityUpgrade.cs" id="1_k3r00"]
+[ext_resource type="Script" path="res://scripts/game_object/AbilityUpgrade.cs" id="1_k3r00"]
 
 [resource]
 script = ExtResource("1_k3r00")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dpqssjvjptyj2"]
 
-[ext_resource type="Script" path="res://scripts/UpgradeScreen.cs" id="1_2005d"]
+[ext_resource type="Script" path="res://scripts/ui/UpgradeScreen.cs" id="1_2005d"]
 [ext_resource type="PackedScene" uid="uid://cg0spu8dhdk7d" path="res://scenes/ui/ability_upgrade_card.tscn" id="1_a2g3b"]
 
 [sub_resource type="Animation" id="Animation_38kcw"]
